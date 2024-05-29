@@ -2,6 +2,7 @@ jit.off()
 love.graphics.setDefaultFilter("nearest", "nearest")
 require("/Engine/filesConfig")
 require("defs")
+require("file")
 require("window")
 
 Game.State = LoadScreen
