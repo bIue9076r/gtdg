@@ -1,10 +1,10 @@
 -- Definitions
 Game = {}
-Game.State = 0
+Game.State = State.new(0)
 Game.Muted = false
 
-LoadScreen = 1
-HomeScreen = 2
-LevelScreen = 3
-MenuScreen = 4
-ShopScreen = 5
+LoadScreen = State.new(1)
+HomeScreen = State.new(2)
+LevelScreen = State.new(3)
+MenuScreen = State.new(4)
+ShopScreen = State.new(5)

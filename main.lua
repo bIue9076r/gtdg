@@ -1,35 +1,14 @@
 jit.off()
 love.graphics.setDefaultFilter("nearest", "nearest")
 require("/Engine/filesConfig")
-require("defs")
-require("file")
-require("window")
+require("/file")
+require("/window")
+require("/state")
+require("/defs")
+
+require("/States/LoadScreen")
 
 Game.State = LoadScreen
-
-STATE_KEYPRESSED = {
-	[LoadScreen] = LoadScreen_Keypressed,
-	[HomeScreen] = HomeScreen_Keypressed,
-	[LevelScreen] = LevelScreen_Keypressed,
-	[MenuScreen] = MenuScreen_Keypressed,
-	[ShopScreen] = ShopScreen_Keypressed,
-}
-
-STATE_UPDATE = {
-	[LoadScreen] = LoadScreen_Update,
-	[HomeScreen] = HomeScreen_Update,
-	[LevelScreen] = LevelScreen_Update,
-	[MenuScreen] = MenuScreen_Update,
-	[ShopScreen] = ShopScreen_Update,
-}
-
-STATE_DRAW = {
-	[LoadScreen] = LoadScreen_Draw,
-	[HomeScreen] = HomeScreen_Draw,
-	[LevelScreen] = LevelScreen_Draw,
-	[MenuScreen] = MenuScreen_Draw,
-	[ShopScreen] = ShopScreen_Draw,
-}
 
 function kerror(key)
 	if key == "t" then
@@ -46,13 +25,11 @@ function love.load()
 end
 
 function love.keypressed(key)
-	local f = STATE_KEYPRESSED[Game.State] or kerror
-	if f then f(key) end
+	if Game.State.Keypressed then Game.State:Keypressed(key) end
 end
 
 function love.update(dt)
-	local f = STATE_UPDATE[Game.State]
-	if f then f(dt) end
+	if Game.State.Update then Game.State:Update(dt) end
 	files.update(dt)
 end
 
@@ -60,7 +37,6 @@ function love.draw()
 	if Game.muted then
 		-- play sound
 	end
-	local f = STATE_DRAW[Game.State] or derror
-	if f then f() end
+	if Game.State.Draw then Game.State:Draw(dt) end
 	files.draw()
 end

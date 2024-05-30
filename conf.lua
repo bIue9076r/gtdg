@@ -1,6 +1,6 @@
 function love.conf(t)
-	t.identity = "TDG"
-	t.window.title = "Tower Defence Game"
+	t.identity = "GTDG"
+	t.window.title = "Generic Tower Defence Game"
 	t.window.width = 800
 	t.window.height = 600
 	t.window.fullscreen = false

@@ -58,6 +58,7 @@ function Window.new(l)
 	
 	mt = {
 		__call = Window.draw,
+		__index = Window,
 	}
 	
 	return setmetatable(tbl,mt)
