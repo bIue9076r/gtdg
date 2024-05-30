@@ -6,6 +6,13 @@ require("/window")
 require("/state")
 require("/defs")
 
+files.assets.Fonts.newFont("hex-sans-serif","/Assets/hex-sans-serif.ttf",12)
+files.assets.Textures.newImage("title","/Assets/title.png")
+
+love.graphics.setFont(
+	files.assets.Fonts.getFont("hex-sans-serif")
+)
+
 require("/States/LoadScreen")
 
 Game.State = LoadScreen
