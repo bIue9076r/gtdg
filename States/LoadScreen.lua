@@ -8,16 +8,25 @@ function LS_func_1()
 end
 
 function LS_func_2()
-	love.graphics.print("Mid Ground",50,150)
+	love.graphics.print("Mid Ground",50,175)
 	
 	love.graphics.setColor(1,0,1)
 	love.graphics.rectangle("fill",95,95,50,50)
 	love.graphics.setColor(1,1,1)
 end
 
+function LS_func_3()
+	love.graphics.print("Fore Ground",175,175)
+	
+	love.graphics.setColor(1,1,0)
+	love.graphics.rectangle("fill",120,120,50,50)
+	love.graphics.setColor(1,1,1)
+end
+
 function LoadScreen:Draw()
 	LoadScreen.Window.back:put(LS_func_1)
 	LoadScreen.Window.mid:put(LS_func_2)
+	LoadScreen.Window.fore:put(LS_func_3)
 	LoadScreen.Window:draw()
 end
 
