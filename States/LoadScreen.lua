@@ -8,6 +8,7 @@ function LS_back_1()
 	
 	local t = LS_ticker:get()
 	love.graphics.print("Created By bIue9076r",(-100*(1-(t/100))) + (200*(t/100)),200)
+	love.graphics.print("Press Enter to continue",(900*(1-(t/100))) + (250*(t/100)),300)
 	if t <= 100 then
 		LS_ticker()
 	end
@@ -27,5 +28,8 @@ function LoadScreen:Update(dt)
 end
 
 function LoadScreen:Keypressed(key)
-	
+	if key == "return" then
+		HomeScreen:Load()
+		Game.State = HomeScreen
+	end
 end

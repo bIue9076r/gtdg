@@ -19,6 +19,7 @@ Game.State = LoadScreen
 
 function kerror(key)
 	if key == "t" then
+		LoadScreen:Load()
 		Game.State = LoadScreen
 	end
 end

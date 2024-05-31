@@ -2,7 +2,7 @@ State = {}
 State.Id = 0
 State.Window = Window.new()
 
-function State:load()
+function State:Load()
 	
 end
 
