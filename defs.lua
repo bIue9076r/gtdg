@@ -9,3 +9,19 @@ HomeScreen = State.new(2)
 LevelScreen = State.new(3)
 MenuScreen = State.new(4)
 ShopScreen = State.new(5)
+
+function isKeyUp(key)
+	return ((key == "up") or (key == "w"))
+end
+
+function isKeyDown(key)
+	return ((key == "down") or (key == "s"))
+end
+
+function isKeyLeft(key)
+	return ((key == "left") or (key == "d"))
+end
+
+function isKeyRight(key)
+	return ((key == "right") or (key == "a"))
+end

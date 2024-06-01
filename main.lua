@@ -8,6 +8,11 @@ require("/defs")
 
 files.assets.Fonts.newFont("hex-sans-serif","/Assets/hex-sans-serif.ttf",12)
 files.assets.Textures.newImage("title","/Assets/title.png")
+files.assets.Textures.newImage("back-d","/Assets/background_day.png")
+files.assets.Textures.newImage("back-e","/Assets/background_evening.png")
+files.assets.Textures.newImage("back-n","/Assets/background_night.png")
+
+files.assets.Audio.new("title","/Assets/intro.mp3","stream")
 
 love.graphics.setFont(
 	files.assets.Fonts.getFont("hex-sans-serif")
@@ -17,6 +22,7 @@ require("/States/LoadScreen")
 require("/States/HomeScreen")
 
 Game.State = LoadScreen
+Game.State:Load()
 
 function kerror(key)
 	if key == "t" then
