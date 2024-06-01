@@ -1,9 +1,9 @@
 jit.off()
 love.graphics.setDefaultFilter("nearest", "nearest")
 require("/Engine/filesConfig")
-require("/file")
-require("/window")
-require("/state")
+require("/Modules/file")
+require("/Modules/window")
+require("/Modules/state")
 require("/defs")
 
 files.assets.Fonts.newFont("hex-sans-serif","/Assets/hex-sans-serif.ttf",12)
@@ -14,6 +14,7 @@ love.graphics.setFont(
 )
 
 require("/States/LoadScreen")
+require("/States/HomeScreen")
 
 Game.State = LoadScreen
 
