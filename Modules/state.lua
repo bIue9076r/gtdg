@@ -1,6 +1,7 @@
 State = {}
 State.Id = 0
 State.Window = Window.new()
+State.vars = {}
 
 function State:Load()
 	

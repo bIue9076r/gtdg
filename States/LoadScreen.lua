@@ -1,34 +1,34 @@
 -- Load Screen State
-title_img = files.assets.Textures.getImage("title")
-title_bgs = files.assets.Audio.getSound("title")
-LS_ticker = files.ticker.new()
+LoadScreen.vars.img = files.assets.Textures.getImage("title")
+LoadScreen.vars.bgs = files.assets.Audio.getSound("title")
+LoadScreen.vars.ticker = files.ticker.new()
 
-function LS_back_1()
+function LoadScreen.vars.back_1()
 	love.graphics.draw(
 		files.assets.Textures.getImage("back-d")
 	,0,0)
-	love.graphics.draw(title_img,50,50)
+	love.graphics.draw(LoadScreen.vars.img,50,50)
 	love.graphics.print("A Generic Tower Defence Game",170,160)
 	
-	local t = LS_ticker:get()
+	local t = LoadScreen.vars.ticker:get()
 	love.graphics.print("Created By bIue9076r",(-100*(1-(t/100))) + (200*(t/100)),200)
 	love.graphics.print("Press Enter to continue",(900*(1-(t/100))) + (250*(t/100)),300)
 	if t <= 100 then
-		LS_ticker()
+		LoadScreen.vars.ticker()
 	end
 end
 
 function LoadScreen:Load()
-	LS_ticker:reset()
-	title_bgs:seek(0)
-	title_bgs:play()
+	LoadScreen.vars.ticker:reset()
+	LoadScreen.vars.bgs:seek(0)
+	LoadScreen.vars.bgs:play()
 end
 
 function LoadScreen:Draw()
 	if Game.muted then
-		title_bgs:pause()
+		LoadScreen.vars.bgs:pause()
 	end
-	LoadScreen.Window.back:put(LS_back_1)
+	LoadScreen.Window.back:put(LoadScreen.vars.back_1)
 	LoadScreen.Window:draw()
 end
 
@@ -38,7 +38,13 @@ end
 
 function LoadScreen:Keypressed(key)
 	if key == "return" then
-		HomeScreen:Load()
 		Game.State = HomeScreen
+		Game.State:Load()
+	elseif key == "p" then
+		LoadScreen.vars.flag = true
+	end
+	
+	if LoadScreen.vars.flag and key == "o" then
+		Game.State = State.new()
 	end
 end
