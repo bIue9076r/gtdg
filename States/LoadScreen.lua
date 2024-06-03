@@ -38,6 +38,7 @@ end
 
 function LoadScreen:Keypressed(key)
 	if key == "return" then
+		LoadScreen.vars.bgs:pause()
 		Game.State = HomeScreen
 		Game.State:Load()
 	elseif key == "p" then
@@ -45,6 +46,7 @@ function LoadScreen:Keypressed(key)
 	end
 	
 	if LoadScreen.vars.flag and key == "o" then
-		Game.State = State.new()
+		LoadScreen.vars.bgs:pause()
+		Game.State = State
 	end
 end

@@ -8,6 +8,7 @@ HomeScreen.vars.Levels = {
 }
 
 HomeScreen.vars.Select = 1
+HomeScreen.vars.Bsound = files.assets.Audio.getSound("level")
 
 function HomeScreen:Load()
 	
@@ -19,12 +20,25 @@ function HomeScreen:Draw()
 			files.assets.Textures.getImage("back-d")
 		,0,0)
 		love.graphics.setLineWidth(10)
+		love.graphics.setColor(0,0,0)
 		love.graphics.rectangle("line",5,5,240,590)
+		love.graphics.setColor(1,1,1)
+		love.graphics.rectangle("fill",5,5,240,590)
+		love.graphics.print({{0,0,0},HomeScreen.vars.Levels[1]},50,50+(100*0))
+		love.graphics.print({{0,0,0},HomeScreen.vars.Levels[2]},50,50+(100*1))
+		love.graphics.print({{0,0,0},HomeScreen.vars.Levels[3]},50,50+(100*2))
+		love.graphics.print({{0,0,0},HomeScreen.vars.Levels[4]},50,50+(100*3))
 	end)
 	
 	HomeScreen.Window.fore:put(function()
-		love.graphics.print("Select: "..HomeScreen.vars.Select,50,50)
+		--love.graphics.print({{0,0,0},"Select: "..HomeScreen.vars.Select},50,50)
 	end)
+	
+	if not Game.muted then
+		HomeScreen.vars.Bsound:play()
+	else
+		HomeScreen.vars.Bsound:pause()
+	end
 	HomeScreen.Window:draw()
 end
 
@@ -40,6 +54,8 @@ function HomeScreen:Keypressed(key)
 	elseif key == "return" then
 		
 	elseif key == "t" then
+		HomeScreen.vars.Bsound:seek(0)
+		HomeScreen.vars.Bsound:pause()
 		Game.State = LoadScreen
 		Game.State:Load()
 	end
