@@ -6,7 +6,7 @@ require("/Modules/window")
 require("/Modules/state")
 require("/defs")
 
-files.assets.Fonts.newFont("hex-sans-serif","/Assets/hex-sans-serif.ttf",12)
+files.assets.Fonts.newFont("hex-sans-serif","/Assets/hex-sans-serif.ttf",13)
 files.assets.Textures.newImage("title","/Assets/title.png")
 files.assets.Textures.newImage("back-d","/Assets/background_day.png")
 files.assets.Textures.newImage("back-e","/Assets/background_evening.png")
@@ -21,6 +21,9 @@ love.graphics.setFont(
 
 require("/States/LoadScreen")
 require("/States/HomeScreen")
+require("/States/LevelScreen")
+require("/States/MenuScreen")
+require("/States/ShopScreen")
 
 Game.State = LoadScreen
 Game.State:Load()
@@ -33,7 +36,7 @@ function kerror(key)
 end
 
 function derror()
-	love.graphics.print("What?\n\n\n\nPress [t] to go back to the title",50,50)
+	love.graphics.print({{1,1,1},"What?\n\n\n\nPress [t] to go back to the title"},50,50)
 end
 
 function love.load()
