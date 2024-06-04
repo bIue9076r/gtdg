@@ -7,6 +7,32 @@ HomeScreen.vars.Levels = {
 	"Midnight Madness",
 }
 
+HomeScreen.vars.LevelFuncs = {}
+HomeScreen.vars.LevelFuncs[1] = function()
+	love.graphics.setColor(1,0,1)
+	love.graphics.rectangle("fill",300,70,190,190)
+	love.graphics.setColor(1,1,1)
+end
+
+HomeScreen.vars.LevelFuncs[2] = function()
+	love.graphics.setColor(1,0,1)
+	love.graphics.rectangle("fill",300,70,190,190)
+	love.graphics.setColor(1,1,1)
+end
+
+HomeScreen.vars.LevelFuncs[3] = function()
+	love.graphics.setColor(1,0,1)
+	love.graphics.rectangle("fill",300,70,190,190)
+	love.graphics.setColor(1,1,1)
+end
+
+HomeScreen.vars.LevelFuncs[4] = function()
+	love.graphics.setColor(1,0,1)
+	love.graphics.rectangle("fill",300,70,190,190)
+	love.graphics.setColor(1,1,1)
+end
+
+HomeScreen.vars.Pick = false
 HomeScreen.vars.Select = 1
 HomeScreen.vars.Bsound = files.assets.Audio.getSound("level")
 
@@ -34,7 +60,13 @@ function HomeScreen:Draw()
 	end)
 	
 	HomeScreen.Window.mid:put(function()
-		
+		if HomeScreen.vars.Pick then
+			love.graphics.rectangle("fill",285,55,490,490)
+			love.graphics.setColor(0,0,0)
+			love.graphics.rectangle("line",285,55,490,490)
+			love.graphics.setColor(1,1,1)
+			HomeScreen.Window.mid:put(HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select])
+		end
 	end)
 	
 	HomeScreen.Window.fore:put(function()
@@ -54,24 +86,30 @@ function HomeScreen:Update(dt)
 end
 
 function HomeScreen:Keypressed(key)
-	if isKeyUp(key) then
+	if isKeyUp(key) and not HomeScreen.vars.Pick then
 		if HomeScreen.vars.Select - 1 >= 1 then
 			HomeScreen.vars.Select = HomeScreen.vars.Select - 1
 		else
 			HomeScreen.vars.Select = #HomeScreen.vars.Levels
 		end
-	elseif isKeyDown(key) then
+	elseif isKeyDown(key) and not HomeScreen.vars.Pick then
 		if HomeScreen.vars.Select + 1 <= #HomeScreen.vars.Levels then
 			HomeScreen.vars.Select = HomeScreen.vars.Select + 1
 		else
 			HomeScreen.vars.Select = 1
 		end
 	elseif key == "return" then
-		HomeScreen.vars.Bsound:seek(0)
-		HomeScreen.vars.Bsound:pause()
-		Game.State = LevelScreen
-		Game.State:Load(HomeScreen.vars.Select)
-	elseif key == "t" then
+		if HomeScreen.vars.Pick then
+			HomeScreen.vars.Bsound:seek(0)
+			HomeScreen.vars.Bsound:pause()
+			Game.State = LevelScreen
+			Game.State:Load(HomeScreen.vars.Select)
+		else
+			HomeScreen.vars.Pick = true
+		end
+	elseif key == "b" and HomeScreen.vars.Pick then
+		HomeScreen.vars.Pick = false
+	elseif key == "t" and not HomeScreen.vars.Pick then
 		HomeScreen.vars.Bsound:seek(0)
 		HomeScreen.vars.Bsound:pause()
 		Game.State = LoadScreen
