@@ -12,6 +12,15 @@ HomeScreen.vars.LevelFuncs[1] = function()
 	love.graphics.setColor(1,0,1)
 	love.graphics.rectangle("fill",300,70,190,190)
 	love.graphics.setColor(1,1,1)
+	
+	love.graphics.print({{0,0,0},HomeScreen.vars.Levels[1]..":"},510,80)
+	love.graphics.print({{0,0,0},"The Coconuts have declared"},510,120)
+	love.graphics.print({{0,0,0},"war!"},510,140)
+	
+	love.graphics.print({{0,0,0},"Learn how to stop them in this"},510,180)
+	love.graphics.print({{0,0,0},"simulation."},510,200)
+	
+	love.graphics.print({{0,0,0},"Difficulty: None (-/3)"},300,280)
 end
 
 HomeScreen.vars.LevelFuncs[2] = function()
@@ -20,25 +29,43 @@ HomeScreen.vars.LevelFuncs[2] = function()
 	love.graphics.setColor(1,1,1)
 	
 	love.graphics.print({{0,0,0},HomeScreen.vars.Levels[2]..":"},510,80)
-	love.graphics.print({{0,0,0},"The Living Coconuts are"},510,120)
-	love.graphics.print({{0,0,0},"invading the beach!"},510,140)
+	love.graphics.print({{0,0,0},"The Coconuts are invading"},510,120)
+	love.graphics.print({{0,0,0},"the beach!"},510,140)
 	
 	love.graphics.print({{0,0,0},"You must stop them before"},510,180)
 	love.graphics.print({{0,0,0},"its too late."},510,200)
 	
-	love.graphics.print({{0,0,0},"Difficulty:"},300,280)
+	love.graphics.print({{0,0,0},"Difficulty: Easy (1/3)"},300,280)
 end
 
 HomeScreen.vars.LevelFuncs[3] = function()
 	love.graphics.setColor(1,0,1)
 	love.graphics.rectangle("fill",300,70,190,190)
 	love.graphics.setColor(1,1,1)
+	
+	love.graphics.print({{0,0,0},HomeScreen.vars.Levels[3]..":"},510,80)
+	love.graphics.print({{0,0,0},"The Coconuts have returned"},510,120)
+	love.graphics.print({{0,0,0},"after their initial retreat!"},510,140)
+	
+	love.graphics.print({{0,0,0},"You must stop them yet"},510,180)
+	love.graphics.print({{0,0,0},"again."},510,200)
+	
+	love.graphics.print({{0,0,0},"Difficulty: Medium (2/3)"},300,280)
 end
 
 HomeScreen.vars.LevelFuncs[4] = function()
 	love.graphics.setColor(1,0,1)
 	love.graphics.rectangle("fill",300,70,190,190)
 	love.graphics.setColor(1,1,1)
+	
+	love.graphics.print({{0,0,0},HomeScreen.vars.Levels[4]..":"},510,80)
+	love.graphics.print({{0,0,0},"The Coconuts are retreating"},510,120)
+	love.graphics.print({{0,0,0},"to their ship!"},510,140)
+	
+	love.graphics.print({{0,0,0},"You must stop them from"},510,180)
+	love.graphics.print({{0,0,0},"leaving."},510,200)
+	
+	love.graphics.print({{0,0,0},"Difficulty: Hard (3/3)"},300,280)
 end
 
 HomeScreen.vars.Pick = false
@@ -66,13 +93,23 @@ function HomeScreen:Draw()
 		love.graphics.setColor(1,0,0)
 		love.graphics.rectangle("line",15,15+(100*(HomeScreen.vars.Select-1)),220,85)
 		love.graphics.setColor(1,1,1)
+		
+		love.graphics.rectangle("fill",285,405,490,140)
+		love.graphics.setColor(0,0,0)
+		love.graphics.rectangle("line",285,405,490,140)
+		love.graphics.setColor(1,1,1)
+		
+		love.graphics.print({{0,0,0},"Controls:"},300,420)
+		love.graphics.print({{0,0,0},"Up: [w]  Down: [s]  Select: [Enter]  Return: [b]"},300,440)
+		
+		love.graphics.print({{0,0,0},"Stats:"},300,480)
 	end)
 	
 	HomeScreen.Window.mid:put(function()
 		if HomeScreen.vars.Pick then
-			love.graphics.rectangle("fill",285,55,490,490)
+			love.graphics.rectangle("fill",285,55,490,290)
 			love.graphics.setColor(0,0,0)
-			love.graphics.rectangle("line",285,55,490,490)
+			love.graphics.rectangle("line",285,55,490,290)
 			love.graphics.setColor(1,1,1)
 			HomeScreen.Window.mid:put(HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select])
 		end
@@ -95,13 +132,13 @@ function HomeScreen:Update(dt)
 end
 
 function HomeScreen:Keypressed(key)
-	if isKeyUp(key) and not HomeScreen.vars.Pick then
+	if isKeyUp(key) then--and not HomeScreen.vars.Pick then
 		if HomeScreen.vars.Select - 1 >= 1 then
 			HomeScreen.vars.Select = HomeScreen.vars.Select - 1
 		else
 			HomeScreen.vars.Select = #HomeScreen.vars.Levels
 		end
-	elseif isKeyDown(key) and not HomeScreen.vars.Pick then
+	elseif isKeyDown(key) then--and not HomeScreen.vars.Pick then
 		if HomeScreen.vars.Select + 1 <= #HomeScreen.vars.Levels then
 			HomeScreen.vars.Select = HomeScreen.vars.Select + 1
 		else
