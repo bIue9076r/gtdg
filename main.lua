@@ -39,12 +39,25 @@ function derror()
 	love.graphics.print({{1,1,1},"What?\n\n\n\nPress [t] to go back to the title"},50,50)
 end
 
+function ctrlOps(key)
+	if key == "lctrl" or key == "rctrl" then
+		Game.Ctrl = true
+	end
+	
+	if Game.Ctrl then
+		if key == "m" then
+			Game.muted = not Game.muted
+		end
+	end
+end
+
 function love.load()
 	-- Save File Handling
 end
 
 function love.keypressed(key)
 	if Game.State.Keypressed then Game.State:Keypressed(key) end
+	ctrlOps(key)
 end
 
 function love.update(dt)

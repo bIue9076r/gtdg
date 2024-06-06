@@ -18,6 +18,15 @@ HomeScreen.vars.LevelFuncs[2] = function()
 	love.graphics.setColor(1,0,1)
 	love.graphics.rectangle("fill",300,70,190,190)
 	love.graphics.setColor(1,1,1)
+	
+	love.graphics.print({{0,0,0},HomeScreen.vars.Levels[2]..":"},510,80)
+	love.graphics.print({{0,0,0},"The Living Coconuts are"},510,120)
+	love.graphics.print({{0,0,0},"invading the beach!"},510,140)
+	
+	love.graphics.print({{0,0,0},"You must stop them before"},510,180)
+	love.graphics.print({{0,0,0},"its too late."},510,200)
+	
+	love.graphics.print({{0,0,0},"Difficulty:"},300,280)
 end
 
 HomeScreen.vars.LevelFuncs[3] = function()
