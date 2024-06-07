@@ -73,7 +73,7 @@ HomeScreen.vars.Select = 1
 HomeScreen.vars.Bsound = files.assets.Audio.getSound("level")
 
 function HomeScreen:Load()
-	
+	HomeScreen.Window:draw() -- should be a clear
 end
 
 function HomeScreen:Draw()
@@ -100,9 +100,10 @@ function HomeScreen:Draw()
 		love.graphics.setColor(1,1,1)
 		
 		love.graphics.print({{0,0,0},"Controls:"},300,420)
-		love.graphics.print({{0,0,0},"Up: [w]  Down: [s]  Select: [Enter]  Return: [b]"},300,440)
+		love.graphics.print({{0,0,0},"Up: [w]  Down: [s]  Select: [enter]  Return: [b]"},300,440)
 		
 		love.graphics.print({{0,0,0},"Stats:"},300,480)
+		love.graphics.print({{0,0,0},"Money: $"..tostring(Player.Money)},300,500)
 	end)
 	
 	HomeScreen.Window.mid:put(function()
@@ -146,6 +147,7 @@ function HomeScreen:Keypressed(key)
 		end
 	elseif key == "return" then
 		if HomeScreen.vars.Pick then
+			HomeScreen.vars.Pick = false
 			HomeScreen.vars.Bsound:seek(0)
 			HomeScreen.vars.Bsound:pause()
 			Game.State = LevelScreen

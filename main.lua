@@ -19,6 +19,9 @@ love.graphics.setFont(
 	files.assets.Fonts.getFont("hex-sans-serif")
 )
 
+Player = {}
+Player.Money = 0
+
 require("/States/LoadScreen")
 require("/States/HomeScreen")
 require("/States/LevelScreen")
