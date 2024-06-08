@@ -69,6 +69,7 @@ HomeScreen.vars.LevelFuncs[4] = function()
 end
 
 HomeScreen.vars.Pick = false
+HomeScreen.vars.Option = false
 HomeScreen.vars.Select = 1
 HomeScreen.vars.Bsound = files.assets.Audio.getSound("level")
 
@@ -100,7 +101,7 @@ function HomeScreen:Draw()
 		love.graphics.setColor(1,1,1)
 		
 		love.graphics.print({{0,0,0},"Controls:"},300,420)
-		love.graphics.print({{0,0,0},"Up: [w]  Down: [s]  Select: [enter]  Return: [b]"},300,440)
+		love.graphics.print({{0,0,0},"Up: [w]  Down: [s]  Select: [enter]  Return: [b]  Options [m]"},300,440)
 		
 		love.graphics.print({{0,0,0},"Stats:"},300,480)
 		love.graphics.print({{0,0,0},"Money: $"..tostring(Player.Money)},300,500)
@@ -113,6 +114,16 @@ function HomeScreen:Draw()
 			love.graphics.rectangle("line",285,55,490,290)
 			love.graphics.setColor(1,1,1)
 			HomeScreen.Window.mid:put(HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select])
+		end
+		
+		if HomeScreen.vars.Option then
+			love.graphics.rectangle("fill",285,405,490,140)
+			love.graphics.setColor(0,0,0)
+			love.graphics.rectangle("line",285,405,490,140)
+			love.graphics.setColor(1,1,1)
+			
+			love.graphics.print({{0,0,0},"Options:"},300,420)
+			love.graphics.print({{0,0,0},"Shop: [m]  Menu: [,]  Back [n]"},300,440)
 		end
 	end)
 	
@@ -133,13 +144,13 @@ function HomeScreen:Update(dt)
 end
 
 function HomeScreen:Keypressed(key)
-	if isKeyUp(key) then--and not HomeScreen.vars.Pick then
+	if isKeyUp(key) then
 		if HomeScreen.vars.Select - 1 >= 1 then
 			HomeScreen.vars.Select = HomeScreen.vars.Select - 1
 		else
 			HomeScreen.vars.Select = #HomeScreen.vars.Levels
 		end
-	elseif isKeyDown(key) then--and not HomeScreen.vars.Pick then
+	elseif isKeyDown(key) then
 		if HomeScreen.vars.Select + 1 <= #HomeScreen.vars.Levels then
 			HomeScreen.vars.Select = HomeScreen.vars.Select + 1
 		else
@@ -161,6 +172,18 @@ function HomeScreen:Keypressed(key)
 		HomeScreen.vars.Bsound:seek(0)
 		HomeScreen.vars.Bsound:pause()
 		Game.State = LoadScreen
+		Game.State:Load()
+	elseif key == "n" then
+		HomeScreen.vars.Option = not HomeScreen.vars.Option
+	elseif not Game.Ctrl and key == "m" then
+		HomeScreen.vars.Bsound:seek(0)
+		HomeScreen.vars.Bsound:pause()
+		Game.State = ShopScreen
+		Game.State:Load()
+	elseif key == "," then
+		HomeScreen.vars.Bsound:seek(0)
+		HomeScreen.vars.Bsound:pause()
+		Game.State = MenuScreen
 		Game.State:Load()
 	end
 end

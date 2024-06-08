@@ -50,6 +50,7 @@ function ctrlOps(key)
 	if Game.Ctrl then
 		if key == "m" then
 			Game.muted = not Game.muted
+			Game.Ctrl = false
 		end
 	end
 end
