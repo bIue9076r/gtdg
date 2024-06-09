@@ -1,79 +1,78 @@
 -- Home Screen State
 
-HomeScreen.vars.Levels = {
-	"Getting Started (Tutorial)",
-	"Tropical Abnormalities",
-	"Sunset Daydream",
-	"Midnight Madness",
-}
-
-HomeScreen.vars.LevelFuncs = {}
-HomeScreen.vars.LevelFuncs[1] = function()
-	love.graphics.setColor(1,0,1)
-	love.graphics.rectangle("fill",300,70,190,190)
-	love.graphics.setColor(1,1,1)
-	
-	love.graphics.print({{0,0,0},HomeScreen.vars.Levels[1]..":"},510,80)
-	love.graphics.print({{0,0,0},"The Coconuts have declared"},510,120)
-	love.graphics.print({{0,0,0},"war!"},510,140)
-	
-	love.graphics.print({{0,0,0},"Learn how to stop them in this"},510,180)
-	love.graphics.print({{0,0,0},"simulation."},510,200)
-	
-	love.graphics.print({{0,0,0},"Difficulty: None (-/3)"},300,280)
-end
-
-HomeScreen.vars.LevelFuncs[2] = function()
-	love.graphics.setColor(1,0,1)
-	love.graphics.rectangle("fill",300,70,190,190)
-	love.graphics.setColor(1,1,1)
-	
-	love.graphics.print({{0,0,0},HomeScreen.vars.Levels[2]..":"},510,80)
-	love.graphics.print({{0,0,0},"The Coconuts are invading"},510,120)
-	love.graphics.print({{0,0,0},"the beach!"},510,140)
-	
-	love.graphics.print({{0,0,0},"You must stop them before"},510,180)
-	love.graphics.print({{0,0,0},"its too late."},510,200)
-	
-	love.graphics.print({{0,0,0},"Difficulty: Easy (1/3)"},300,280)
-end
-
-HomeScreen.vars.LevelFuncs[3] = function()
-	love.graphics.setColor(1,0,1)
-	love.graphics.rectangle("fill",300,70,190,190)
-	love.graphics.setColor(1,1,1)
-	
-	love.graphics.print({{0,0,0},HomeScreen.vars.Levels[3]..":"},510,80)
-	love.graphics.print({{0,0,0},"The Coconuts have returned"},510,120)
-	love.graphics.print({{0,0,0},"after their initial retreat!"},510,140)
-	
-	love.graphics.print({{0,0,0},"You must stop them yet"},510,180)
-	love.graphics.print({{0,0,0},"again."},510,200)
-	
-	love.graphics.print({{0,0,0},"Difficulty: Medium (2/3)"},300,280)
-end
-
-HomeScreen.vars.LevelFuncs[4] = function()
-	love.graphics.setColor(1,0,1)
-	love.graphics.rectangle("fill",300,70,190,190)
-	love.graphics.setColor(1,1,1)
-	
-	love.graphics.print({{0,0,0},HomeScreen.vars.Levels[4]..":"},510,80)
-	love.graphics.print({{0,0,0},"The Coconuts are retreating"},510,120)
-	love.graphics.print({{0,0,0},"to their ship!"},510,140)
-	
-	love.graphics.print({{0,0,0},"You must stop them from"},510,180)
-	love.graphics.print({{0,0,0},"leaving."},510,200)
-	
-	love.graphics.print({{0,0,0},"Difficulty: Hard (3/3)"},300,280)
-end
-
-HomeScreen.vars.Pick = false
-HomeScreen.vars.Option = false
-HomeScreen.vars.Select = 1
-HomeScreen.vars.Bsound = files.assets.Audio.getSound("level")
-
 function HomeScreen:Load()
+	HomeScreen.vars.Levels = {
+		"Getting Started (Tutorial)",
+		"Tropical Abnormalities",
+		"Sunset Daydream",
+		"Midnight Madness",
+	}
+	
+	HomeScreen.vars.LevelFuncs = {}
+	HomeScreen.vars.LevelFuncs[1] = function()
+		love.graphics.setColor(1,0,1)
+		love.graphics.rectangle("fill",300,70,190,190)
+		love.graphics.setColor(1,1,1)
+		
+		love.graphics.print({{0,0,0},HomeScreen.vars.Levels[1]..":"},510,80)
+		love.graphics.print({{0,0,0},"The Coconuts have declared"},510,120)
+		love.graphics.print({{0,0,0},"war!"},510,140)
+		
+		love.graphics.print({{0,0,0},"Learn how to stop them in this"},510,180)
+		love.graphics.print({{0,0,0},"simulation."},510,200)
+		
+		love.graphics.print({{0,0,0},"Difficulty: None (-/3)"},300,280)
+	end
+
+	HomeScreen.vars.LevelFuncs[2] = function()
+		love.graphics.setColor(1,0,1)
+		love.graphics.rectangle("fill",300,70,190,190)
+		love.graphics.setColor(1,1,1)
+		
+		love.graphics.print({{0,0,0},HomeScreen.vars.Levels[2]..":"},510,80)
+		love.graphics.print({{0,0,0},"The Coconuts are invading"},510,120)
+		love.graphics.print({{0,0,0},"the beach!"},510,140)
+		
+		love.graphics.print({{0,0,0},"You must stop them before"},510,180)
+		love.graphics.print({{0,0,0},"its too late."},510,200)
+		
+		love.graphics.print({{0,0,0},"Difficulty: Easy (1/3)"},300,280)
+	end
+
+	HomeScreen.vars.LevelFuncs[3] = function()
+		love.graphics.setColor(1,0,1)
+		love.graphics.rectangle("fill",300,70,190,190)
+		love.graphics.setColor(1,1,1)
+		
+		love.graphics.print({{0,0,0},HomeScreen.vars.Levels[3]..":"},510,80)
+		love.graphics.print({{0,0,0},"The Coconuts have returned"},510,120)
+		love.graphics.print({{0,0,0},"after their initial retreat!"},510,140)
+		
+		love.graphics.print({{0,0,0},"You must stop them yet"},510,180)
+		love.graphics.print({{0,0,0},"again."},510,200)
+		
+		love.graphics.print({{0,0,0},"Difficulty: Medium (2/3)"},300,280)
+	end
+
+	HomeScreen.vars.LevelFuncs[4] = function()
+		love.graphics.setColor(1,0,1)
+		love.graphics.rectangle("fill",300,70,190,190)
+		love.graphics.setColor(1,1,1)
+		
+		love.graphics.print({{0,0,0},HomeScreen.vars.Levels[4]..":"},510,80)
+		love.graphics.print({{0,0,0},"The Coconuts are retreating"},510,120)
+		love.graphics.print({{0,0,0},"to their ship!"},510,140)
+		
+		love.graphics.print({{0,0,0},"You must stop them from"},510,180)
+		love.graphics.print({{0,0,0},"leaving."},510,200)
+		
+		love.graphics.print({{0,0,0},"Difficulty: Hard (3/3)"},300,280)
+	end
+	
+	HomeScreen.vars.Pick = false
+	HomeScreen.vars.Option = false
+	HomeScreen.vars.Select = 1
+	HomeScreen.vars.Bsound = files.assets.Audio.getSound("menu")
 	HomeScreen.Window:draw() -- should be a clear
 end
 

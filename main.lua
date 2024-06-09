@@ -14,6 +14,7 @@ files.assets.Textures.newImage("back-n","/Assets/background_night.png")
 
 files.assets.Audio.new("title","/Assets/intro.mp3","stream")
 files.assets.Audio.new("level","/Assets/level.mp3","stream")
+files.assets.Audio.new("menu","/Assets/menu.mp3","stream")
 
 love.graphics.setFont(
 	files.assets.Fonts.getFont("hex-sans-serif")
