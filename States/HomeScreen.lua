@@ -100,7 +100,7 @@ function HomeScreen:Draw()
 		love.graphics.setColor(1,1,1)
 		
 		love.graphics.print({{0,0,0},"Controls:"},300,420)
-		love.graphics.print({{0,0,0},"Up: [w]  Down: [s]  Select: [enter]  Return: [b]  Options [m]"},300,440)
+		love.graphics.print({{0,0,0},"Up: [w]  Down: [s]  Select: [enter]  Return: [b]  Options [n]"},300,440)
 		
 		love.graphics.print({{0,0,0},"Stats:"},300,480)
 		love.graphics.print({{0,0,0},"Money: $"..tostring(Player.Money)},300,500)

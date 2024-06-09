@@ -2,6 +2,7 @@
 Game = {}
 Game.State = State.new(0)
 Game.Muted = false
+Game.Volume = 0.5
 Game.FirstTime = true
 
 LoadScreen = State.new(1)

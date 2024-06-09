@@ -52,12 +52,23 @@ function ctrlOps(key)
 		if key == "m" then
 			Game.muted = not Game.muted
 			Game.Ctrl = false
+		elseif key == "-" then
+			Game.Volume = Game.Volume - 0.1
+			if Game.Volume < 0 then Game.Volume = 0 end
+			love.audio.setVolume(Game.Volume)
+			Game.Ctrl = false
+		elseif key == "=" then
+			Game.Volume = Game.Volume + 0.1
+			if Game.Volume > 1 then Game.Volume = 1 end
+			love.audio.setVolume(Game.Volume)
+			Game.Ctrl = false
 		end
 	end
 end
 
 function love.load()
 	-- Save File Handling
+	love.audio.setVolume(Game.Volume)
 end
 
 function love.keypressed(key)
