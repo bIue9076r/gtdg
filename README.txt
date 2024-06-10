@@ -26,6 +26,6 @@ Current Timeline: (subject to change)
 		
 	Audio Assets - [~] @ ??/??/2024
 		Title Screen - [X] @ 01/06/2024
-		Main Menu - [_] @ ??/06/2024
+		Main Menu - [X] @ 08/06/2024
 		Shop Menu - [_] @ ??/06/2024
 		Game Arena - [X] @ 03/06/2024
