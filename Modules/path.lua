@@ -24,26 +24,27 @@ function Path:Lerp(t,o)
 	}
 end
 
-PathTbl = {}
+PathTable = {}
+PathTable.tbl = {}
 
-function PathTbl.new()
+function PathTable.new()
 	local tbl = {
 		tbl = {},
 	}
 	
 	local mt = {
-		__index = PathTbl,
-		__call = PathTbl.Lerp,
+		__index = PathTable,
+		__call = PathTable.Lerp,
 	}
 	
 	return setmetatable(tbl,mt)
 end
 
-function PathTbl:Insert(x1,x2,y1,y2,tt)
+function PathTable:Insert(x1,x2,y1,y2,tt)
 	table.insert(self.tbl,Path.new(x1,x2,y1,y2,tt))
 end
 
-function PathTbl:Lerp(t)
+function PathTable:Lerp(t)
 	local n = 0
 	local c = n
 	local f = 1

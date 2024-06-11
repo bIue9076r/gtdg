@@ -1,8 +1,8 @@
 Level = {}
 Level.name = ""
-Level.Path = PathTbl.new()
+Level.Path = PathTable.new()
 
-function Level:Lerp(Obj)
+function Level:Lerp(ObjTbl)
 	
 end
 
