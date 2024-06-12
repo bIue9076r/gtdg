@@ -72,6 +72,17 @@ end
 
 function love.load()
 	-- Save File Handling
+	if love.filesystem.getInfo(
+		"/TESTFILE.sav" -- replace this
+	) then
+		Game.FirstTime = false
+		save = File.new("TESTFILE.sav")
+		res = save:Read()
+		for i,v in pairs(res) do
+			print(i,v)
+		end
+	end
+	
 	love.audio.setVolume(Game.Volume)
 end
 
