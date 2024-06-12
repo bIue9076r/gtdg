@@ -1,4 +1,5 @@
 -- Home Screen State
+ra = ticker.new()
 
 function HomeScreen:Load()
 	HomeScreen.vars.Levels = {
@@ -8,70 +9,62 @@ function HomeScreen:Load()
 		"Midnight Madness",
 	}
 	
+	HomeScreen.vars.LevelImg = ""
+	HomeScreen.vars.LevelStr1 = ""
+	HomeScreen.vars.LevelStr2 = sticker.new("")
+	HomeScreen.vars.LevelStr3 = sticker.new("")
+	HomeScreen.vars.LevelStr4 = sticker.new("")
+	HomeScreen.vars.LevelStr5 = sticker.new("")
+	HomeScreen.vars.LevelStr6 = sticker.new("")
+	
 	HomeScreen.vars.LevelFuncs = {}
 	HomeScreen.vars.LevelFuncs[1] = function()
-		love.graphics.setColor(1,0,1)
-		love.graphics.rectangle("fill",300,70,190,190)
-		love.graphics.setColor(1,1,1)
-		
-		love.graphics.print({{0,0,0},HomeScreen.vars.Levels[1]..":"},510,80)
-		love.graphics.print({{0,0,0},"The Coconuts have declared"},510,120)
-		love.graphics.print({{0,0,0},"war!"},510,140)
-		
-		love.graphics.print({{0,0,0},"Learn how to stop them in this"},510,180)
-		love.graphics.print({{0,0,0},"simulation."},510,200)
-		
-		love.graphics.print({{0,0,0},"Difficulty: None (-/3)"},300,280)
+		HomeScreen.vars.LevelImg = ""
+		HomeScreen.vars.LevelStr1 = HomeScreen.vars.Levels[1]..":"
+		HomeScreen.vars.LevelStr2 = sticker.new("The Coconuts have declared")
+		HomeScreen.vars.LevelStr3 = sticker.new("war!")
+		HomeScreen.vars.LevelStr4 = sticker.new("Learn how to stop them in this")
+		HomeScreen.vars.LevelStr5 = sticker.new("simulation.")
+		HomeScreen.vars.LevelStr6 = sticker.new("Difficulty: None (-/3)")
 	end
-
+	
 	HomeScreen.vars.LevelFuncs[2] = function()
-		love.graphics.setColor(1,0,1)
-		love.graphics.rectangle("fill",300,70,190,190)
-		love.graphics.setColor(1,1,1)
-		
-		love.graphics.print({{0,0,0},HomeScreen.vars.Levels[2]..":"},510,80)
-		love.graphics.print({{0,0,0},"The Coconuts are invading"},510,120)
-		love.graphics.print({{0,0,0},"the beach!"},510,140)
-		
-		love.graphics.print({{0,0,0},"You must stop them before"},510,180)
-		love.graphics.print({{0,0,0},"its too late."},510,200)
-		
-		love.graphics.print({{0,0,0},"Difficulty: Easy (1/3)"},300,280)
+		HomeScreen.vars.LevelImg = ""
+		HomeScreen.vars.LevelStr1 = HomeScreen.vars.Levels[2]..":"
+		HomeScreen.vars.LevelStr2 = sticker.new("The Coconuts are invading")
+		HomeScreen.vars.LevelStr3 = sticker.new("the beach!")
+		HomeScreen.vars.LevelStr4 = sticker.new("You must stop them before")
+		HomeScreen.vars.LevelStr5 = sticker.new("its too late.")
+		HomeScreen.vars.LevelStr6 = sticker.new("Difficulty: Easy (1/3)")
 	end
-
+	
 	HomeScreen.vars.LevelFuncs[3] = function()
-		love.graphics.setColor(1,0,1)
-		love.graphics.rectangle("fill",300,70,190,190)
-		love.graphics.setColor(1,1,1)
-		
-		love.graphics.print({{0,0,0},HomeScreen.vars.Levels[3]..":"},510,80)
-		love.graphics.print({{0,0,0},"The Coconuts have returned"},510,120)
-		love.graphics.print({{0,0,0},"after their initial retreat!"},510,140)
-		
-		love.graphics.print({{0,0,0},"You must stop them yet"},510,180)
-		love.graphics.print({{0,0,0},"again."},510,200)
-		
-		love.graphics.print({{0,0,0},"Difficulty: Medium (2/3)"},300,280)
+		HomeScreen.vars.LevelImg = ""
+		HomeScreen.vars.LevelStr1 = HomeScreen.vars.Levels[3]..":"
+		HomeScreen.vars.LevelStr2 = sticker.new("The Coconuts have returned")
+		HomeScreen.vars.LevelStr3 = sticker.new("after their initial retreat!")
+		HomeScreen.vars.LevelStr4 = sticker.new("You must stop them yet")
+		HomeScreen.vars.LevelStr5 = sticker.new("again.")
+		HomeScreen.vars.LevelStr6 = sticker.new("Difficulty: Medium (2/3)")
 	end
-
+	
 	HomeScreen.vars.LevelFuncs[4] = function()
-		love.graphics.setColor(1,0,1)
-		love.graphics.rectangle("fill",300,70,190,190)
-		love.graphics.setColor(1,1,1)
-		
-		love.graphics.print({{0,0,0},HomeScreen.vars.Levels[4]..":"},510,80)
-		love.graphics.print({{0,0,0},"The Coconuts are retreating"},510,120)
-		love.graphics.print({{0,0,0},"to their ship!"},510,140)
-		
-		love.graphics.print({{0,0,0},"You must stop them from"},510,180)
-		love.graphics.print({{0,0,0},"leaving."},510,200)
-		
-		love.graphics.print({{0,0,0},"Difficulty: Hard (3/3)"},300,280)
+		HomeScreen.vars.LevelImg = ""
+		HomeScreen.vars.LevelStr1 = HomeScreen.vars.Levels[4]..":"
+		HomeScreen.vars.LevelStr2 = sticker.new("The Coconuts are retreating")
+		HomeScreen.vars.LevelStr3 = sticker.new("to their ship!")
+		HomeScreen.vars.LevelStr4 = sticker.new("You must stop them from")
+		HomeScreen.vars.LevelStr5 = sticker.new("leaving.")
+		HomeScreen.vars.LevelStr6 = sticker.new("Difficulty: Hard (3/3)")
 	end
 	
 	HomeScreen.vars.Pick = false
 	HomeScreen.vars.Option = false
 	HomeScreen.vars.Select = 1
+	HomeScreen.vars.SelectLast = 1
+	HomeScreen.vars.Inside = false
+	HomeScreen.vars.lx = 0
+	HomeScreen.vars.ly = 0
 	HomeScreen.vars.Bsound = files.assets.Audio.getSound("menu")
 	HomeScreen.Window:draw() -- should be a clear
 end
@@ -112,7 +105,19 @@ function HomeScreen:Draw()
 			love.graphics.setColor(0,0,0)
 			love.graphics.rectangle("line",285,55,490,290)
 			love.graphics.setColor(1,1,1)
-			HomeScreen.Window.mid:put(HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select])
+			
+			love.graphics.setColor(1,0,1)
+			love.graphics.rectangle("fill",300,70,190,190)
+			love.graphics.setColor(1,1,1)
+			
+			love.graphics.print({{0,0,0},HomeScreen.vars.LevelStr1},510,80)
+			love.graphics.print({{0,0,0},HomeScreen.vars.LevelStr2()},510,120)
+			love.graphics.print({{0,0,0},HomeScreen.vars.LevelStr3()},510,140)
+			
+			love.graphics.print({{0,0,0},HomeScreen.vars.LevelStr4()},510,180)
+			love.graphics.print({{0,0,0},HomeScreen.vars.LevelStr5()},510,200)
+			
+			love.graphics.print({{0,0,0},HomeScreen.vars.LevelStr6()},300,280)
 		end
 		
 		if HomeScreen.vars.Option then
@@ -139,7 +144,34 @@ function HomeScreen:Draw()
 end
 
 function HomeScreen:Update(dt)
+	local x,y = love.mouse.getPosition()
 	
+	if not(HomeScreen.vars.ly == y) and not(HomeScreen.vars.lx == x) then
+		if (x >= 15) and (x <= 235) then
+			if (y >= 15) and (y <= 400) then
+				HomeScreen.vars.Select = math.max(1,math.min(4,math.floor(((y-15)/(385))*4)+1))
+				if not (HomeScreen.vars.SelectLast == HomeScreen.vars.Select) then
+					HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select]()
+				end
+				HomeScreen.vars.Inside = true
+			else
+				HomeScreen.vars.Inside = false
+			end
+		else
+			HomeScreen.vars.Inside = false
+		end
+	end
+	
+	if HomeScreen.vars.Inside and love.mouse.isDown(1) then
+		HomeScreen.vars.Pick = true
+	end
+	
+	if love.mouse.isDown(2) and HomeScreen.vars.Pick then
+		HomeScreen.vars.Pick = false
+	end
+	
+	HomeScreen.vars.lx, HomeScreen.vars.ly = x, y
+	HomeScreen.vars.SelectLast = HomeScreen.vars.Select
 end
 
 function HomeScreen:Keypressed(key)
@@ -149,12 +181,20 @@ function HomeScreen:Keypressed(key)
 		else
 			HomeScreen.vars.Select = #HomeScreen.vars.Levels
 		end
+		if not (HomeScreen.vars.SelectLast == HomeScreen.vars.Select) then
+			HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select]()
+		end
+		HomeScreen.vars.SelectLast = HomeScreen.vars.Select
 	elseif isKeyDown(key) then
 		if HomeScreen.vars.Select + 1 <= #HomeScreen.vars.Levels then
 			HomeScreen.vars.Select = HomeScreen.vars.Select + 1
 		else
 			HomeScreen.vars.Select = 1
 		end
+		if not (HomeScreen.vars.SelectLast == HomeScreen.vars.Select) then
+			HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select]()
+		end
+		HomeScreen.vars.SelectLast = HomeScreen.vars.Select
 	elseif key == "return" then
 		if HomeScreen.vars.Pick then
 			HomeScreen.vars.Pick = false

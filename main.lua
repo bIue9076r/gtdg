@@ -1,5 +1,6 @@
 jit.off()
 love.graphics.setDefaultFilter("nearest", "nearest")
+math.randomseed(os.time())
 require("/Engine/filesConfig")
 require("/Modules/file")
 require("/Modules/window")
@@ -85,9 +86,6 @@ function love.update(dt)
 end
 
 function love.draw()
-	if Game.muted then
-		-- play sound
-	end
 	if Game.State.Draw then Game.State:Draw(dt) end
 	files.draw()
 end
