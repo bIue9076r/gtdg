@@ -1,7 +1,6 @@
 -- Level Screen State
 
 function LevelScreen:Load(l)
-	print(l)
 	LevelScreen.vars.Bsound = files.assets.Audio.getSound("level")
 	LevelScreen.vars.ntos = {
 		[1] = "d",
@@ -18,6 +17,8 @@ function LevelScreen:Draw()
 		love.graphics.draw(
 			files.assets.Textures.getImage("back-"..LevelScreen.vars.s)
 		,0,0)
+		
+		love.graphics.setLineWidth(10)
 	end)
 	
 	LevelScreen.Window.mid:put(function()
@@ -25,7 +26,7 @@ function LevelScreen:Draw()
 	end)
 	
 	LevelScreen.Window.fore:put(function()
-		
+		love.graphics.setLineWidth(1)
 	end)
 	
 	if not Game.muted then

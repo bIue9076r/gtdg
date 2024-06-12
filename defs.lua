@@ -10,6 +10,7 @@ HomeScreen = State.new(2)
 LevelScreen = State.new(3)
 MenuScreen = State.new(4)
 ShopScreen = State.new(5)
+SaveScreen = State.new(6)
 
 function isKeyUp(key)
 	return ((key == "up") or (key == "w"))

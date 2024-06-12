@@ -42,6 +42,7 @@ function LoadScreen:Draw()
 		if t < 100 then
 			LoadScreen.vars.ticker()
 		end
+		love.graphics.setLineWidth(1)
 	end)
 	LoadScreen.Window:draw()
 end

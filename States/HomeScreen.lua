@@ -132,7 +132,7 @@ function HomeScreen:Draw()
 	end)
 	
 	HomeScreen.Window.fore:put(function()
-		
+		love.graphics.setLineWidth(1)
 	end)
 	
 	if not Game.muted then

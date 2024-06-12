@@ -19,6 +19,8 @@ files.assets.Textures.newImage("back-n","/Assets/background_night.png")
 files.assets.Audio.new("title","/Assets/intro.mp3","stream")
 files.assets.Audio.new("level","/Assets/level.mp3","stream")
 files.assets.Audio.new("menu","/Assets/menu.mp3","stream")
+files.assets.Audio.new("shop","/Assets/shop.mp3","stream")
+files.assets.Audio.new("save","/Assets/save.mp3","stream")
 
 love.graphics.setFont(
 	files.assets.Fonts.getFont("hex-sans-serif")
@@ -26,12 +28,14 @@ love.graphics.setFont(
 
 Player = {}
 Player.Money = 0
+Player.Kills = 0
 
 require("/States/LoadScreen")
 require("/States/HomeScreen")
 require("/States/LevelScreen")
 require("/States/MenuScreen")
 require("/States/ShopScreen")
+require("/States/SaveScreen")
 
 Game.State = LoadScreen
 Game.State:Load()
@@ -76,11 +80,6 @@ function love.load()
 		"/TESTFILE.sav" -- replace this
 	) then
 		Game.FirstTime = false
-		save = File.new("TESTFILE.sav")
-		res = save:Read()
-		for i,v in pairs(res) do
-			print(i,v)
-		end
 	end
 	
 	love.audio.setVolume(Game.Volume)
