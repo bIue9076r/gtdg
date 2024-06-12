@@ -1,6 +1,7 @@
 -- Definitions
 Game = {}
 Game.State = State.new(0)
+Game.Levels = {}
 Game.Muted = false
 Game.Volume = 0.5
 Game.FirstTime = true

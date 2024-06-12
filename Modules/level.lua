@@ -2,14 +2,10 @@ Level = {}
 Level.name = ""
 Level.Path = PathTable.new()
 
-function Level:Lerp(ObjTbl)
-	
-end
-
 function Level.new(n)
 	local tbl = {
 		name = n or "",
-		Path = PathTbl.new()
+		Path = PathTable.new()
 	}
 	
 	local mt = {
@@ -18,4 +14,28 @@ function Level.new(n)
 	}
 	
 	return setmetatable(tbl,mt)
+end
+
+function Level:Lerp(ObjTbl)
+	
+end
+
+function Level:InsertPath()
+	
+end
+
+function Level:Load()
+	
+end
+
+function Level:Draw()
+	
+end
+
+function Level:Update(dt)
+	
+end
+
+function Level:Keypressed(key)
+	
 end

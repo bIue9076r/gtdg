@@ -61,7 +61,7 @@ function HomeScreen:Load()
 	HomeScreen.vars.Pick = false
 	HomeScreen.vars.Option = false
 	HomeScreen.vars.Select = 1
-	HomeScreen.vars.SelectLast = 1
+	HomeScreen.vars.SelectLast = 0
 	HomeScreen.vars.Inside = false
 	HomeScreen.vars.lx = 0
 	HomeScreen.vars.ly = 0
@@ -203,6 +203,9 @@ function HomeScreen:Keypressed(key)
 			Game.State = LevelScreen
 			Game.State:Load(HomeScreen.vars.Select)
 		else
+			if not (HomeScreen.vars.SelectLast == 0) then
+				HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select]()
+			end
 			HomeScreen.vars.Pick = true
 		end
 	elseif key == "b" and HomeScreen.vars.Pick then

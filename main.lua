@@ -37,6 +37,11 @@ require("/States/MenuScreen")
 require("/States/ShopScreen")
 require("/States/SaveScreen")
 
+require("/Levels/Tutorial")
+require("/Levels/Invasion")
+require("/Levels/Return")
+require("/Levels/Retreat")
+
 Game.State = LoadScreen
 Game.State:Load()
 

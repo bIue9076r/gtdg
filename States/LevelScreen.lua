@@ -10,6 +10,8 @@ function LevelScreen:Load(l)
 	}
 	
 	LevelScreen.vars.s = LevelScreen.vars.ntos[l]
+	LevelScreen.vars.level = Game.Levels[l]
+	LevelScreen.vars.level:Load()
 end
 
 function LevelScreen:Draw()
@@ -21,13 +23,7 @@ function LevelScreen:Draw()
 		love.graphics.setLineWidth(10)
 	end)
 	
-	LevelScreen.Window.mid:put(function()
-		
-	end)
-	
-	LevelScreen.Window.fore:put(function()
-		love.graphics.setLineWidth(1)
-	end)
+	LevelScreen.vars.level:Draw()
 	
 	if not Game.muted then
 		LevelScreen.vars.Bsound:play()
@@ -38,10 +34,11 @@ function LevelScreen:Draw()
 end
 
 function LevelScreen:Update(dt)
-	
+	LevelScreen.vars.level:Update(dt)
 end
 
 function LevelScreen:Keypressed(key)
+	LevelScreen.vars.level:Keypressed(key)
 	if key == "return" then
 		LevelScreen.vars.Bsound:seek(0)
 		LevelScreen.vars.Bsound:pause()
