@@ -13,10 +13,10 @@ Current Timeline: (subject to change)
 		
 	Main game loop - [~] @ ??/??/2024
 		Main Menu - [~] @ ??/06/2024
-		Shop Menu - [_] @ ??/??/2024
-		Stat Menu - [_] @ ??/??/2024
-		Save Menu - [_] @ ??/??/2024
-		Game Arena - [_] @ ??/??/2024
+		Shop Menu - [~] @ ??/??/2024
+		Stat Menu - [~] @ ??/??/2024
+		Save Menu - [~] @ ??/??/2024
+		Game Arena - [~] @ ??/??/2024
 			Tutorial Arena - [_] @ ??/??/2024
 
 	Visual Assets - [~] @ ??/??/2024
@@ -27,5 +27,6 @@ Current Timeline: (subject to change)
 	Audio Assets - [~] @ ??/??/2024
 		Title Screen - [X] @ 01/06/2024
 		Main Menu - [X] @ 08/06/2024
-		Shop Menu - [_] @ ??/06/2024
+		Shop Menu - [X] @ 12/06/2024
+		Save Menu - [X] @ 12/06/2024
 		Game Arena - [X] @ 03/06/2024
