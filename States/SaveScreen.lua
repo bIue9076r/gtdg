@@ -74,6 +74,9 @@ function SaveScreen:Load()
 	SaveScreen.vars.Inside = false
 	SaveScreen.vars.lx = 0
 	SaveScreen.vars.ly = 0
+	SaveScreen.vars.TimeOut = false
+	SaveScreen.vars.TimeOutStr = ""
+	SaveScreen.vars.TimeOutTicker = ticker.new()
 	
 	SaveScreen.vars.Bsound = files.assets.Audio.getSound("save")
 	SaveScreen.Window:draw() -- should be a clear
@@ -105,7 +108,7 @@ function SaveScreen:Draw()
 		love.graphics.setColor(1,1,1)
 		
 		love.graphics.print({{0,0,0},"Save Controls:"},300,420)
-		love.graphics.print({{0,0,0},"Return: [b]"},300,440)
+		love.graphics.print({{0,0,0},"Return: [b]  Save: [k]  Load: [l]"},300,440)
 		
 		love.graphics.print({{0,0,0},"Stats:"},300,480)
 		love.graphics.print({{0,0,0},"Money: $"..tostring(Player.Money)},300,500)
@@ -134,6 +137,22 @@ function SaveScreen:Draw()
 	end)
 	
 	SaveScreen.Window.fore:put(function()
+		if SaveScreen.vars.TimeOut then
+			love.graphics.rectangle("fill",285,405,490,140)
+			love.graphics.setColor(0,0,0)
+			love.graphics.rectangle("line",285,405,490,140)
+			love.graphics.setColor(1,1,1)
+			
+			love.graphics.print({{0,0,0},"Game "..SaveScreen.vars.TimeOutStr.."!"},
+				files.assets.Fonts.getFont("hex-sans-serif-26")
+			,300,430)
+			
+			if SaveScreen.vars.TimeOutTicker:get() < 50 then
+				SaveScreen.vars.TimeOutTicker()
+			else
+				SaveScreen.vars.TimeOut = false
+			end
+		end
 		love.graphics.setLineWidth(1)
 	end)
 	
@@ -198,9 +217,7 @@ function SaveScreen:Keypressed(key)
 		end
 		SaveScreen.vars.SelectLast = SaveScreen.vars.Select
 	elseif key == "return" then
-		if SaveScreen.vars.Pick then
-			
-		else
+		if not SaveScreen.vars.Pick then
 			if not (SaveScreen.vars.SelectLast == 0) then
 				SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
 			end
@@ -215,5 +232,25 @@ function SaveScreen:Keypressed(key)
 			Game.State = MenuScreen
 			Game.State:Load()
 		end
+	elseif (not SaveScreen.vars.TimeOut) and SaveScreen.vars.Pick and key == "k" then
+		SaveScreen.vars.Save = File.new("/Saves/SaveSlot_"..SaveScreen.vars.Select..".sav")
+		SaveScreen.vars.Save:SetHeader()
+		-- Save things
+		SaveScreen.vars.Save:NewField("firstTime","false")
+		
+		SaveScreen.vars.TimeOut = true
+		SaveScreen.vars.TimeOutStr = "Saved"
+		SaveScreen.vars.TimeOutTicker:reset()
+	elseif (not SaveScreen.vars.TimeOut) and SaveScreen.vars.Pick and key == "l" then
+		SaveScreen.vars.Save = File.new("/Saves/SaveSlot_"..SaveScreen.vars.Select..".sav")
+		SaveScreen.vars.SaveTbl = SaveScreen.vars.Save:Read()
+		-- Load things
+		for i,v in pairs(SaveScreen.vars.SaveTbl) do
+			print("["..tostring(i).."]:",v)
+		end
+		
+		SaveScreen.vars.TimeOut = true
+		SaveScreen.vars.TimeOutStr = "Loaded"
+		SaveScreen.vars.TimeOutTicker:reset()
 	end
 end

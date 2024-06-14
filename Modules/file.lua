@@ -17,20 +17,22 @@ function File.new(p)
 end
 
 function File:SetHeader()
-	self.file = io.open(self.path,"w")
+	self.file = love.filesystem.newFile(self.path)
+	self.file:open("w")
 	self.file:write("HEADR 0\n")
 	self.file:close()
 end
 
 function File:NewField(i,v)
-	self.file = io.open(self.path,"a")
+	self.file = love.filesystem.newFile(self.path)
+	self.file:open("a")
 	self.file:write("FIELD "..tostring(i).." "..tostring(v).."\n")
 	self.file:close()
 end
 
 function File:GetHeader()
-	local s = self.file:read()
-	return tonumber(s:sub(7))
+	local s = (self.file:lines())()
+	return tonumber(s:sub(7,7))
 end
 
 function File:ReadV0()
@@ -40,8 +42,7 @@ function File:ReadV0()
 			local l = line:sub(7)
 			local i = l:find(" ")
 			if i <= 0 then
-				return tbl
-				--assert("Syntax Error")
+				return tbl, "Syntax Error"
 			end
 			v1 = l:sub(1,i-1)
 			v2 = l:sub(i+1)
@@ -52,14 +53,16 @@ function File:ReadV0()
 end
 
 function File:Read()
-	self.file = io.open(self.path,"r")
+	self.file = love.filesystem.newFile(self.path)
+	self.file:open("r")
 	local v = self:GetHeader()
 	local r = {}
+	local e = nil
 	if v == 0 then
-		r = self:ReadV0()
+		r, e = self:ReadV0()
 	else
-		--assert("Unsupported File Version")
+		return r, "Unsupported File Version"
 	end
 	self.file:close()
-	return r
+	return r, e
 end

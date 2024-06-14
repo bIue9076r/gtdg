@@ -11,6 +11,7 @@ require("/Modules/level")
 require("/defs")
 
 files.assets.Fonts.newFont("hex-sans-serif","/Assets/hex-sans-serif.ttf",13)
+files.assets.Fonts.newFont("hex-sans-serif-26","/Assets/hex-sans-serif.ttf",26)
 files.assets.Textures.newImage("title","/Assets/title.png")
 files.assets.Textures.newImage("back-d","/Assets/background_day.png")
 files.assets.Textures.newImage("back-e","/Assets/background_evening.png")
@@ -88,6 +89,17 @@ function love.load()
 		"/TESTFILE.sav" -- replace this
 	) then
 		Game.FirstTime = false
+	end
+	
+	if not love.filesystem.getInfo("/Saves") then
+		love.filesystem.createDirectory("/Saves")
+	end
+	
+	for i = 1,5 do
+		if not love.filesystem.getInfo("/Saves/SaveSlot_"..i..".sav") then
+			file = File.new("/Saves/SaveSlot_"..i..".sav")
+			file:SetHeader()
+		end
 	end
 	
 	love.audio.setVolume(Game.Volume)
