@@ -48,7 +48,7 @@ function MenuScreen:Keypressed(key)
 		MenuScreen.vars.Bsound:pause()
 		Game.State = SaveScreen
 		Game.State:Load()
-	elseif key == "b" then
+	elseif iskeyBack(key) then
 		MenuScreen.vars.Bsound:seek(0)
 		MenuScreen.vars.Bsound:pause()
 		Game.State = HomeScreen

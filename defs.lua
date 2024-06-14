@@ -28,3 +28,7 @@ end
 function isKeyRight(key)
 	return ((key == "right") or (key == "a"))
 end
+
+function iskeyBack(key)
+	return ((key == "b") or (key == "escape") or (key == "backspace"))
+end

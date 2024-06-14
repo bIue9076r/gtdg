@@ -40,7 +40,7 @@ end
 function SaveScreen:Keypressed(key)
 	if key == "n" then
 		
-	elseif key == "b" then
+	elseif iskeyBack(key) then
 		SaveScreen.vars.Bsound:seek(0)
 		SaveScreen.vars.Bsound:pause()
 		Game.State = MenuScreen

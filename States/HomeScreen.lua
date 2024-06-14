@@ -208,7 +208,7 @@ function HomeScreen:Keypressed(key)
 			end
 			HomeScreen.vars.Pick = true
 		end
-	elseif key == "b" and HomeScreen.vars.Pick then
+	elseif iskeyBack(key) and HomeScreen.vars.Pick then
 		HomeScreen.vars.Pick = false
 	elseif key == "t" and not HomeScreen.vars.Pick then
 		HomeScreen.vars.Bsound:seek(0)

@@ -206,7 +206,7 @@ function ShopScreen:Keypressed(key)
 			end
 			ShopScreen.vars.Pick = true
 		end
-	elseif key == "b" then
+	elseif iskeyBack(key) then
 		if ShopScreen.vars.Pick then
 			ShopScreen.vars.Pick = false
 		else
