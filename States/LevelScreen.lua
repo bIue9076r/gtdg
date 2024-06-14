@@ -15,15 +15,13 @@ function LevelScreen:Load(l)
 end
 
 function LevelScreen:Draw()
+	LevelScreen.vars.level:Draw()
+	
 	LevelScreen.Window.back:put(function()
 		love.graphics.draw(
 			files.assets.Textures.getImage("back-"..LevelScreen.vars.s)
 		,0,0)
-		
-		love.graphics.setLineWidth(10)
 	end)
-	
-	LevelScreen.vars.level:Draw()
 	
 	if not Game.muted then
 		LevelScreen.vars.Bsound:play()

@@ -6,6 +6,8 @@ Game.Muted = false
 Game.Volume = 0.5
 Game.FirstTime = true
 
+TileSize = 20
+
 LoadScreen = State.new(1)
 HomeScreen = State.new(2)
 LevelScreen = State.new(3)
