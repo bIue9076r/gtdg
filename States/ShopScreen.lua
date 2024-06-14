@@ -2,11 +2,11 @@
 
 function ShopScreen:Load()
 	ShopScreen.vars.Items = {
-		"Item 1",
-		"Item 2",
-		"Item 3",
-		"Item 4",
-		"Item 5",
+		"Item #1",
+		"Item #2",
+		"Item #3",
+		"Item #4",
+		"Item #5",
 	}
 	
 	ShopScreen.vars.ItemImg = ""
@@ -104,7 +104,7 @@ function ShopScreen:Draw()
 		love.graphics.rectangle("line",285,405,490,140)
 		love.graphics.setColor(1,1,1)
 		
-		love.graphics.print({{0,0,0},"Controls:"},300,420)
+		love.graphics.print({{0,0,0},"Shop Controls:"},300,420)
 		love.graphics.print({{0,0,0},"Return: [b]"},300,440)
 		
 		love.graphics.print({{0,0,0},"Stats:"},300,480)

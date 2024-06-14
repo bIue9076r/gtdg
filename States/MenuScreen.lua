@@ -15,6 +15,8 @@ function MenuScreen:Draw()
 		love.graphics.setColor(0,0,0)
 		love.graphics.rectangle("line",55,55,690,490)
 		love.graphics.setColor(1,1,1)
+		
+		love.graphics.print({{0,0,0},"Menu:"},100,100)
 	end)
 	
 	MenuScreen.Window.mid:put(function()
