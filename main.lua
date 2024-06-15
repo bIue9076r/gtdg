@@ -49,6 +49,14 @@ require("/Levels/Retreat")
 Game.State = LoadScreen
 Game.State:Load()
 
+function saveGame(file)
+	
+end
+
+function loadGame(file)
+	
+end
+
 function kerror(key)
 	if key == "t" then
 		Game.State = LoadScreen

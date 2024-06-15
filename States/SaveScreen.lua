@@ -236,6 +236,7 @@ function SaveScreen:Keypressed(key)
 		SaveScreen.vars.Save = File.new("/Saves/SaveSlot_"..SaveScreen.vars.Select..".sav")
 		SaveScreen.vars.Save:SetHeader()
 		-- Save things
+		saveGame(SaveScreen.vars.Save)
 		SaveScreen.vars.Save:NewField("firstTime","false")
 		
 		SaveScreen.vars.TimeOut = true
@@ -243,6 +244,7 @@ function SaveScreen:Keypressed(key)
 		SaveScreen.vars.TimeOutTicker:reset()
 	elseif (not SaveScreen.vars.TimeOut) and SaveScreen.vars.Pick and key == "l" then
 		SaveScreen.vars.Save = File.new("/Saves/SaveSlot_"..SaveScreen.vars.Select..".sav")
+		loadGame(SaveScreen.vars.Save)
 		SaveScreen.vars.SaveTbl = SaveScreen.vars.Save:Read()
 		-- Load things
 		for i,v in pairs(SaveScreen.vars.SaveTbl) do
