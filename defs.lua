@@ -1,6 +1,6 @@
 -- Definitions
 Game = {}
-Game.State = State.new(0)
+Game.State = {}
 Game.Levels = {}
 Game.Muted = false
 Game.Volume = 0.5
@@ -14,6 +14,16 @@ LevelScreen = State.new(3)
 MenuScreen = State.new(4)
 ShopScreen = State.new(5)
 SaveScreen = State.new(6)
+
+States = {
+	[0] = State.new(0),
+	[LoadScreen.Id] = LoadScreen,
+	[HomeScreen.Id] = HomeScreen,
+	[LevelScreen.Id] = LevelScreen,
+	[MenuScreen.Id] = MenuScreen,
+	[ShopScreen.Id] = ShopScreen,
+	[SaveScreen.Id] = SaveScreen,
+}
 
 function isKeyUp(key)
 	return ((key == "up") or (key == "w"))

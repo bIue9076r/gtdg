@@ -101,6 +101,7 @@ function saveGame(file)
 	-- Save things
 	file:SetHeader()
 	file:NewField("firstTime","false")
+	file:NewField("state",tostring(Game.State.Id))
 	dQSave(50)
 end
 
@@ -110,6 +111,13 @@ function loadGame(file)
 	if not e then
 		for i,v in pairs(tbl) do
 			print("["..tostring(i).."]:",v)
+		end
+		
+		if tbl["state"] then
+			local id = tonumber(tbl["state"]) or 0
+			local lv = tonumber(tbl["level"])
+			Game.State = States[id]
+			Game.State:Load(lv)
 		end
 	else
 		print(e)
