@@ -49,12 +49,72 @@ require("/Levels/Retreat")
 Game.State = LoadScreen
 Game.State:Load()
 
+function dQSave(n)
+	if n >= 1 then
+		love.graphics.setLineWidth(10)
+		love.graphics.rectangle("fill",285,30,490,90)
+		love.graphics.setColor(0,0,0)
+		love.graphics.rectangle("line",285,30,490,90)
+		love.graphics.setColor(1,1,1)
+		
+		love.graphics.print({{0,0,0},"Game Saved!"},
+			files.assets.Fonts.getFont("hex-sans-serif-26")
+		,300,55)
+		love.graphics.setLineWidth(1)
+		
+		timer.loadEvent(function()
+			Game.State.Window.fore:put(function()
+				dQSave(n - 1)
+			end)
+		end,0,{})
+	end
+end
+
+function dQLoad(n,e)
+	if n >= 1 then
+		love.graphics.setLineWidth(10)
+		love.graphics.rectangle("fill",285,30,490,90)
+		love.graphics.setColor(0,0,0)
+		love.graphics.rectangle("line",285,30,490,90)
+		love.graphics.setColor(1,1,1)
+		
+		if not e then
+			love.graphics.print({{0,0,0},"Game Loaded!"},
+				files.assets.Fonts.getFont("hex-sans-serif-26")
+			,300,55)
+		else
+			love.graphics.print({{0,0,0},e.."!"},
+				files.assets.Fonts.getFont("hex-sans-serif-26")
+			,300,55)
+		end
+		love.graphics.setLineWidth(1)
+		
+		timer.loadEvent(function()
+			Game.State.Window.fore:put(function()
+				dQLoad(n - 1,e)
+			end)
+		end,0,{})
+	end
+end
+
 function saveGame(file)
-	
+	-- Save things
+	file:SetHeader()
+	file:NewField("firstTime","false")
+	dQSave(50)
 end
 
 function loadGame(file)
-	
+	-- Load things
+	local tbl,e  = file:Read()
+	if not e then
+		for i,v in pairs(tbl) do
+			print("["..tostring(i).."]:",v)
+		end
+	else
+		print(e)
+	end
+	dQLoad(50,e)
 end
 
 function kerror(key)
@@ -73,6 +133,10 @@ function ctrlOps(key)
 		Game.Ctrl = true
 	end
 	
+	if key == "lalt" or key == "ralt" then
+		Game.Alt = true
+	end
+	
 	if Game.Ctrl then
 		if key == "m" then
 			Game.muted = not Game.muted
@@ -87,6 +151,18 @@ function ctrlOps(key)
 			if Game.Volume > 1 then Game.Volume = 1 end
 			love.audio.setVolume(Game.Volume)
 			Game.Ctrl = false
+		end
+	end
+	
+	if Game.Alt then
+		if key == "6" then
+			local s = File.new("/Saves/QuickSave.sav")
+			saveGame(s)
+			Game.Alt = false
+		elseif key == "7" then
+			local s = File.new("/Saves/QuickSave.sav")
+			loadGame(s)
+			Game.Alt = false
 		end
 	end
 end

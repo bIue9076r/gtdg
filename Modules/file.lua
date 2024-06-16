@@ -16,6 +16,10 @@ function File.new(p)
 	return setmetatable(tbl,mt)
 end
 
+function File:Exists()
+	return love.filesystem.getInfo(self.path)
+end
+
 function File:SetHeader()
 	self.file = love.filesystem.newFile(self.path)
 	self.file:open("w")
@@ -49,20 +53,22 @@ function File:ReadV0()
 			tbl[v1] = v2
 		end
 	end
-	return tbl
+	return tbl, nil
 end
 
 function File:Read()
 	self.file = love.filesystem.newFile(self.path)
-	self.file:open("r")
-	local v = self:GetHeader()
 	local r = {}
-	local e = nil
-	if v == 0 then
-		r, e = self:ReadV0()
-	else
-		return r, "Unsupported File Version"
+	local e = "File Does Not Exist"
+	if self:Exists() then
+		self.file:open("r")
+		local v = self:GetHeader()
+		if v == 0 then
+			r, e = self:ReadV0()
+		else
+			return r, "Unsupported File Version"
+		end
+		self.file:close()
 	end
-	self.file:close()
 	return r, e
 end
