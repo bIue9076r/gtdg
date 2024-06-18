@@ -9,6 +9,7 @@ function LevelScreen:Load(l)
 		[4] = "n",
 	}
 	
+	l = l or 1
 	LevelScreen.vars.s = LevelScreen.vars.ntos[l]
 	LevelScreen.vars.level = Game.Levels[l]
 	LevelScreen.vars.level:Load()

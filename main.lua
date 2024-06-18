@@ -17,6 +17,9 @@ files.assets.Textures.newImage("back-d","/Assets/background_day.png")
 files.assets.Textures.newImage("back-e","/Assets/background_evening.png")
 files.assets.Textures.newImage("back-n","/Assets/background_night.png")
 
+files.assets.Textures.newImage("yesav","/Assets/yesav.png")
+files.assets.Textures.newImage("nosav","/Assets/nosav.png")
+
 files.assets.Textures.newImage("tile_20","/Assets/tile_20.png")
 files.assets.Textures.newImage("tile_25","/Assets/tile_25.png")
 
@@ -114,7 +117,7 @@ function loadGame(file)
 		end
 		
 		if tbl["state"] then
-			local id = tonumber(tbl["state"]) or 0
+			local id = tonumber(tbl["state"])
 			local lv = tonumber(tbl["level"])
 			Game.State = States[id]
 			Game.State:Load(lv)

@@ -121,9 +121,12 @@ function SaveScreen:Draw()
 			love.graphics.rectangle("line",285,55,490,290)
 			love.graphics.setColor(1,1,1)
 			
-			love.graphics.setColor(1,0,1)
-			love.graphics.rectangle("fill",300,70,190,190)
-			love.graphics.setColor(1,1,1)
+			--love.graphics.setColor(1,0,1)
+			--love.graphics.rectangle("fill",300,70,190,190)
+			--love.graphics.setColor(1,1,1)
+			love.graphics.draw(
+				files.assets.Textures.getImage("ye".."sav")
+			,300,70)
 			
 			love.graphics.print({{0,0,0},SaveScreen.vars.SaveStr1},510,80)
 			love.graphics.print({{0,0,0},SaveScreen.vars.SaveStr2()},510,120)
