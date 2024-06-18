@@ -1,5 +1,42 @@
 -- Save Screen State
 
+function updateFileDiscription(i)
+	SaveScreen.vars.SaveStrs[i] = SaveScreen.vars.SaveStrs[i] or {}
+	local file = File.new("/Saves/SaveSlot_"..i..".sav")
+	local tbl, e = file:Read()
+	if not e then
+		if tbl["saved"] then
+			SaveScreen.vars.SaveSaved[i] = "ye"
+			SaveScreen.vars.SaveStrs[i] = {
+				"State: "..(tbl["state"] or ""),
+				"Money: "..(tbl["money"] or ""),
+				"Kills: "..(tbl["kills"] or ""),
+				"Money: "..(tbl["money"] or ""),
+				"Money: "..(tbl["money"] or ""),
+			}
+		else
+			SaveScreen.vars.SaveSaved[i] = "no"
+			SaveScreen.vars.SaveStrs[i] = {
+				"No Save",
+				"",
+				"",
+				"",
+				"",
+			}
+		end
+	else
+		-- error
+		SaveScreen.vars.SaveSaved[i] = "no" -- "er"
+		SaveScreen.vars.SaveStrs[i] = {
+			"Error",
+			"",
+			"",
+			"",
+			"",
+		}
+	end
+end
+
 function SaveScreen:Load()
 	SaveScreen.vars.Saves = {
 		"Save Slot #1",
@@ -8,6 +45,13 @@ function SaveScreen:Load()
 		"Save Slot #4",
 		"Save Slot #5",
 	}
+	
+	-- on the assumption that all the files exist
+	SaveScreen.vars.SaveSaved = {}
+	SaveScreen.vars.SaveStrs = {}
+	for i = 1,5 do
+		updateFileDiscription(i)
+	end
 	
 	SaveScreen.vars.SaveImg = ""
 	SaveScreen.vars.SaveStr1 = ""
@@ -19,53 +63,53 @@ function SaveScreen:Load()
 	
 	SaveScreen.vars.SaveFuncs = {}
 	SaveScreen.vars.SaveFuncs[1] = function()
-		SaveScreen.vars.SaveImg = ""
+		SaveScreen.vars.SaveImg = SaveScreen.vars.SaveSaved[1]
 		SaveScreen.vars.SaveStr1 = SaveScreen.vars.Saves[1]..":"
-		SaveScreen.vars.SaveStr2 = sticker.new("description")
-		SaveScreen.vars.SaveStr3 = sticker.new("description")
-		SaveScreen.vars.SaveStr4 = sticker.new("description")
-		SaveScreen.vars.SaveStr5 = sticker.new("description")
-		SaveScreen.vars.SaveStr6 = sticker.new("description")
+		SaveScreen.vars.SaveStr2 = sticker.new(SaveScreen.vars.SaveStrs[1][1])
+		SaveScreen.vars.SaveStr3 = sticker.new(SaveScreen.vars.SaveStrs[1][2])
+		SaveScreen.vars.SaveStr4 = sticker.new(SaveScreen.vars.SaveStrs[1][3])
+		SaveScreen.vars.SaveStr5 = sticker.new(SaveScreen.vars.SaveStrs[1][4])
+		SaveScreen.vars.SaveStr6 = sticker.new(SaveScreen.vars.SaveStrs[1][5])
 	end
 	
 	SaveScreen.vars.SaveFuncs[2] = function()
-		SaveScreen.vars.SaveImg = ""
+		SaveScreen.vars.SaveImg = SaveScreen.vars.SaveSaved[2]
 		SaveScreen.vars.SaveStr1 = SaveScreen.vars.Saves[2]..":"
-		SaveScreen.vars.SaveStr2 = sticker.new("description")
-		SaveScreen.vars.SaveStr3 = sticker.new("description")
-		SaveScreen.vars.SaveStr4 = sticker.new("description")
-		SaveScreen.vars.SaveStr5 = sticker.new("description")
-		SaveScreen.vars.SaveStr6 = sticker.new("description")
+		SaveScreen.vars.SaveStr2 = sticker.new(SaveScreen.vars.SaveStrs[2][1])
+		SaveScreen.vars.SaveStr3 = sticker.new(SaveScreen.vars.SaveStrs[2][2])
+		SaveScreen.vars.SaveStr4 = sticker.new(SaveScreen.vars.SaveStrs[2][3])
+		SaveScreen.vars.SaveStr5 = sticker.new(SaveScreen.vars.SaveStrs[2][4])
+		SaveScreen.vars.SaveStr6 = sticker.new(SaveScreen.vars.SaveStrs[2][5])
 	end
 	
 	SaveScreen.vars.SaveFuncs[3] = function()
-		SaveScreen.vars.SaveImg = ""
+		SaveScreen.vars.SaveImg = SaveScreen.vars.SaveSaved[3]
 		SaveScreen.vars.SaveStr1 = SaveScreen.vars.Saves[3]..":"
-		SaveScreen.vars.SaveStr2 = sticker.new("description")
-		SaveScreen.vars.SaveStr3 = sticker.new("description")
-		SaveScreen.vars.SaveStr4 = sticker.new("description")
-		SaveScreen.vars.SaveStr5 = sticker.new("description")
-		SaveScreen.vars.SaveStr6 = sticker.new("description")
+		SaveScreen.vars.SaveStr2 = sticker.new(SaveScreen.vars.SaveStrs[3][1])
+		SaveScreen.vars.SaveStr3 = sticker.new(SaveScreen.vars.SaveStrs[3][2])
+		SaveScreen.vars.SaveStr4 = sticker.new(SaveScreen.vars.SaveStrs[3][3])
+		SaveScreen.vars.SaveStr5 = sticker.new(SaveScreen.vars.SaveStrs[3][4])
+		SaveScreen.vars.SaveStr6 = sticker.new(SaveScreen.vars.SaveStrs[3][5])
 	end
 	
 	SaveScreen.vars.SaveFuncs[4] = function()
-		SaveScreen.vars.SaveImg = ""
+		SaveScreen.vars.SaveImg = SaveScreen.vars.SaveSaved[4]
 		SaveScreen.vars.SaveStr1 = SaveScreen.vars.Saves[4]..":"
-		SaveScreen.vars.SaveStr2 = sticker.new("description")
-		SaveScreen.vars.SaveStr3 = sticker.new("description")
-		SaveScreen.vars.SaveStr4 = sticker.new("description")
-		SaveScreen.vars.SaveStr5 = sticker.new("description")
-		SaveScreen.vars.SaveStr6 = sticker.new("description")
+		SaveScreen.vars.SaveStr2 = sticker.new(SaveScreen.vars.SaveStrs[4][1])
+		SaveScreen.vars.SaveStr3 = sticker.new(SaveScreen.vars.SaveStrs[4][2])
+		SaveScreen.vars.SaveStr4 = sticker.new(SaveScreen.vars.SaveStrs[4][3])
+		SaveScreen.vars.SaveStr5 = sticker.new(SaveScreen.vars.SaveStrs[4][4])
+		SaveScreen.vars.SaveStr6 = sticker.new(SaveScreen.vars.SaveStrs[4][5])
 	end
 	
 	SaveScreen.vars.SaveFuncs[5] = function()
-		SaveScreen.vars.SaveImg = ""
+		SaveScreen.vars.SaveImg = SaveScreen.vars.SaveSaved[5]
 		SaveScreen.vars.SaveStr1 = SaveScreen.vars.Saves[5]..":"
-		SaveScreen.vars.SaveStr2 = sticker.new("description")
-		SaveScreen.vars.SaveStr3 = sticker.new("description")
-		SaveScreen.vars.SaveStr4 = sticker.new("description")
-		SaveScreen.vars.SaveStr5 = sticker.new("description")
-		SaveScreen.vars.SaveStr6 = sticker.new("description")
+		SaveScreen.vars.SaveStr2 = sticker.new(SaveScreen.vars.SaveStrs[5][1])
+		SaveScreen.vars.SaveStr3 = sticker.new(SaveScreen.vars.SaveStrs[5][2])
+		SaveScreen.vars.SaveStr4 = sticker.new(SaveScreen.vars.SaveStrs[5][3])
+		SaveScreen.vars.SaveStr5 = sticker.new(SaveScreen.vars.SaveStrs[5][4])
+		SaveScreen.vars.SaveStr6 = sticker.new(SaveScreen.vars.SaveStrs[5][5])
 	end
 	
 	SaveScreen.vars.Pick = false
@@ -108,7 +152,7 @@ function SaveScreen:Draw()
 		love.graphics.setColor(1,1,1)
 		
 		love.graphics.print({{0,0,0},"Save Controls:"},300,420)
-		love.graphics.print({{0,0,0},"Return: [b]  Save: [k]  Load: [l]"},300,440)
+		love.graphics.print({{0,0,0},"Return: [b]  Save: [k]  Load: [l]  Delete: [d]"},300,440)
 		
 		love.graphics.print({{0,0,0},"Stats:"},300,480)
 		love.graphics.print({{0,0,0},"Money: $"..tostring(Player.Money)},300,500)
@@ -121,11 +165,8 @@ function SaveScreen:Draw()
 			love.graphics.rectangle("line",285,55,490,290)
 			love.graphics.setColor(1,1,1)
 			
-			--love.graphics.setColor(1,0,1)
-			--love.graphics.rectangle("fill",300,70,190,190)
-			--love.graphics.setColor(1,1,1)
 			love.graphics.draw(
-				files.assets.Textures.getImage("ye".."sav")
+				files.assets.Textures.getImage(SaveScreen.vars.SaveImg.."sav")
 			,300,70)
 			
 			love.graphics.print({{0,0,0},SaveScreen.vars.SaveStr1},510,80)
@@ -146,7 +187,7 @@ function SaveScreen:Draw()
 			love.graphics.rectangle("line",285,405,490,140)
 			love.graphics.setColor(1,1,1)
 			
-			love.graphics.print({{0,0,0},"Game "..SaveScreen.vars.TimeOutStr.."!"},
+			love.graphics.print({{0,0,0},SaveScreen.vars.TimeOutStr},
 				files.assets.Fonts.getFont("hex-sans-serif-26")
 			,300,430)
 			
@@ -239,13 +280,23 @@ function SaveScreen:Keypressed(key)
 		SaveScreen.vars.Save = File.new("/Saves/SaveSlot_"..SaveScreen.vars.Select..".sav")
 		saveGame(SaveScreen.vars.Save)
 		SaveScreen.vars.TimeOut = true
-		SaveScreen.vars.TimeOutStr = "Saved"
+		SaveScreen.vars.TimeOutStr = "Game Saved!"
 		SaveScreen.vars.TimeOutTicker:reset()
+		updateFileDiscription(SaveScreen.vars.Select)
+		SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
 	elseif (not SaveScreen.vars.TimeOut) and SaveScreen.vars.Pick and key == "l" then
 		SaveScreen.vars.Save = File.new("/Saves/SaveSlot_"..SaveScreen.vars.Select..".sav")
 		loadGame(SaveScreen.vars.Save)
 		SaveScreen.vars.TimeOut = true
-		SaveScreen.vars.TimeOutStr = "Loaded"
+		SaveScreen.vars.TimeOutStr = "Game Loaded!"
 		SaveScreen.vars.TimeOutTicker:reset()
+	elseif (not SaveScreen.vars.TimeOut) and SaveScreen.vars.Pick and key == "d" then
+		SaveScreen.vars.Save = File.new("/Saves/SaveSlot_"..SaveScreen.vars.Select..".sav")
+		SaveScreen.vars.Save:SetHeader()
+		SaveScreen.vars.TimeOut = true
+		SaveScreen.vars.TimeOutStr = "Save Deleted!"
+		SaveScreen.vars.TimeOutTicker:reset()
+		updateFileDiscription(SaveScreen.vars.Select)
+		SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
 	end
 end

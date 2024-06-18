@@ -103,8 +103,10 @@ end
 function saveGame(file)
 	-- Save things
 	file:SetHeader()
-	file:NewField("firstTime","false")
+	file:NewField("saved","yes")
 	file:NewField("state",tostring(Game.State.Id))
+	file:NewField("money",tostring(Player.Money))
+	file:NewField("kills",tostring(Player.Kills))
 	dQSave(50)
 end
 
@@ -122,6 +124,9 @@ function loadGame(file)
 			Game.State = States[id]
 			Game.State:Load(lv)
 		end
+		
+		Player.Money = tbl["money"] or Player.Money
+		Player.Kills = tbl["kills"] or Player.Kills
 	else
 		print(e)
 	end
@@ -180,11 +185,6 @@ end
 
 function love.load()
 	-- Save File Handling
-	if love.filesystem.getInfo(
-		"/TESTFILE.sav" -- replace this
-	) then
-		Game.FirstTime = false
-	end
 	
 	if not love.filesystem.getInfo("/Saves") then
 		love.filesystem.createDirectory("/Saves")
