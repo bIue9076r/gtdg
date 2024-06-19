@@ -19,6 +19,7 @@ files.assets.Textures.newImage("back-n","/Assets/background_night.png")
 
 files.assets.Textures.newImage("yesav","/Assets/yesav.png")
 files.assets.Textures.newImage("nosav","/Assets/nosav.png")
+files.assets.Textures.newImage("ersav","/Assets/ersav.png")
 
 files.assets.Textures.newImage("tile_20","/Assets/tile_20.png")
 files.assets.Textures.newImage("tile_25","/Assets/tile_25.png")

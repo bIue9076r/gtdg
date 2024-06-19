@@ -8,19 +8,25 @@ Current Timeline: (subject to change)
 	Setup a window - [X] @ 28/05/2024
 	Load Assets - [X] @ 30/05/2024
 	
-	Save System - [~] @ ??/??/2024
+	Save System - [X] @ 18/06/2024
 		File Handler - [X] @ 28/05/2024
+		Loader - [X] @ 14/06/2024
+		Saver - [X] @ 14/06/2024
 		
 	Main game loop - [~] @ ??/??/2024
 		Main Menu - [~] @ ??/06/2024
-		Shop Menu - [~] @ ??/??/2024
-		Stat Menu - [~] @ ??/??/2024
-		Save Menu - [~] @ ??/??/2024
-		Game Arena - [~] @ ??/??/2024
-			Tutorial Arena - [_] @ ??/??/2024
+		Shop Menu - [~] @ ??/06/2024
+		Stat Menu - [~] @ ??/06/2024
+		Save Menu - [X] @ 18/06/2024
+		Game Arena - [~] @ ??/07/2024
+			Tutorial Arena - [~] @ ??/07/2024
+			Arena #1 - [~] @ ??/07/2024
+			Arena #2 - [~] @ ??/07/2024
+			Arena #3 - [~] @ ??/07/2024
 
 	Visual Assets - [~] @ ??/??/2024
 		Title Screen - [X] @ 01/06/2024
+		Save Icons - [X] @ 17/06/2024
 		Level Previews - [_] @ ??/06/2024
 		Upgrade Previews - [_] @ ??/06/2024
 		
