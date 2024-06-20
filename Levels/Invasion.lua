@@ -27,7 +27,14 @@ function Invasion_Level:Draw()
 end
 
 function Invasion_Level:Update(dt)
+	local x, y = love.mouse.getPosition()
 	
+	LevelScreen.vars.sx = math.min(math.max(1,math.floor((700/TileSize)*((x - 50)/650)) + 1),(700/TileSize))
+	LevelScreen.vars.sy = math.min(math.max(1,math.floor((500/TileSize)*((y - 50)/450)) + 1),(500/TileSize))
+	
+	print("Tile:\n\tx: "..(LevelScreen.vars.sx).."\n\ty: "..(LevelScreen.vars.sy))
+	
+	LevelScreen.vars.lx, LevelScreen.vars.ly = x, y
 end
 
 function Invasion_Level:Keypressed(key)
