@@ -1,7 +1,10 @@
 Invasion_Level = Level.new("Invasion")
 
 function Invasion_Level:Load()
-	
+	LevelScreen.vars.sx = 0
+	LevelScreen.vars.sy = 0
+	LevelScreen.vars.lx = 0
+	LevelScreen.vars.ly = 0
 end
 
 function Invasion_Level:Draw()
@@ -18,7 +21,12 @@ function Invasion_Level:Draw()
 	end)
 	
 	LevelScreen.Window.mid:put(function()
-		
+		love.graphics.setColor(1,0,0)
+		love.graphics.rectangle("line",
+			50 + ((LevelScreen.vars.sx-1)*TileSize),50 + ((LevelScreen.vars.sy-1)*TileSize),
+			TileSize,TileSize
+		)
+		love.graphics.setColor(1,1,1)
 	end)
 	
 	LevelScreen.Window.fore:put(function()
@@ -29,8 +37,21 @@ end
 function Invasion_Level:Update(dt)
 	local x, y = love.mouse.getPosition()
 	
-	LevelScreen.vars.sx = math.min(math.max(1,math.floor((700/TileSize)*((x - 50)/650)) + 1),(700/TileSize))
-	LevelScreen.vars.sy = math.min(math.max(1,math.floor((500/TileSize)*((y - 50)/450)) + 1),(500/TileSize))
+	print(x - 50,650,y - 50,450)
+	LevelScreen.vars.sx = math.min(
+		math.max(
+			1,
+			math.floor(((700/TileSize)*((x - 50)/650))) + 1
+		),
+		(700/TileSize)
+	)
+	LevelScreen.vars.sy = math.min(
+		math.max(
+			1,
+			math.floor(((400/TileSize)*((y - 50)/450))) + 1
+		),
+		(500/TileSize)
+	)
 	
 	print("Tile:\n\tx: "..(LevelScreen.vars.sx).."\n\ty: "..(LevelScreen.vars.sy))
 	
