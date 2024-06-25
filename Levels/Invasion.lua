@@ -48,7 +48,9 @@ function Invasion_Level:Update(dt)
 end
 
 function Invasion_Level:Keypressed(key)
-	
+	if LevelScreen.vars.selected then
+		-- Tile options
+	end
 end
 
 Game.Levels[2] = Invasion_Level

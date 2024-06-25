@@ -7,6 +7,7 @@ require("/Modules/window")
 require("/Modules/state")
 require("/Modules/path")
 require("/Modules/object")
+require("/Modules/tile")
 require("/Modules/level")
 require("/defs")
 
