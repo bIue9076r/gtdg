@@ -5,6 +5,8 @@ function Invasion_Level:Load()
 	LevelScreen.vars.sy = 0
 	LevelScreen.vars.lx = 0
 	LevelScreen.vars.ly = 0
+	
+	LevelScreen.vars.selected = false
 end
 
 function Invasion_Level:Draw()
