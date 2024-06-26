@@ -32,19 +32,31 @@ function Invasion_Level:Draw()
 	end)
 	
 	LevelScreen.Window.fore:put(function()
-		
+		if LevelScreen.vars.selected then
+			love.graphics.rectangle("fill",250,250,500,300)
+		end
 	end)
 end
 
 function Invasion_Level:Update(dt)
 	local x, y = love.mouse.getPosition()
 	
-	LevelScreen.vars.sx = math.min(math.max(1,math.floor((700/TileSize)*(x/700)) - 2),(700/TileSize))
-	LevelScreen.vars.sy = math.min(math.max(1,math.floor((500/TileSize)*(y/500)) - 2),(500/TileSize))
+	if not LevelScreen.vars.selected then
+		LevelScreen.vars.sx = math.min(math.max(1,math.floor((700/TileSize)*(x/700)) - 1),(700/TileSize))
+		LevelScreen.vars.sy = math.min(math.max(1,math.floor((500/TileSize)*(y/500)) - 1),(500/TileSize))
+	end
 	
 	print("Tile:\n\tx: "..(LevelScreen.vars.sx).."\n\ty: "..(LevelScreen.vars.sy))
 	
 	LevelScreen.vars.lx, LevelScreen.vars.ly = x, y
+	
+	if love.mouse.isDown(1) then
+		LevelScreen.vars.selected = true
+	end
+	
+	if love.mouse.isDown(2) then
+		LevelScreen.vars.selected = false
+	end
 end
 
 function Invasion_Level:Keypressed(key)

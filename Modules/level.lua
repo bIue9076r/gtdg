@@ -1,7 +1,7 @@
 Level = {}
 Level.name = ""
 Level.Path = PathTable.new()
-Level.Tiles = TileTabel.new()
+Level.Tiles = TileTable.new()
 
 function Level.new(n)
 	local tbl = {
