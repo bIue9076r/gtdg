@@ -25,6 +25,18 @@ files.assets.Textures.newImage("ersav","/Assets/ersav.png")
 files.assets.Textures.newImage("tile_20","/Assets/tile_20.png")
 files.assets.Textures.newImage("tile_25","/Assets/tile_25.png")
 
+files.assets.Textures.newImage("water_20","/Assets/water_20.png")
+files.assets.Textures.newImage("shore_L_20","/Assets/shore_L_20.png")
+files.assets.Textures.newImage("shore_R_20","/Assets/shore_R_20.png")
+files.assets.Textures.newImage("shore_B_20","/Assets/shore_B_20.png")
+files.assets.Textures.newImage("shore_T_20","/Assets/shore_T_20.png")
+files.assets.Textures.newImage("shore_BL_20","/Assets/shore_BL_20.png")
+files.assets.Textures.newImage("shore_BR_20","/Assets/shore_BR_20.png")
+files.assets.Textures.newImage("shore_TL_20","/Assets/shore_TL_20.png")
+files.assets.Textures.newImage("shore_TR_20","/Assets/shore_TR_20.png")
+files.assets.Textures.newImage("sand_20","/Assets/sand_20.png")
+
+
 files.assets.Audio.new("title","/Assets/intro.mp3","stream")
 files.assets.Audio.new("level","/Assets/level.mp3","stream")
 files.assets.Audio.new("menu","/Assets/menu.mp3","stream")

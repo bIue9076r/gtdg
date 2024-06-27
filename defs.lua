@@ -25,6 +25,20 @@ States = {
 	[SaveScreen.Id] = SaveScreen,
 }
 
+LevelTiles = {
+	[0] = "tile_20",
+	[1] = "water_20",
+	[2] = "shore_L_20",
+	[3] = "shore_R_20",
+	[4] = "shore_B_20",
+	[5] = "shore_T_20",
+	[6] = "shore_BL_20",
+	[7] = "shore_BR_20",
+	[8] = "shore_TL_20",
+	[9] = "shore_TR_20",
+	[10] = "sand_20",
+}
+
 function isKeyUp(key)
 	return ((key == "up") or (key == "w"))
 end

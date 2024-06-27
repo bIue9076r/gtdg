@@ -1,11 +1,17 @@
 Invasion_Level = Level.new("Invasion")
-Invasion_Level.Tiles = TileTable.new()
+Invasion_Level.Tiles = TileTable.new((700/TileSize),(500/TileSize))
 
 for i = 1,(500/TileSize) do
 	for j = 1,(700/TileSize) do
-		Invasion_Level.Tiles(false,0)
+		Invasion_Level.Tiles(false,10)
 	end
 end
+
+-- Cue the Level Design
+Invasion_Level.Tiles:Set(2,1,true,2)
+Invasion_Level.Tiles:Set(3,1,true,1)
+Invasion_Level.Tiles:Set(4,1,true,3)
+Invasion_Level.Tiles:Set(35,25,false,1)
 
 function Invasion_Level:Load()
 	LevelScreen.vars.sx = 0
@@ -23,7 +29,9 @@ function Invasion_Level:Draw()
 		for y = 1,(500/TileSize) do
 			for x = 1,(700/TileSize) do
 				love.graphics.draw(
-					files.assets.Textures.getImage("tile_"..TileSize)
+					files.assets.Textures.getImage(
+						LevelTiles[Invasion_Level.Tiles:Get(x,y).obj] or "tile_20" 
+					)
 				,50 + ((x-1)*TileSize),50 + ((y-1)*TileSize))
 			end
 		end
@@ -53,8 +61,6 @@ function Invasion_Level:Update(dt)
 		LevelScreen.vars.sy = math.min(math.max(1,math.floor((500/TileSize)*(y/500)) - 1),(500/TileSize))
 	end
 	
-	print("Tile:\n\tx: "..(LevelScreen.vars.sx).."\n\ty: "..(LevelScreen.vars.sy))
-	
 	LevelScreen.vars.lx, LevelScreen.vars.ly = x, y
 	
 	if love.mouse.isDown(1) then
@@ -69,6 +75,9 @@ end
 function Invasion_Level:Keypressed(key)
 	if LevelScreen.vars.selected then
 		-- Tile options
+		if iskeyBack(key) then
+			LevelScreen.vars.selected = false
+		end
 	end
 end
 
