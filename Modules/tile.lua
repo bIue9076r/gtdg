@@ -3,7 +3,7 @@ Tile = {}
 function Tile.new(p,o)
 	local tbl = {
 		path = p or false,
-		obj = o or "none",
+		obj = o or 0,
 	}
 	
 	return tbl

@@ -1,4 +1,11 @@
 Invasion_Level = Level.new("Invasion")
+Invasion_Level.Tiles = TileTable.new()
+
+for i = 1,(500/TileSize) do
+	for j = 1,(700/TileSize) do
+		Invasion_Level.Tiles(false,0)
+	end
+end
 
 function Invasion_Level:Load()
 	LevelScreen.vars.sx = 0
