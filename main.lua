@@ -34,6 +34,10 @@ files.assets.Textures.newImage("shore_BL_20","/Assets/shore_BL_20.png")
 files.assets.Textures.newImage("shore_BR_20","/Assets/shore_BR_20.png")
 files.assets.Textures.newImage("shore_TL_20","/Assets/shore_TL_20.png")
 files.assets.Textures.newImage("shore_TR_20","/Assets/shore_TR_20.png")
+files.assets.Textures.newImage("shore_CBL_20","/Assets/shore_CBL_20.png")
+files.assets.Textures.newImage("shore_CBR_20","/Assets/shore_CBR_20.png")
+files.assets.Textures.newImage("shore_CTL_20","/Assets/shore_CTL_20.png")
+files.assets.Textures.newImage("shore_CTR_20","/Assets/shore_CTR_20.png")
 files.assets.Textures.newImage("sand_20","/Assets/sand_20.png")
 
 

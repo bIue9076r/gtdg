@@ -36,7 +36,11 @@ LevelTiles = {
 	[7] = "shore_BR_20",
 	[8] = "shore_TL_20",
 	[9] = "shore_TR_20",
-	[10] = "sand_20",
+	[10] = "shore_CBL_20",
+	[11] = "shore_CBR_20",
+	[12] = "shore_CTL_20",
+	[13] = "shore_CTR_20",
+	[14] = "sand_20",
 }
 
 function isKeyUp(key)

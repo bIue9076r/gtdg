@@ -3,15 +3,22 @@ Invasion_Level.Tiles = TileTable.new((700/TileSize),(500/TileSize))
 
 for i = 1,(500/TileSize) do
 	for j = 1,(700/TileSize) do
-		Invasion_Level.Tiles(false,10)
+		Invasion_Level.Tiles(false,14)
 	end
 end
 
 -- Cue the Level Design
-Invasion_Level.Tiles:Set(2,1,true,2)
-Invasion_Level.Tiles:Set(3,1,true,1)
-Invasion_Level.Tiles:Set(4,1,true,3)
-Invasion_Level.Tiles:Set(35,25,false,1)
+for i = 1,(500/TileSize) do
+Invasion_Level.Tiles:Set(2,i,true,2)
+Invasion_Level.Tiles:Set(3,i,true,1)
+Invasion_Level.Tiles:Set(4,i,true,3)
+end
+
+for j = 5,(700/TileSize) do
+Invasion_Level.Tiles:Set(j,15,true,5)
+Invasion_Level.Tiles:Set(j,16,true,1)
+Invasion_Level.Tiles:Set(j,17,true,4)
+end
 
 function Invasion_Level:Load()
 	LevelScreen.vars.sx = 0
