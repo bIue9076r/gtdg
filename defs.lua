@@ -43,6 +43,10 @@ LevelTiles = {
 	[14] = "sand_20",
 }
 
+SoundSFX = {
+	[1] = "title"
+}
+
 function isKeyUp(key)
 	return ((key == "up") or (key == "w"))
 end
@@ -61,4 +65,14 @@ end
 
 function iskeyBack(key)
 	return ((key == "b") or (key == "escape") or (key == "backspace"))
+end
+
+function playSoundEffect(n)
+	local s = files.assets.Audio.getSound(SoundSFX[n or 1])
+	if not Game.Muted then
+		s:seek(0)
+		s:play()
+	else
+		s:pause()
+	end
 end

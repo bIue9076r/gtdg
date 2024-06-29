@@ -166,10 +166,12 @@ function ShopScreen:Update(dt)
 	
 	if ShopScreen.vars.Inside and love.mouse.isDown(1) then
 		ShopScreen.vars.Pick = true
+		-- play a sound (Item selected)
 	end
 	
 	if love.mouse.isDown(2) and ShopScreen.vars.Pick then
 		ShopScreen.vars.Pick = false
+		-- play a sound (Item deselected)
 	end
 	
 	ShopScreen.vars.lx, ShopScreen.vars.ly = x, y
@@ -187,6 +189,7 @@ function ShopScreen:Keypressed(key)
 			ShopScreen.vars.ItemFuncs[ShopScreen.vars.Select]()
 		end
 		ShopScreen.vars.SelectLast = ShopScreen.vars.Select
+		-- play a sound (Option Moved)
 	elseif isKeyDown(key) then
 		if ShopScreen.vars.Select + 1 <= #ShopScreen.vars.Items then
 			ShopScreen.vars.Select = ShopScreen.vars.Select + 1
@@ -197,18 +200,21 @@ function ShopScreen:Keypressed(key)
 			ShopScreen.vars.ItemFuncs[ShopScreen.vars.Select]()
 		end
 		ShopScreen.vars.SelectLast = ShopScreen.vars.Select
+		-- play a sound (Option Moved)
 	elseif key == "return" then
 		if ShopScreen.vars.Pick then
-			
+			-- play a sound (Item Bought)
 		else
 			if not (ShopScreen.vars.SelectLast == 0) then
 				ShopScreen.vars.ItemFuncs[ShopScreen.vars.Select]()
 			end
 			ShopScreen.vars.Pick = true
+			-- play a sound (Item selected)
 		end
 	elseif iskeyBack(key) then
 		if ShopScreen.vars.Pick then
 			ShopScreen.vars.Pick = false
+			-- play a sound (Item deselected)
 		else
 			ShopScreen.vars.Bsound:seek(0)
 			ShopScreen.vars.Bsound:pause()

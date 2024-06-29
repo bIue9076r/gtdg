@@ -9,16 +9,29 @@ end
 
 -- Cue the Level Design
 for i = 1,(500/TileSize) do
-Invasion_Level.Tiles:Set(2,i,true,2)
-Invasion_Level.Tiles:Set(3,i,true,1)
-Invasion_Level.Tiles:Set(4,i,true,3)
+	Invasion_Level.Tiles:Set(1,i,true,1)
+	Invasion_Level.Tiles:Set(2,i,true,1)
+	Invasion_Level.Tiles:Set(3,i,true,1)
+	Invasion_Level.Tiles:Set(4,i,true,3)
 end
 
 for j = 5,(700/TileSize) do
-Invasion_Level.Tiles:Set(j,15,true,5)
-Invasion_Level.Tiles:Set(j,16,true,1)
-Invasion_Level.Tiles:Set(j,17,true,4)
+	Invasion_Level.Tiles:Set(j,7,true,5)
+	Invasion_Level.Tiles:Set(j,8,true,1)
+	Invasion_Level.Tiles:Set(j,9,true,4)
+	
+	Invasion_Level.Tiles:Set(j,17,true,5)
+	Invasion_Level.Tiles:Set(j,18,true,1)
+	Invasion_Level.Tiles:Set(j,19,true,4)
 end
+
+Invasion_Level.Tiles:Set(4,7,true,9)
+Invasion_Level.Tiles:Set(4,8,true,1)
+Invasion_Level.Tiles:Set(4,9,true,7)
+
+Invasion_Level.Tiles:Set(4,17,true,9)
+Invasion_Level.Tiles:Set(4,18,true,1)
+Invasion_Level.Tiles:Set(4,19,true,7)
 
 function Invasion_Level:Load()
 	LevelScreen.vars.sx = 0
@@ -55,7 +68,7 @@ function Invasion_Level:Draw()
 	
 	LevelScreen.Window.fore:put(function()
 		if LevelScreen.vars.selected then
-			love.graphics.rectangle("fill",250,250,500,300)
+			love.graphics.rectangle("fill",25,25,200,250)
 		end
 	end)
 end
@@ -71,10 +84,17 @@ function Invasion_Level:Update(dt)
 	LevelScreen.vars.lx, LevelScreen.vars.ly = x, y
 	
 	if love.mouse.isDown(1) then
-		LevelScreen.vars.selected = true
+		local tile = Invasion_Level.Tiles:Get(LevelScreen.vars.sx, LevelScreen.vars.sy)
+		if tile and not tile.path then
+			-- play a sound (Tile selected)
+			LevelScreen.vars.selected = true
+		else
+			-- play a sound (No tile)
+		end
 	end
 	
 	if love.mouse.isDown(2) then
+		-- play a sound (Tile deselected)
 		LevelScreen.vars.selected = false
 	end
 end
@@ -83,6 +103,7 @@ function Invasion_Level:Keypressed(key)
 	if LevelScreen.vars.selected then
 		-- Tile options
 		if iskeyBack(key) then
+			-- play a sound (Tile deselected)
 			LevelScreen.vars.selected = false
 		end
 	end

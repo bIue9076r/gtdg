@@ -163,10 +163,12 @@ function HomeScreen:Update(dt)
 	end
 	
 	if HomeScreen.vars.Inside and love.mouse.isDown(1) then
+		-- play a sound (Level selected)
 		HomeScreen.vars.Pick = true
 	end
 	
 	if love.mouse.isDown(2) and HomeScreen.vars.Pick then
+		-- play a sound (Level deselected)
 		HomeScreen.vars.Pick = false
 	end
 	
@@ -185,6 +187,7 @@ function HomeScreen:Keypressed(key)
 			HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select]()
 		end
 		HomeScreen.vars.SelectLast = HomeScreen.vars.Select
+		-- play a sound (Option Moved)
 	elseif isKeyDown(key) then
 		if HomeScreen.vars.Select + 1 <= #HomeScreen.vars.Levels then
 			HomeScreen.vars.Select = HomeScreen.vars.Select + 1
@@ -195,6 +198,7 @@ function HomeScreen:Keypressed(key)
 			HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select]()
 		end
 		HomeScreen.vars.SelectLast = HomeScreen.vars.Select
+		-- play a sound (Option Moved)
 	elseif key == "return" then
 		if HomeScreen.vars.Pick then
 			HomeScreen.vars.Pick = false
@@ -207,9 +211,11 @@ function HomeScreen:Keypressed(key)
 				HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select]()
 			end
 			HomeScreen.vars.Pick = true
+			-- play a sound (Level selected)
 		end
 	elseif iskeyBack(key) and HomeScreen.vars.Pick then
 		HomeScreen.vars.Pick = false
+		-- play a sound (Level deselected)
 	elseif key == "t" and not HomeScreen.vars.Pick then
 		HomeScreen.vars.Bsound:seek(0)
 		HomeScreen.vars.Bsound:pause()
@@ -217,6 +223,7 @@ function HomeScreen:Keypressed(key)
 		Game.State:Load()
 	elseif key == "n" then
 		HomeScreen.vars.Option = not HomeScreen.vars.Option
+		-- play a sound (Option Moved)
 	elseif not Game.Ctrl and key == "m" then
 		HomeScreen.vars.Bsound:seek(0)
 		HomeScreen.vars.Bsound:pause()

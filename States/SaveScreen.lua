@@ -228,10 +228,12 @@ function SaveScreen:Update(dt)
 	end
 	
 	if SaveScreen.vars.Inside and love.mouse.isDown(1) then
+		-- play a sound (Save selected)
 		SaveScreen.vars.Pick = true
 	end
 	
 	if love.mouse.isDown(2) and SaveScreen.vars.Pick then
+		-- play a sound (Save deselected)
 		SaveScreen.vars.Pick = false
 	end
 	
@@ -250,6 +252,7 @@ function SaveScreen:Keypressed(key)
 			SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
 		end
 		SaveScreen.vars.SelectLast = SaveScreen.vars.Select
+		-- play a sound (Option Move)
 	elseif isKeyDown(key) then
 		if SaveScreen.vars.Select + 1 <= #SaveScreen.vars.Saves then
 			SaveScreen.vars.Select = SaveScreen.vars.Select + 1
@@ -260,16 +263,19 @@ function SaveScreen:Keypressed(key)
 			SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
 		end
 		SaveScreen.vars.SelectLast = SaveScreen.vars.Select
+		-- play a sound (Option Move)
 	elseif key == "return" then
 		if not SaveScreen.vars.Pick then
 			if not (SaveScreen.vars.SelectLast == 0) then
 				SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
 			end
 			SaveScreen.vars.Pick = true
+			-- play a sound (Save selected)
 		end
 	elseif iskeyBack(key) then
 		if SaveScreen.vars.Pick then
 			SaveScreen.vars.Pick = false
+			-- play a sound (Save deselected)
 		else
 			SaveScreen.vars.Bsound:seek(0)
 			SaveScreen.vars.Bsound:pause()
@@ -284,12 +290,14 @@ function SaveScreen:Keypressed(key)
 		SaveScreen.vars.TimeOutTicker:reset()
 		updateFileDiscription(SaveScreen.vars.Select)
 		SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
+		-- play a sound (Save Saved)
 	elseif (not SaveScreen.vars.TimeOut) and SaveScreen.vars.Pick and key == "l" then
 		SaveScreen.vars.Save = File.new("/Saves/SaveSlot_"..SaveScreen.vars.Select..".sav")
 		loadGame(SaveScreen.vars.Save)
 		SaveScreen.vars.TimeOut = true
 		SaveScreen.vars.TimeOutStr = "Game Loaded!"
 		SaveScreen.vars.TimeOutTicker:reset()
+		-- play a sound (Save Loaded)
 	elseif (not SaveScreen.vars.TimeOut) and SaveScreen.vars.Pick and key == "d" then
 		SaveScreen.vars.Save = File.new("/Saves/SaveSlot_"..SaveScreen.vars.Select..".sav")
 		SaveScreen.vars.Save:SetHeader()
@@ -298,5 +306,6 @@ function SaveScreen:Keypressed(key)
 		SaveScreen.vars.TimeOutTicker:reset()
 		updateFileDiscription(SaveScreen.vars.Select)
 		SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
+		-- play a sound (Save Deleted)
 	end
 end
