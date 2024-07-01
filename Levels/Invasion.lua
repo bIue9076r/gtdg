@@ -1,5 +1,7 @@
 Invasion_Level = Level.new("Invasion")
 Invasion_Level.Tiles = TileTable.new((700/TileSize),(500/TileSize))
+Invasion_Level.Objects = ObjectTable.new()
+Invasion_Level.Path = PathTable.new()
 
 for i = 1,(500/TileSize) do
 	for j = 1,(700/TileSize) do
@@ -16,18 +18,10 @@ for i = 1,(500/TileSize) do
 end
 
 for j = 5,(700/TileSize) do
-	Invasion_Level.Tiles:Set(j,7,true,5)
-	Invasion_Level.Tiles:Set(j,8,true,1)
-	Invasion_Level.Tiles:Set(j,9,true,4)
-	
 	Invasion_Level.Tiles:Set(j,17,true,5)
 	Invasion_Level.Tiles:Set(j,18,true,1)
 	Invasion_Level.Tiles:Set(j,19,true,4)
 end
-
-Invasion_Level.Tiles:Set(4,7,true,9)
-Invasion_Level.Tiles:Set(4,8,true,1)
-Invasion_Level.Tiles:Set(4,9,true,7)
 
 Invasion_Level.Tiles:Set(4,17,true,9)
 Invasion_Level.Tiles:Set(4,18,true,1)
