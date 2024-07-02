@@ -27,30 +27,47 @@ Invasion_Level.Tiles:Set(4,17,true,9)
 Invasion_Level.Tiles:Set(4,18,true,1)
 Invasion_Level.Tiles:Set(4,19,true,7)
 
-Invasion_Level.Tiles:Set(27,19,true,1)
-Invasion_Level.Tiles:Set(27,20,true,1)
-Invasion_Level.Tiles:Set(27,21,true,1)
-Invasion_Level.Tiles:Set(27,22,true,1)
-Invasion_Level.Tiles:Set(27,23,true,1)
-Invasion_Level.Tiles:Set(27,24,true,1)
-Invasion_Level.Tiles:Set(27,25,true,1)
+Invasion_Level.Tiles:Set(3,19,true,4)
+Invasion_Level.Tiles:Set(2,19,true,4)
+Invasion_Level.Tiles:Set(1,19,true,4)
 
-Invasion_Level.Tiles:Set(26,19,true,6)
-Invasion_Level.Tiles:Set(28,19,true,7)
+Invasion_Level.Tiles:Set(2,18,true,1)
+Invasion_Level.Tiles:Set(4,19,true,4)
 
-Invasion_Level.Tiles:Set(26,20,true,2)
-Invasion_Level.Tiles:Set(26,21,true,2)
-Invasion_Level.Tiles:Set(26,22,true,2)
-Invasion_Level.Tiles:Set(26,23,true,2)
-Invasion_Level.Tiles:Set(26,24,true,2)
-Invasion_Level.Tiles:Set(26,25,true,2)
+Invasion_Level.Tiles:Set(1,20,false,14)
+Invasion_Level.Tiles:Set(1,21,false,14)
+Invasion_Level.Tiles:Set(1,22,false,14)
+Invasion_Level.Tiles:Set(1,23,false,14)
+Invasion_Level.Tiles:Set(1,24,false,14)
+Invasion_Level.Tiles:Set(1,25,false,14)
 
-Invasion_Level.Tiles:Set(28,20,true,3)
-Invasion_Level.Tiles:Set(28,21,true,3)
-Invasion_Level.Tiles:Set(28,22,true,3)
-Invasion_Level.Tiles:Set(28,23,true,3)
-Invasion_Level.Tiles:Set(28,24,true,3)
-Invasion_Level.Tiles:Set(28,25,true,3)
+Invasion_Level.Tiles:Set(2,20,false,14)
+Invasion_Level.Tiles:Set(2,21,false,14)
+Invasion_Level.Tiles:Set(2,22,false,14)
+Invasion_Level.Tiles:Set(2,23,false,14)
+Invasion_Level.Tiles:Set(2,24,false,14)
+Invasion_Level.Tiles:Set(2,25,false,14)
+
+Invasion_Level.Tiles:Set(3,20,false,14)
+Invasion_Level.Tiles:Set(3,21,false,14)
+Invasion_Level.Tiles:Set(3,22,false,14)
+Invasion_Level.Tiles:Set(3,23,false,14)
+Invasion_Level.Tiles:Set(3,24,false,14)
+Invasion_Level.Tiles:Set(3,25,false,14)
+
+Invasion_Level.Tiles:Set(4,20,false,14)
+Invasion_Level.Tiles:Set(4,21,false,14)
+Invasion_Level.Tiles:Set(4,22,false,14)
+Invasion_Level.Tiles:Set(4,23,false,14)
+Invasion_Level.Tiles:Set(4,24,false,14)
+Invasion_Level.Tiles:Set(4,25,false,14)
+
+Invasion_Level.Path:Insert(2.5,2.5,0,18.5,1000)
+Invasion_Level.Path:Insert(2.5,36,18.5,18.5,1000)
+
+Invasion_Level.Objects:Insert(0,0,10,"none")
+
+-- ^ ^ ^ Clean this up later ^ ^ ^ ---
 
 function Invasion_Level:Load()
 	LevelScreen.vars.sx = 0
@@ -63,6 +80,9 @@ end
 
 function Invasion_Level:Draw()
 	LevelScreen.Window.back:put(function()
+		love.graphics.rectangle("fill",650,10,135,30)
+		love.graphics.print({{0,0.8,0},"Cash: $"..(Player.Money)},660,20)
+		
 		love.graphics.rectangle("line",50,50,700,500)
 		
 		for y = 1,(500/TileSize) do
@@ -92,6 +112,61 @@ function Invasion_Level:Draw()
 				(LevelScreen.vars.sx)..", "..
 				(LevelScreen.vars.sy)
 			},35,35)
+			
+			love.graphics.print({{0,0,0},"Type: "..(
+				LevelTiles[(Invasion_Level.Tiles:Get(
+					LevelScreen.vars.sx,LevelScreen.vars.sy
+				).obj)]:sub(1,-4)
+			)},35,55)
+			
+			love.graphics.print({{0,0,0},"Path: "..(
+				tostring(Invasion_Level.Tiles:Get(
+					LevelScreen.vars.sx,LevelScreen.vars.sy
+				).path)
+			)},35,75)
+			
+			love.graphics.print({{0,0,0},"Options: "},35,115)
+			love.graphics.print({{0,0,0},"Build - [a]"},35,155)
+			love.graphics.print({{0,0,0},"Move - [s]"},35,175)
+			love.graphics.print({{0,0,0},"Destroy - [d]"},35,195)
+			love.graphics.print({{0,0,0},"Deselect - [b]"},35,215)
+		end
+	end)
+	
+	LevelScreen.Window.fore:put(function()
+		if Game.ShowPath then
+			for i,v in pairs(Invasion_Level.Path.tbl) do
+				love.graphics.setColor(1,1,0)
+				love.graphics.line(
+					(v.x1 + 1.5)*TileSize,(v.y1 + 1.5)*TileSize,
+					(v.x2 + 1.5)*TileSize,(v.y2 + 1.5)*TileSize
+				)
+				love.graphics.setColor(1,1,1)
+			end
+		end
+		
+		if Game.ShowHitBoxes then
+			for i,v in pairs(Invasion_Level.Objects.tbl) do
+				love.graphics.setColor(1,0,1)
+				love.graphics.rectangle("line",
+					(v.x + 1)*TileSize,
+					(v.y + 1)*TileSize,
+					20,
+					20
+				)
+				love.graphics.setColor(1,1,1)
+			end
+		end
+	end)
+	
+	LevelScreen.Window.fore:put(function()
+		for i,v in pairs(Invasion_Level.Objects.tbl) do
+			love.graphics.rectangle("fill",
+				(v.x + 1)*TileSize,
+				(v.y + 1)*TileSize,
+				20,
+				20
+			)
 		end
 	end)
 end
@@ -111,6 +186,7 @@ function Invasion_Level:Update(dt)
 		if tile and not tile.path then
 			-- play a sound (Tile selected)
 			LevelScreen.vars.selected = true
+			Game.Paused = true
 		else
 			-- play a sound (No tile)
 		end
@@ -119,15 +195,27 @@ function Invasion_Level:Update(dt)
 	if love.mouse.isDown(2) then
 		-- play a sound (Tile deselected)
 		LevelScreen.vars.selected = false
+		Game.Paused = false
+	end
+	
+	if not Game.Paused then
+		Invasion_Level.Objects:Lerp(Invasion_Level.Path)
 	end
 end
 
 function Invasion_Level:Keypressed(key)
 	if LevelScreen.vars.selected then
 		-- Tile options
-		if iskeyBack(key) then
+		if key == "a" then
+			print("build")
+		elseif key == "s" then
+			print("move")
+		elseif key == "d" then
+			print("destroy")
+		elseif iskeyBack(key) then
 			-- play a sound (Tile deselected)
 			LevelScreen.vars.selected = false
+			Game.Paused = false
 		end
 	end
 end

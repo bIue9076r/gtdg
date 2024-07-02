@@ -53,10 +53,8 @@ function PathTable:Lerp(t)
 	for i,v in ipairs(self.tbl) do
 		if t >= c then
 			c = c + v.tt
-			if t <= c then
-				f = i
-				n = c - v.tt
-			end
+			f = i
+			n = c - v.tt
 		end
 	end
 	

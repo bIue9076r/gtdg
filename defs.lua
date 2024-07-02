@@ -6,6 +6,10 @@ Game.Muted = false
 Game.Volume = 0.5
 Game.FirstTime = true
 
+Game.ShowPath = true
+Game.ShowHitBoxes = true
+Game.Paused = false
+
 TileSize = 20
 
 LoadScreen = State.new(1)

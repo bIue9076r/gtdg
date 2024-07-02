@@ -53,7 +53,7 @@ function ObjectTable.new()
 	}
 	
 	local mt = {
-		
+		__index = ObjectTable
 	}
 	
 	return setmetatable(tbl,mt)
