@@ -27,6 +27,31 @@ Invasion_Level.Tiles:Set(4,17,true,9)
 Invasion_Level.Tiles:Set(4,18,true,1)
 Invasion_Level.Tiles:Set(4,19,true,7)
 
+Invasion_Level.Tiles:Set(27,19,true,1)
+Invasion_Level.Tiles:Set(27,20,true,1)
+Invasion_Level.Tiles:Set(27,21,true,1)
+Invasion_Level.Tiles:Set(27,22,true,1)
+Invasion_Level.Tiles:Set(27,23,true,1)
+Invasion_Level.Tiles:Set(27,24,true,1)
+Invasion_Level.Tiles:Set(27,25,true,1)
+
+Invasion_Level.Tiles:Set(26,19,true,6)
+Invasion_Level.Tiles:Set(28,19,true,7)
+
+Invasion_Level.Tiles:Set(26,20,true,2)
+Invasion_Level.Tiles:Set(26,21,true,2)
+Invasion_Level.Tiles:Set(26,22,true,2)
+Invasion_Level.Tiles:Set(26,23,true,2)
+Invasion_Level.Tiles:Set(26,24,true,2)
+Invasion_Level.Tiles:Set(26,25,true,2)
+
+Invasion_Level.Tiles:Set(28,20,true,3)
+Invasion_Level.Tiles:Set(28,21,true,3)
+Invasion_Level.Tiles:Set(28,22,true,3)
+Invasion_Level.Tiles:Set(28,23,true,3)
+Invasion_Level.Tiles:Set(28,24,true,3)
+Invasion_Level.Tiles:Set(28,25,true,3)
+
 function Invasion_Level:Load()
 	LevelScreen.vars.sx = 0
 	LevelScreen.vars.sy = 0
@@ -63,6 +88,10 @@ function Invasion_Level:Draw()
 	LevelScreen.Window.fore:put(function()
 		if LevelScreen.vars.selected then
 			love.graphics.rectangle("fill",25,25,200,250)
+			love.graphics.print({{0,0,0},"Tile: "..
+				(LevelScreen.vars.sx)..", "..
+				(LevelScreen.vars.sy)
+			},35,35)
 		end
 	end)
 end
