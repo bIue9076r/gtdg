@@ -208,10 +208,13 @@ function Invasion_Level:Keypressed(key)
 		-- Tile options
 		if key == "a" then
 			print("build")
+			LevelScreen.vars.building = true
 		elseif key == "s" then
 			print("move")
+			LevelScreen.vars.moving = true
 		elseif key == "d" then
 			print("destroy")
+			LevelScreen.vars.destroying = true
 		elseif iskeyBack(key) then
 			-- play a sound (Tile deselected)
 			LevelScreen.vars.selected = false
