@@ -76,6 +76,9 @@ function Invasion_Level:Load()
 	LevelScreen.vars.ly = 0
 	
 	LevelScreen.vars.selected = false
+	LevelScreen.vars.building = false
+	LevelScreen.vars.moving = false
+	LevelScreen.vars.destroying = false
 end
 
 function Invasion_Level:Draw()
