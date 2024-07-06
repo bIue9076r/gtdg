@@ -134,6 +134,9 @@ function Invasion_Level:Draw()
 			love.graphics.print({{0,0,0},"Destroy - [d]"},35,195)
 			love.graphics.print({{0,0,0},"Deselect - [b]"},35,215)
 		end
+		if LevelScreen.vars.building then
+			-- show building options
+		end
 	end)
 	
 	LevelScreen.Window.fore:put(function()
