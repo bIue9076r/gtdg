@@ -136,6 +136,17 @@ function Invasion_Level:Draw()
 		end
 		if LevelScreen.vars.building then
 			-- show building options
+			love.graphics.rectangle("fill",250,25,200,250)
+			love.graphics.print({{0,0,0},"Slot #1"},260,55)
+			love.graphics.print({{0,0,0},"Slot #2"},260,75)
+			love.graphics.print({{0,0,0},"Slot #3"},260,95)
+			love.graphics.print({{0,0,0},"Slot #4"},260,115)
+			love.graphics.print({{0,0,0},"Slot #5"},260,135)
+			love.graphics.print({{0,0,0},"Slot #6"},260,155)
+			love.graphics.print({{0,0,0},"Slot #7"},260,175)
+			love.graphics.print({{0,0,0},"Slot #8"},260,195)
+			love.graphics.print({{0,0,0},"Slot #9"},260,215)
+			love.graphics.print({{0,0,0},"Slot #10"},260,235)
 		end
 	end)
 	
