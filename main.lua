@@ -55,6 +55,12 @@ Player = {}
 Player.Money = 2000
 Player.Kills = 0
 
+Player.Tower_Speed = 10
+Player.Tower_Damage = 15
+Player.Bomb_Fuse = 100
+Player.Bomb_Damage = 150
+Player.Multi_Tower = 2
+
 require("/States/LoadScreen")
 require("/States/HomeScreen")
 require("/States/LevelScreen")

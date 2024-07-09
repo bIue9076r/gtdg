@@ -2,11 +2,11 @@
 
 function ShopScreen:Load()
 	ShopScreen.vars.Items = {
-		"Item #1",
-		"Item #2",
-		"Item #3",
-		"Item #4",
-		"Item #5",
+		"Tower Speed",
+		"Tower Damage",
+		"Bomb Fuse",
+		"Bomb Damage",
+		"Multi Bullet",
 	}
 	
 	ShopScreen.vars.ItemImg = ""
@@ -21,51 +21,51 @@ function ShopScreen:Load()
 	ShopScreen.vars.ItemFuncs[1] = function()
 		ShopScreen.vars.ItemImg = ""
 		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[1]..":"
-		ShopScreen.vars.ItemStr2 = sticker.new("description")
-		ShopScreen.vars.ItemStr3 = sticker.new("description")
-		ShopScreen.vars.ItemStr4 = sticker.new("description")
-		ShopScreen.vars.ItemStr5 = sticker.new("description")
-		ShopScreen.vars.ItemStr6 = sticker.new("description")
+		ShopScreen.vars.ItemStr2 = sticker.new("Increases tower speed.")
+		ShopScreen.vars.ItemStr3 = sticker.new("")
+		ShopScreen.vars.ItemStr4 = sticker.new("Current Speed: "..(Player.Tower_Speed))
+		ShopScreen.vars.ItemStr5 = sticker.new("New Speed: ")
+		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
 	ShopScreen.vars.ItemFuncs[2] = function()
 		ShopScreen.vars.ItemImg = ""
 		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[2]..":"
-		ShopScreen.vars.ItemStr2 = sticker.new("description")
-		ShopScreen.vars.ItemStr3 = sticker.new("description")
-		ShopScreen.vars.ItemStr4 = sticker.new("description")
-		ShopScreen.vars.ItemStr5 = sticker.new("description")
-		ShopScreen.vars.ItemStr6 = sticker.new("description")
+		ShopScreen.vars.ItemStr2 = sticker.new("Increases tower damage.")
+		ShopScreen.vars.ItemStr3 = sticker.new("")
+		ShopScreen.vars.ItemStr4 = sticker.new("Current damage: "..(Player.Tower_Damage))
+		ShopScreen.vars.ItemStr5 = sticker.new("New damage: ")
+		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
 	ShopScreen.vars.ItemFuncs[3] = function()
 		ShopScreen.vars.ItemImg = ""
 		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[3]..":"
-		ShopScreen.vars.ItemStr2 = sticker.new("description")
-		ShopScreen.vars.ItemStr3 = sticker.new("description")
-		ShopScreen.vars.ItemStr4 = sticker.new("description")
-		ShopScreen.vars.ItemStr5 = sticker.new("description")
-		ShopScreen.vars.ItemStr6 = sticker.new("description")
+		ShopScreen.vars.ItemStr2 = sticker.new("Decreases bomb fuse.")
+		ShopScreen.vars.ItemStr3 = sticker.new("")
+		ShopScreen.vars.ItemStr4 = sticker.new("Current fuse: "..(Player.Bomb_Fuse))
+		ShopScreen.vars.ItemStr5 = sticker.new("New fuse: ")
+		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
 	ShopScreen.vars.ItemFuncs[4] = function()
 		ShopScreen.vars.ItemImg = ""
 		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[4]..":"
-		ShopScreen.vars.ItemStr2 = sticker.new("description")
-		ShopScreen.vars.ItemStr3 = sticker.new("description")
-		ShopScreen.vars.ItemStr4 = sticker.new("description")
-		ShopScreen.vars.ItemStr5 = sticker.new("description")
-		ShopScreen.vars.ItemStr6 = sticker.new("description")
+		ShopScreen.vars.ItemStr2 = sticker.new("Increases bomb damage.")
+		ShopScreen.vars.ItemStr3 = sticker.new("")
+		ShopScreen.vars.ItemStr4 = sticker.new("Current damage: "..(Player.Bomb_Damage))
+		ShopScreen.vars.ItemStr5 = sticker.new("New damage: ")
+		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
 	ShopScreen.vars.ItemFuncs[5] = function()
 		ShopScreen.vars.ItemImg = ""
 		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[5]..":"
-		ShopScreen.vars.ItemStr2 = sticker.new("description")
-		ShopScreen.vars.ItemStr3 = sticker.new("description")
-		ShopScreen.vars.ItemStr4 = sticker.new("description")
-		ShopScreen.vars.ItemStr5 = sticker.new("description")
-		ShopScreen.vars.ItemStr6 = sticker.new("description")
+		ShopScreen.vars.ItemStr2 = sticker.new("Increases number bullets in")
+		ShopScreen.vars.ItemStr3 = sticker.new("multi tower.")
+		ShopScreen.vars.ItemStr4 = sticker.new("Current number: "..(Player.Multi_Tower))
+		ShopScreen.vars.ItemStr5 = sticker.new("New number: ")
+		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
 	ShopScreen.vars.Pick = false
