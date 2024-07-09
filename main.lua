@@ -52,7 +52,7 @@ love.graphics.setFont(
 )
 
 Player = {}
-Player.Money = 0
+Player.Money = 2000
 Player.Kills = 0
 
 require("/States/LoadScreen")
