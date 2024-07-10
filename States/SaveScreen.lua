@@ -11,8 +11,8 @@ function updateFileDiscription(i)
 				"State: "..(tbl["state"] or ""),
 				"Money: "..(tbl["money"] or ""),
 				"Kills: "..(tbl["kills"] or ""),
-				"Money: "..(tbl["money"] or ""),
-				"Money: "..(tbl["money"] or ""),
+				"Tower Speed: "..(tbl["tower_speed"] or ""),
+				"Multi Tower: "..(tbl["multi_tower"] or ""),
 			}
 		else
 			SaveScreen.vars.SaveSaved[i] = "no"
@@ -228,12 +228,12 @@ function SaveScreen:Update(dt)
 	end
 	
 	if SaveScreen.vars.Inside and love.mouse.isDown(1) then
-		-- play a sound (Save selected)
+		--playSFX("save_selected")
 		SaveScreen.vars.Pick = true
 	end
 	
 	if love.mouse.isDown(2) and SaveScreen.vars.Pick then
-		-- play a sound (Save deselected)
+		--playSFX("save_deselected")
 		SaveScreen.vars.Pick = false
 	end
 	
@@ -252,7 +252,7 @@ function SaveScreen:Keypressed(key)
 			SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
 		end
 		SaveScreen.vars.SelectLast = SaveScreen.vars.Select
-		-- play a sound (Option Move)
+		--playSFX("option_move")
 	elseif isKeyDown(key) then
 		if SaveScreen.vars.Select + 1 <= #SaveScreen.vars.Saves then
 			SaveScreen.vars.Select = SaveScreen.vars.Select + 1
@@ -263,19 +263,19 @@ function SaveScreen:Keypressed(key)
 			SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
 		end
 		SaveScreen.vars.SelectLast = SaveScreen.vars.Select
-		-- play a sound (Option Move)
+		--playSFX("option_move")
 	elseif key == "return" then
 		if not SaveScreen.vars.Pick then
 			if not (SaveScreen.vars.SelectLast == 0) then
 				SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
 			end
 			SaveScreen.vars.Pick = true
-			-- play a sound (Save selected)
+			--playSFX("save_selected")
 		end
 	elseif iskeyBack(key) then
 		if SaveScreen.vars.Pick then
 			SaveScreen.vars.Pick = false
-			-- play a sound (Save deselected)
+			--playSFX("save_deselected")
 		else
 			SaveScreen.vars.Bsound:seek(0)
 			SaveScreen.vars.Bsound:pause()
@@ -290,14 +290,14 @@ function SaveScreen:Keypressed(key)
 		SaveScreen.vars.TimeOutTicker:reset()
 		updateFileDiscription(SaveScreen.vars.Select)
 		SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
-		-- play a sound (Save Saved)
+		--playSFX("save_saved")
 	elseif (not SaveScreen.vars.TimeOut) and SaveScreen.vars.Pick and key == "l" then
 		SaveScreen.vars.Save = File.new("/Saves/SaveSlot_"..SaveScreen.vars.Select..".sav")
 		loadGame(SaveScreen.vars.Save)
 		SaveScreen.vars.TimeOut = true
 		SaveScreen.vars.TimeOutStr = "Game Loaded!"
 		SaveScreen.vars.TimeOutTicker:reset()
-		-- play a sound (Save Loaded)
+		--playSFX("save_loaded")
 	elseif (not SaveScreen.vars.TimeOut) and SaveScreen.vars.Pick and key == "d" then
 		SaveScreen.vars.Save = File.new("/Saves/SaveSlot_"..SaveScreen.vars.Select..".sav")
 		SaveScreen.vars.Save:SetHeader()
@@ -306,6 +306,6 @@ function SaveScreen:Keypressed(key)
 		SaveScreen.vars.TimeOutTicker:reset()
 		updateFileDiscription(SaveScreen.vars.Select)
 		SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
-		-- play a sound (Save Deleted)
+		--playSFX("save_deleted")
 	end
 end

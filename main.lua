@@ -61,6 +61,30 @@ Player.Bomb_Fuse = 100
 Player.Bomb_Damage = 150
 Player.Multi_Tower = 2
 
+Player.Tower_Speed_Level = 1
+Player.Tower_Damage_Level = 1
+Player.Bomb_Fuse_Level = 1
+Player.Bomb_Damage_Level = 1
+Player.Multi_Tower_Level = 1
+
+Player.Tower_Speed_Base_Cost = 3000
+Player.Tower_Damage_Base_Cost = 3000
+Player.Bomb_Fuse_Base_Cost = 3000
+Player.Bomb_Damage_Base_Cost = 3000
+Player.Multi_Tower_Base_Cost = 3000
+
+Player.Tower_Speed_Upgrade_Cost = 1000
+Player.Tower_Damage_Upgrade_Cost = 1000
+Player.Bomb_Fuse_Upgrade_Cost = 1000
+Player.Bomb_Damage_Upgrade_Cost = 1000
+Player.Multi_Tower_Upgrade_Cost = 1000
+
+Player.Tower_Speed_Upgrade = 5
+Player.Tower_Damage_Upgrade = 15
+Player.Bomb_Fuse_Upgrade = -10
+Player.Bomb_Damage_Upgrade = 50
+Player.Multi_Tower_Upgrade = 1
+
 require("/States/LoadScreen")
 require("/States/HomeScreen")
 require("/States/LevelScreen")
@@ -131,6 +155,16 @@ function saveGame(file)
 	file:NewField("state",tostring(Game.State.Id))
 	file:NewField("money",tostring(Player.Money))
 	file:NewField("kills",tostring(Player.Kills))
+	file:NewField("tower_speed",tostring(Player.Tower_Speed))
+	file:NewField("tower_damage",tostring(Player.Tower_Damage))
+	file:NewField("bomb_fuse",tostring(Player.Bomb_Fuse))
+	file:NewField("bomb_damage",tostring(Player.Bomb_Damage))
+	file:NewField("multi_tower",tostring(Player.Multi_Tower))
+	file:NewField("tower_speed_level",tostring(Player.Tower_Speed_Level))
+	file:NewField("tower_damage_level",tostring(Player.Tower_Damage_Level))
+	file:NewField("bomb_fuse_level",tostring(Player.Bomb_Fuse_Level))
+	file:NewField("bomb_damage_level",tostring(Player.Bomb_Damage_Level))
+	file:NewField("multi_tower_level",tostring(Player.Multi_Tower_Level))
 	dQSave(50)
 end
 
@@ -151,6 +185,16 @@ function loadGame(file)
 		
 		Player.Money = tbl["money"] or Player.Money
 		Player.Kills = tbl["kills"] or Player.Kills
+		Player.Tower_Speed = tbl["tower_speed"] or Player.Tower_Speed
+		Player.Tower_Damage = tbl["tower_damage"] or Player.Tower_Damage
+		Player.Bomb_Fuse = tbl["bomb_fuse"] or Player.Bomb_Fuse
+		Player.Bomb_Damage = tbl["bomb_damage"] or Player.Bomb_Damage
+		Player.Multi_Tower = tbl["multi_tower"] or Player.Multi_Tower
+		Player.Tower_Speed_Level = tbl["tower_speed_level"] or Player.Tower_Speed_Level
+		Player.Tower_Damage_Level = tbl["tower_damage_level"] or Player.Tower_Damage_Level
+		Player.Bomb_Fuse_Level = tbl["bomb_fuse_level"] or Player.Bomb_Fuse_Level
+		Player.Bomb_Damage_Level = tbl["bomb_damage_level"] or Player.Bomb_Damage_Level
+		Player.Multi_Tower_Level = tbl["multi_tower_level"] or Player.Multi_Tower_Level
 	else
 		print(e)
 	end

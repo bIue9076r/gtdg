@@ -134,19 +134,35 @@ function Invasion_Level:Draw()
 			love.graphics.print({{0,0,0},"Destroy - [d]"},35,195)
 			love.graphics.print({{0,0,0},"Deselect - [b]"},35,215)
 		end
+		if LevelScreen.vars.moving then
+			love.graphics.setColor(0,1,1)
+			love.graphics.rectangle("line",
+				50 + ((LevelScreen.vars.mx-1)*TileSize),50 + ((LevelScreen.vars.my-1)*TileSize),
+				TileSize,TileSize
+			)
+			love.graphics.setColor(1,1,1)
+		end
 		if LevelScreen.vars.building then
 			-- show building options
 			love.graphics.rectangle("fill",250,25,200,250)
 			love.graphics.print({{0,0,0},"Towers:"},260,35)
-			love.graphics.print({{0,0,0},"Basic:        $50"},260,75)
-			love.graphics.print({{0,0,0},"Double:       $200"},260,95)
-			love.graphics.print({{0,0,0},"Quad:         $350"},260,115)
-			love.graphics.print({{0,0,0},"Bomb:         $200"},260,135)
-			love.graphics.print({{0,0,0},"Double Bomb:  $350"},260,155)
-			love.graphics.print({{0,0,0},"Quad Bomb:    $500"},260,175)
-			love.graphics.print({{0,0,0},"Multi:        $250"},260,195)
-			love.graphics.print({{0,0,0},"Double Multi: $400"},260,215)
-			love.graphics.print({{0,0,0},"Mega:         $1000"},260,235)
+			love.graphics.print({{0,0,0},"Basic:\t\t$50"},260,75)
+			love.graphics.print({{0,0,0},"Double:\t\t$200"},260,95)
+			love.graphics.print({{0,0,0},"Quad:\t\t\t$350"},260,115)
+			love.graphics.print({{0,0,0},"Bomb:\t\t\t$200"},260,135)
+			love.graphics.print({{0,0,0},"Double Bomb:\t$350"},260,155)
+			love.graphics.print({{0,0,0},"Quad Bomb:\t$500"},260,175)
+			love.graphics.print({{0,0,0},"Multi:\t\t$250"},260,195)
+			love.graphics.print({{0,0,0},"Double Multi:\t$400"},260,215)
+			love.graphics.print({{0,0,0},"Mega:\t\t\t$1000"},260,235)
+		end
+		if LevelScreen.vars.destroying then
+			-- show options
+			love.graphics.rectangle("fill",250,25,200,250)
+			love.graphics.print({{0,0,0},"Are you sure you want"},260,55)
+			love.graphics.print({{0,0,0},"to destroy this tile?"},260,75)
+			love.graphics.print({{0,0,0},"No? - [back]"},260,175)
+			love.graphics.print({{0,0,0},"Yes? - [enter]"},260,215)
 		end
 	end)
 	
@@ -196,21 +212,26 @@ function Invasion_Level:Update(dt)
 		LevelScreen.vars.sy = math.min(math.max(1,math.floor((500/TileSize)*(y/500)) - 1),(500/TileSize))
 	end
 	
+	if LevelScreen.vars.selected and LevelScreen.vars.moving then
+		LevelScreen.vars.mx = math.min(math.max(1,math.floor((700/TileSize)*(x/700)) - 1),(700/TileSize))
+		LevelScreen.vars.my = math.min(math.max(1,math.floor((500/TileSize)*(y/500)) - 1),(500/TileSize))
+	end
+	
 	LevelScreen.vars.lx, LevelScreen.vars.ly = x, y
 	
 	if love.mouse.isDown(1) then
 		local tile = Invasion_Level.Tiles:Get(LevelScreen.vars.sx, LevelScreen.vars.sy)
 		if tile and not tile.path then
-			-- play a sound (Tile selected)
+			--playSFX("tile_selected")
 			LevelScreen.vars.selected = true
 			Game.Paused = true
 		else
-			-- play a sound (No tile)
+			--playSFX("tile_none")
 		end
 	end
 	
 	if love.mouse.isDown(2) then
-		-- play a sound (Tile deselected)
+		--playSFX("tile_deselected")
 		LevelScreen.vars.selected = false
 		Game.Paused = false
 	end
@@ -224,18 +245,27 @@ function Invasion_Level:Keypressed(key)
 	if LevelScreen.vars.selected then
 		-- Tile options
 		if key == "a" then
-			print("build")
-			LevelScreen.vars.building = true
+			if (not LevelScreen.vars.moving) and (not LevelScreen.vars.destroying) then
+				LevelScreen.vars.building = true
+			end
 		elseif key == "s" then
-			print("move")
-			LevelScreen.vars.moving = true
+			if (not LevelScreen.vars.building) and (not LevelScreen.vars.destroying) then
+				LevelScreen.vars.moving = true
+			end
 		elseif key == "d" then
-			print("destroy")
-			LevelScreen.vars.destroying = true
+			if (not LevelScreen.vars.building) and (not LevelScreen.vars.moving) then
+				LevelScreen.vars.destroying = true
+			end
 		elseif iskeyBack(key) then
-			-- play a sound (Tile deselected)
-			LevelScreen.vars.selected = false
-			Game.Paused = false
+			--playSFX("tile_deselected")
+			if (not LevelScreen.vars.building) and (not LevelScreen.vars.moving) and (not LevelScreen.vars.destroying) then
+				LevelScreen.vars.selected = false
+				Game.Paused = false
+			else
+				LevelScreen.vars.building = false
+				LevelScreen.vars.moving = false
+				LevelScreen.vars.destroying = false
+			end
 		end
 	end
 end

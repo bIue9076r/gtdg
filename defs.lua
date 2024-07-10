@@ -5,10 +5,13 @@ Game.Levels = {}
 Game.Muted = false
 Game.Volume = 0.5
 Game.FirstTime = true
+Game.Version = "0.0.61"
 
 Game.ShowPath = true
 Game.ShowHitBoxes = true
 Game.Paused = false
+Game.Over = false
+Game.Victory = false
 
 TileSize = 20
 
@@ -71,7 +74,7 @@ function iskeyBack(key)
 	return ((key == "b") or (key == "escape") or (key == "backspace"))
 end
 
-function playSoundEffect(n)
+function playSFX(n)
 	local s = files.assets.Audio.getSound(SoundSFX[n or 1])
 	if not Game.Muted then
 		s:seek(0)

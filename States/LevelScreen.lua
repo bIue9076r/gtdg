@@ -34,14 +34,24 @@ end
 
 function LevelScreen:Update(dt)
 	LevelScreen.vars.level:Update(dt)
+	
+	if Game.Over then
+		LevelScreen.vars.Bsound:seek(0)
+		LevelScreen.vars.Bsound:pause()
+		Game.State = LoadScreen
+		Game.State:Load()
+		Game.Over = false
+		if Game.Victory then
+			print("Win")
+		else
+			print("Loss")
+		end
+	end
 end
 
 function LevelScreen:Keypressed(key)
 	LevelScreen.vars.level:Keypressed(key)
 	if key == "return" then
-		LevelScreen.vars.Bsound:seek(0)
-		LevelScreen.vars.Bsound:pause()
-		Game.State = LoadScreen
-		Game.State:Load()
+		Game.Over = true
 	end
 end

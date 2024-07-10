@@ -20,51 +20,56 @@ function ShopScreen:Load()
 	ShopScreen.vars.ItemFuncs = {}
 	ShopScreen.vars.ItemFuncs[1] = function()
 		ShopScreen.vars.ItemImg = ""
-		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[1]..":"
+		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[1]..": Costs $"..(Player.Tower_Speed_Base_Cost + ((Player.Tower_Speed_Level - 1) * Player.Tower_Speed_Upgrade_Cost))
 		ShopScreen.vars.ItemStr2 = sticker.new("Increases tower speed.")
 		ShopScreen.vars.ItemStr3 = sticker.new("")
 		ShopScreen.vars.ItemStr4 = sticker.new("Current Speed: "..(Player.Tower_Speed))
-		ShopScreen.vars.ItemStr5 = sticker.new("New Speed: ")
+		ShopScreen.vars.ItemStr5 = sticker.new("New Speed: "..(Player.Tower_Speed + Player.Tower_Speed_Upgrade))
 		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
 	ShopScreen.vars.ItemFuncs[2] = function()
 		ShopScreen.vars.ItemImg = ""
-		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[2]..":"
+		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[2]..": Costs $"..(Player.Tower_Damage_Base_Cost + ((Player.Tower_Damage_Level - 1) * Player.Tower_Damage_Upgrade_Cost))
 		ShopScreen.vars.ItemStr2 = sticker.new("Increases tower damage.")
 		ShopScreen.vars.ItemStr3 = sticker.new("")
 		ShopScreen.vars.ItemStr4 = sticker.new("Current damage: "..(Player.Tower_Damage))
-		ShopScreen.vars.ItemStr5 = sticker.new("New damage: ")
+		ShopScreen.vars.ItemStr5 = sticker.new("New damage: "..(Player.Tower_Damage + Player.Tower_Damage_Upgrade))
 		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
 	ShopScreen.vars.ItemFuncs[3] = function()
 		ShopScreen.vars.ItemImg = ""
-		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[3]..":"
+		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[3]..": Costs $"..(Player.Bomb_Fuse_Base_Cost + ((Player.Bomb_Fuse_Level - 1) * Player.Bomb_Fuse_Upgrade_Cost))
 		ShopScreen.vars.ItemStr2 = sticker.new("Decreases bomb fuse.")
 		ShopScreen.vars.ItemStr3 = sticker.new("")
-		ShopScreen.vars.ItemStr4 = sticker.new("Current fuse: "..(Player.Bomb_Fuse))
-		ShopScreen.vars.ItemStr5 = sticker.new("New fuse: ")
+		if Player.Bomb_Fuse_Level <= 8 then
+			ShopScreen.vars.ItemStr4 = sticker.new("Current fuse: "..(Player.Bomb_Fuse))
+			ShopScreen.vars.ItemStr5 = sticker.new("New fuse: "..(Player.Bomb_Fuse + Player.Bomb_Fuse_Upgrade))
+		else
+			ShopScreen.vars.ItemStr4 = sticker.new("Unavaliable")
+			ShopScreen.vars.ItemStr5 = sticker.new("")
+		end
 		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
 	ShopScreen.vars.ItemFuncs[4] = function()
 		ShopScreen.vars.ItemImg = ""
-		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[4]..":"
+		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[4]..": Costs $"..(Player.Bomb_Damage_Base_Cost + ((Player.Bomb_Damage_Level - 1) * Player.Bomb_Damage_Upgrade_Cost))
 		ShopScreen.vars.ItemStr2 = sticker.new("Increases bomb damage.")
 		ShopScreen.vars.ItemStr3 = sticker.new("")
 		ShopScreen.vars.ItemStr4 = sticker.new("Current damage: "..(Player.Bomb_Damage))
-		ShopScreen.vars.ItemStr5 = sticker.new("New damage: ")
+		ShopScreen.vars.ItemStr5 = sticker.new("New damage: "..(Player.Bomb_Damage + Player.Bomb_Damage_Upgrade))
 		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
 	ShopScreen.vars.ItemFuncs[5] = function()
 		ShopScreen.vars.ItemImg = ""
-		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[5]..":"
+		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[5]..": Costs $"..(Player.Multi_Tower_Base_Cost + ((Player.Multi_Tower_Level - 1) * Player.Multi_Tower_Upgrade_Cost))
 		ShopScreen.vars.ItemStr2 = sticker.new("Increases number bullets in")
 		ShopScreen.vars.ItemStr3 = sticker.new("multi tower.")
 		ShopScreen.vars.ItemStr4 = sticker.new("Current number: "..(Player.Multi_Tower))
-		ShopScreen.vars.ItemStr5 = sticker.new("New number: ")
+		ShopScreen.vars.ItemStr5 = sticker.new("New number: "..(Player.Multi_Tower + Player.Multi_Tower_Upgrade))
 		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
@@ -166,12 +171,12 @@ function ShopScreen:Update(dt)
 	
 	if ShopScreen.vars.Inside and love.mouse.isDown(1) then
 		ShopScreen.vars.Pick = true
-		-- play a sound (Item selected)
+		--playSFX("item_selected")
 	end
 	
 	if love.mouse.isDown(2) and ShopScreen.vars.Pick then
 		ShopScreen.vars.Pick = false
-		-- play a sound (Item deselected)
+		--playSFX("item_deselected")
 	end
 	
 	ShopScreen.vars.lx, ShopScreen.vars.ly = x, y
@@ -189,7 +194,7 @@ function ShopScreen:Keypressed(key)
 			ShopScreen.vars.ItemFuncs[ShopScreen.vars.Select]()
 		end
 		ShopScreen.vars.SelectLast = ShopScreen.vars.Select
-		-- play a sound (Option Moved)
+		--playSFX("option_moved")
 	elseif isKeyDown(key) then
 		if ShopScreen.vars.Select + 1 <= #ShopScreen.vars.Items then
 			ShopScreen.vars.Select = ShopScreen.vars.Select + 1
@@ -200,21 +205,21 @@ function ShopScreen:Keypressed(key)
 			ShopScreen.vars.ItemFuncs[ShopScreen.vars.Select]()
 		end
 		ShopScreen.vars.SelectLast = ShopScreen.vars.Select
-		-- play a sound (Option Moved)
+		--playSFX("option_moved")
 	elseif key == "return" then
 		if ShopScreen.vars.Pick then
-			-- play a sound (Item Bought)
+			--playSFX("item_bought")
 		else
 			if not (ShopScreen.vars.SelectLast == 0) then
 				ShopScreen.vars.ItemFuncs[ShopScreen.vars.Select]()
 			end
 			ShopScreen.vars.Pick = true
-			-- play a sound (Item selected)
+			--playSFX("item_selected")
 		end
 	elseif iskeyBack(key) then
 		if ShopScreen.vars.Pick then
 			ShopScreen.vars.Pick = false
-			-- play a sound (Item deselected)
+			--playSFX("item_deselected")
 		else
 			ShopScreen.vars.Bsound:seek(0)
 			ShopScreen.vars.Bsound:pause()
