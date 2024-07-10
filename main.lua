@@ -152,6 +152,7 @@ function saveGame(file)
 	-- Save things
 	file:SetHeader()
 	file:NewField("saved","yes")
+	file:NewField("version",tostring(Game.Version))
 	file:NewField("state",tostring(Game.State.Id))
 	file:NewField("money",tostring(Player.Money))
 	file:NewField("kills",tostring(Player.Kills))
