@@ -146,15 +146,15 @@ function Invasion_Level:Draw()
 			-- show building options
 			love.graphics.rectangle("fill",250,25,200,250)
 			love.graphics.print({{0,0,0},"Towers:"},260,35)
-			love.graphics.print({{0,0,0},"Basic:\t\t$50"},260,75)
-			love.graphics.print({{0,0,0},"Double:\t\t$200"},260,95)
-			love.graphics.print({{0,0,0},"Quad:\t\t\t$350"},260,115)
-			love.graphics.print({{0,0,0},"Bomb:\t\t\t$200"},260,135)
-			love.graphics.print({{0,0,0},"Double Bomb:\t$350"},260,155)
-			love.graphics.print({{0,0,0},"Quad Bomb:\t$500"},260,175)
-			love.graphics.print({{0,0,0},"Multi:\t\t$250"},260,195)
-			love.graphics.print({{0,0,0},"Double Multi:\t$400"},260,215)
-			love.graphics.print({{0,0,0},"Mega:\t\t\t$1000"},260,235)
+			love.graphics.print({{0,0,0},"[1] Basic:\t\t$50"},260,75)
+			love.graphics.print({{0,0,0},"[2] Double:\t\t$200"},260,95)
+			love.graphics.print({{0,0,0},"[3] Quad:\t\t\t$350"},260,115)
+			love.graphics.print({{0,0,0},"[4] Bomb:\t\t\t$200"},260,135)
+			love.graphics.print({{0,0,0},"[5] Double Bomb:\t$350"},260,155)
+			love.graphics.print({{0,0,0},"[6] Quad Bomb:\t$500"},260,175)
+			love.graphics.print({{0,0,0},"[7] Multi:\t\t$250"},260,195)
+			love.graphics.print({{0,0,0},"[8] Double Multi:\t$400"},260,215)
+			love.graphics.print({{0,0,0},"[9] Mega:\t\t\t$1000"},260,235)
 		end
 		if LevelScreen.vars.destroying then
 			-- show options
@@ -266,6 +266,40 @@ function Invasion_Level:Keypressed(key)
 				LevelScreen.vars.moving = false
 				LevelScreen.vars.destroying = false
 			end
+		end
+	end
+	
+	if LevelScreen.vars.building then
+		if key == "1" then
+			print("1")
+		elseif key == "2" then
+			print("2")
+		elseif key == "3" then
+			print("3")
+		elseif key == "4" then
+			print("4")
+		elseif key == "5" then
+			print("5")
+		elseif key == "6" then
+			print("6")
+		elseif key == "7" then
+			print("7")
+		elseif key == "8" then
+			print("8")
+		elseif key == "9" then
+			print("9")
+		end
+	end
+	
+	if LevelScreen.vars.moving then
+		if key == "return" then
+			
+		end
+	end
+	
+	if LevelScreen.vars.destroying then
+		if key == "return" then
+			
 		end
 	end
 end

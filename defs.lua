@@ -5,7 +5,7 @@ Game.Levels = {}
 Game.Muted = false
 Game.Volume = 0.5
 Game.FirstTime = true
-Game.Version = "0.0.62"
+Game.Version = "0.0.63"
 
 Game.ShowPath = true
 Game.ShowHitBoxes = true
