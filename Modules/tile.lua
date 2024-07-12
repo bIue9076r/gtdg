@@ -1,9 +1,10 @@
 Tile = {}
 
-function Tile.new(p,o)
+function Tile.new(p,o,t)
 	local tbl = {
 		path = p or false,
 		obj = o or 0,
+		tower = t or nil,
 	}
 	
 	return tbl

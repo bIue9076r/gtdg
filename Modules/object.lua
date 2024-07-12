@@ -4,13 +4,15 @@ Object.hp = 0
 Object.x = 0
 Object.y = 0
 Object.t = ticker.new()
+Object.id = "Type"
 
-function Object.new(x,y,hp,img)
+function Object.new(x,y,hp,img,id)
 	local tbl = {
 		x = x or 0,
 		y = y or 0,
 		hp = hp or 0,
 		img = img or "",
+		id = tostring(id) or "Object",
 		t = ticker.new(),
 	}
 	
@@ -24,6 +26,10 @@ end
 
 function Object:Hit(d)
 	self.hp = math.max(0,self.hp - d)
+end
+
+function Object:Act()
+	
 end
 
 function Object:Draw()
