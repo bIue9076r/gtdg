@@ -187,7 +187,7 @@ function HomeScreen:Keypressed(key)
 			HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select]()
 		end
 		HomeScreen.vars.SelectLast = HomeScreen.vars.Select
-		--playSFX("option_moved")
+		playSFX("option_moved")
 	elseif isKeyDown(key) then
 		if HomeScreen.vars.Select + 1 <= #HomeScreen.vars.Levels then
 			HomeScreen.vars.Select = HomeScreen.vars.Select + 1
@@ -198,7 +198,7 @@ function HomeScreen:Keypressed(key)
 			HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select]()
 		end
 		HomeScreen.vars.SelectLast = HomeScreen.vars.Select
-		--playSFX("option_moved")
+		playSFX("option_moved")
 	elseif key == "return" then
 		if HomeScreen.vars.Pick then
 			HomeScreen.vars.Pick = false
@@ -211,11 +211,11 @@ function HomeScreen:Keypressed(key)
 				HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select]()
 			end
 			HomeScreen.vars.Pick = true
-			--playSFX("level_selected")
+			playSFX("level_selected")
 		end
 	elseif iskeyBack(key) and HomeScreen.vars.Pick then
 		HomeScreen.vars.Pick = false
-		--playSFX("level_deselected")
+		playSFX("level_deselected")
 	elseif key == "t" and not HomeScreen.vars.Pick then
 		HomeScreen.vars.Bsound:seek(0)
 		HomeScreen.vars.Bsound:pause()
@@ -223,7 +223,7 @@ function HomeScreen:Keypressed(key)
 		Game.State:Load()
 	elseif key == "n" then
 		HomeScreen.vars.Option = not HomeScreen.vars.Option
-		--playSFX("option_moved")
+		playSFX("option_moved")
 	elseif not Game.Ctrl and key == "m" then
 		HomeScreen.vars.Bsound:seek(0)
 		HomeScreen.vars.Bsound:pause()

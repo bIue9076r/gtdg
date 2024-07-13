@@ -90,11 +90,21 @@ function Invasion_Level:Draw()
 		
 		for y = 1,(500/TileSize) do
 			for x = 1,(700/TileSize) do
+				local t = Invasion_Level.Tiles:Get(x,y)
 				love.graphics.draw(
 					files.assets.Textures.getImage(
-						LevelTiles[Invasion_Level.Tiles:Get(x,y).obj] or "tile_20" 
+						LevelTiles[t.obj] or "tile_20" 
 					)
-				,50 + ((x-1)*TileSize),50 + ((y-1)*TileSize))
+				,50 + ((x-1)*TileSize),50 + ((y-1)*TileSize)
+				)
+				
+				if t.tower then
+					love.graphics.rectangle("fill",
+						50 + ((t.tower.x - 1) * TileSize),
+						50 + ((t.tower.y - 1) * TileSize),
+						TileSize, TileSize
+					)
+				end
 			end
 		end
 	end)
@@ -226,7 +236,7 @@ function Invasion_Level:Update(dt)
 			LevelScreen.vars.selected = true
 			Game.Paused = true
 		else
-			--playSFX("tile_none")
+			playSFX("tile_none")
 		end
 	end
 	
@@ -257,7 +267,7 @@ function Invasion_Level:Keypressed(key)
 				LevelScreen.vars.destroying = true
 			end
 		elseif iskeyBack(key) then
-			--playSFX("tile_deselected")
+			playSFX("tile_deselected")
 			if (not LevelScreen.vars.building) and (not LevelScreen.vars.moving) and (not LevelScreen.vars.destroying) then
 				LevelScreen.vars.selected = false
 				Game.Paused = false
@@ -272,10 +282,17 @@ function Invasion_Level:Keypressed(key)
 	if LevelScreen.vars.building then
 		local n = tonumber(key)
 		if n and (n >= 1) and (n <= 9) then
+			local t = Invasion_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
 			print(n,
-				Invasion_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy).obj,
-				Invasion_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy).tower
+				t.obj,
+				t.tower
 			)
+			
+			if not t.tower then
+				t.tower = Towers.new(LevelScreen.vars.sx, LevelScreen.vars.sy, n)
+				t.tower:Act()
+				t.tower:Act()
+			end
 		end
 	end
 	

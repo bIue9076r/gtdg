@@ -5,7 +5,7 @@ Game.Levels = {}
 Game.Muted = false
 Game.Volume = 0.5
 Game.FirstTime = true
-Game.Version = "0.0.64"
+Game.Version = "0.0.65"
 
 Game.ShowPath = true
 Game.ShowHitBoxes = true
@@ -75,11 +75,12 @@ function iskeyBack(key)
 end
 
 function playSFX(n)
-	local s = files.assets.Audio.getSound(SoundSFX[n or 1])
+	print(n) -- TODO: Sfx
+	--local s = files.assets.Audio.getSound(SoundSFX[n or 1])
 	if not Game.Muted then
-		s:seek(0)
-		s:play()
+	--	s:seek(0)
+	--	s:play()
 	else
-		s:pause()
+	--	s:pause()
 	end
 end

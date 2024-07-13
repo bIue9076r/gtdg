@@ -8,11 +8,11 @@ function updateFileDiscription(i)
 		if tbl["saved"] then
 			SaveScreen.vars.SaveSaved[i] = "ye"
 			SaveScreen.vars.SaveStrs[i] = {
+				"Version: "..(tbl["version"] or ""),
 				"State: "..(tbl["state"] or ""),
 				"Money: "..(tbl["money"] or ""),
 				"Kills: "..(tbl["kills"] or ""),
 				"Tower Speed: "..(tbl["tower_speed"] or ""),
-				"Multi Tower: "..(tbl["multi_tower"] or ""),
 			}
 		else
 			SaveScreen.vars.SaveSaved[i] = "no"
@@ -252,7 +252,7 @@ function SaveScreen:Keypressed(key)
 			SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
 		end
 		SaveScreen.vars.SelectLast = SaveScreen.vars.Select
-		--playSFX("option_move")
+		playSFX("option_move")
 	elseif isKeyDown(key) then
 		if SaveScreen.vars.Select + 1 <= #SaveScreen.vars.Saves then
 			SaveScreen.vars.Select = SaveScreen.vars.Select + 1
@@ -263,19 +263,19 @@ function SaveScreen:Keypressed(key)
 			SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
 		end
 		SaveScreen.vars.SelectLast = SaveScreen.vars.Select
-		--playSFX("option_move")
+		playSFX("option_move")
 	elseif key == "return" then
 		if not SaveScreen.vars.Pick then
 			if not (SaveScreen.vars.SelectLast == 0) then
 				SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
 			end
 			SaveScreen.vars.Pick = true
-			--playSFX("save_selected")
+			playSFX("save_selected")
 		end
 	elseif iskeyBack(key) then
 		if SaveScreen.vars.Pick then
 			SaveScreen.vars.Pick = false
-			--playSFX("save_deselected")
+			playSFX("save_deselected")
 		else
 			SaveScreen.vars.Bsound:seek(0)
 			SaveScreen.vars.Bsound:pause()
@@ -290,14 +290,14 @@ function SaveScreen:Keypressed(key)
 		SaveScreen.vars.TimeOutTicker:reset()
 		updateFileDiscription(SaveScreen.vars.Select)
 		SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
-		--playSFX("save_saved")
+		playSFX("save_saved")
 	elseif (not SaveScreen.vars.TimeOut) and SaveScreen.vars.Pick and key == "l" then
 		SaveScreen.vars.Save = File.new("/Saves/SaveSlot_"..SaveScreen.vars.Select..".sav")
 		loadGame(SaveScreen.vars.Save)
 		SaveScreen.vars.TimeOut = true
 		SaveScreen.vars.TimeOutStr = "Game Loaded!"
 		SaveScreen.vars.TimeOutTicker:reset()
-		--playSFX("save_loaded")
+		playSFX("save_loaded")
 	elseif (not SaveScreen.vars.TimeOut) and SaveScreen.vars.Pick and key == "d" then
 		SaveScreen.vars.Save = File.new("/Saves/SaveSlot_"..SaveScreen.vars.Select..".sav")
 		SaveScreen.vars.Save:SetHeader()
@@ -306,6 +306,6 @@ function SaveScreen:Keypressed(key)
 		SaveScreen.vars.TimeOutTicker:reset()
 		updateFileDiscription(SaveScreen.vars.Select)
 		SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
-		--playSFX("save_deleted")
+		playSFX("save_deleted")
 	end
 end

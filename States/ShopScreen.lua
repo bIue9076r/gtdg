@@ -194,7 +194,7 @@ function ShopScreen:Keypressed(key)
 			ShopScreen.vars.ItemFuncs[ShopScreen.vars.Select]()
 		end
 		ShopScreen.vars.SelectLast = ShopScreen.vars.Select
-		--playSFX("option_moved")
+		playSFX("option_moved")
 	elseif isKeyDown(key) then
 		if ShopScreen.vars.Select + 1 <= #ShopScreen.vars.Items then
 			ShopScreen.vars.Select = ShopScreen.vars.Select + 1
@@ -205,21 +205,21 @@ function ShopScreen:Keypressed(key)
 			ShopScreen.vars.ItemFuncs[ShopScreen.vars.Select]()
 		end
 		ShopScreen.vars.SelectLast = ShopScreen.vars.Select
-		--playSFX("option_moved")
+		playSFX("option_moved")
 	elseif key == "return" then
 		if ShopScreen.vars.Pick then
-			--playSFX("item_bought")
+			playSFX("item_bought")
 		else
 			if not (ShopScreen.vars.SelectLast == 0) then
 				ShopScreen.vars.ItemFuncs[ShopScreen.vars.Select]()
 			end
 			ShopScreen.vars.Pick = true
-			--playSFX("item_selected")
+			playSFX("item_selected")
 		end
 	elseif iskeyBack(key) then
 		if ShopScreen.vars.Pick then
 			ShopScreen.vars.Pick = false
-			--playSFX("item_deselected")
+			playSFX("item_deselected")
 		else
 			ShopScreen.vars.Bsound:seek(0)
 			ShopScreen.vars.Bsound:pause()
