@@ -232,7 +232,7 @@ function Invasion_Level:Update(dt)
 	if love.mouse.isDown(1) then
 		local tile = Invasion_Level.Tiles:Get(LevelScreen.vars.sx, LevelScreen.vars.sy)
 		if tile and not tile.path then
-			--playSFX("tile_selected")
+			playSFX("tile_selected")
 			LevelScreen.vars.selected = true
 			Game.Paused = true
 		else
@@ -241,7 +241,7 @@ function Invasion_Level:Update(dt)
 	end
 	
 	if love.mouse.isDown(2) then
-		--playSFX("tile_deselected")
+		playSFX("tile_deselected")
 		LevelScreen.vars.selected = false
 		Game.Paused = false
 	end
@@ -290,7 +290,6 @@ function Invasion_Level:Keypressed(key)
 			
 			if not t.tower then
 				t.tower = Towers.new(LevelScreen.vars.sx, LevelScreen.vars.sy, n)
-				t.tower:Act()
 				t.tower:Act()
 			end
 		end

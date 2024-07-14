@@ -5,6 +5,7 @@ Object.x = 0
 Object.y = 0
 Object.t = ticker.new()
 Object.id = "Type"
+Object.vars = {}
 
 function Object.new(x,y,hp,img,id)
 	local tbl = {
@@ -14,6 +15,7 @@ function Object.new(x,y,hp,img,id)
 		img = img or "",
 		id = tostring(id) or "Object",
 		t = ticker.new(),
+		vars = {},
 	}
 	
 	local mt = {

@@ -23,40 +23,73 @@ Towers[9] = Object.new(0,0,0,"tower9","Tower9") --
 Towers[1].Act = function(self)
 	-- first time?
 	print("first time")
+	self.vars["cpath"] = 1
+	self.Act = function(self)
+		-- main loop
+		print("loop", self.vars["cpath"])
+	end
+end
+
+Towers[2].Act = function(self)
+	
 	self.Act = function(self)
 		-- main loop
 		print("loop")
 	end
 end
 
-Towers[2].Act = function(self)
-	
-end
-
 Towers[3].Act = function(self)
 	
+	self.Act = function(self)
+		-- main loop
+		print("loop")
+	end
 end
 
 Towers[4].Act = function(self)
 	
+	self.Act = function(self)
+		-- main loop
+		print("loop")
+	end
 end
 
 Towers[5].Act = function(self)
 	
+	self.Act = function(self)
+		-- main loop
+		print("loop")
+	end
 end
 
 Towers[6].Act = function(self)
 	
+	self.Act = function(self)
+		-- main loop
+		print("loop")
+	end
 end
 
 Towers[7].Act = function(self)
 	
+	self.Act = function(self)
+		-- main loop
+		print("loop")
+	end
 end
 
 Towers[8].Act = function(self)
 	
+	self.Act = function(self)
+		-- main loop
+		print("loop")
+	end
 end
 
 Towers[9].Act = function(self)
 	
+	self.Act = function(self)
+		-- main loop
+		print("loop")
+	end
 end
