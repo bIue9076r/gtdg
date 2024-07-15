@@ -10,9 +10,17 @@ function LevelScreen:Load(l)
 	}
 	
 	l = l or 1
-	LevelScreen.vars.s = LevelScreen.vars.ntos[l]
-	LevelScreen.vars.level = Game.Levels[l]
-	LevelScreen.vars.level:Load()
+	-- Other levels soon
+	if not (l == 2) then
+		LevelScreen.vars.Bsound:seek(0)
+		LevelScreen.vars.Bsound:pause()
+		Game.State = HomeScreen
+		Game.State:Load()
+	else
+		LevelScreen.vars.s = LevelScreen.vars.ntos[l]
+		LevelScreen.vars.level = Game.Levels[l]
+		LevelScreen.vars.level:Load()
+	end
 end
 
 function LevelScreen:Draw()

@@ -60,3 +60,44 @@ function PathTable:Lerp(t)
 	
 	return self.tbl[f](t,n)
 end
+
+function PathTable:GetClosest(Obj)
+	local closest = 1
+	local sdf = nil
+	local sx = Obj.x
+	local sy = Obj.y
+	
+	for i,v in pairs(self.tbl) do
+		if (v.x1 - v.x2) == 0 then
+			-- compare x
+			if ((sy >= v.y1) and (sy <= v.y2)) or ((sy <= v.y1) and (sy >= v.y2)) then
+				local dx = math.abs(v.x1 - sx)
+				if not sdf then
+					sdf = dx
+					closest = i
+				else
+					if dx < sdf then
+						sdf = dx
+						closest = i
+					end
+				end
+			end
+		elseif (v.y1 - v.y2) == 0 then
+			-- compare y
+			if ((sx >= v.x1) and (sx <= v.x2)) or ((sx <= v.x1) and (sx >= v.x2)) then
+				local dy = math.abs(v.y1 - sy)
+				if not sdf then
+					sdf = dy
+					closest = i
+				else
+					if dy < sdf then
+						sdf = dy
+						closest = i
+					end
+				end
+			end
+		end
+	end
+	
+	return self.tbl[closest]
+end

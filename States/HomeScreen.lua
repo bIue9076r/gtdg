@@ -25,7 +25,7 @@ function HomeScreen:Load()
 		HomeScreen.vars.LevelStr3 = sticker.new("war!")
 		HomeScreen.vars.LevelStr4 = sticker.new("Learn how to stop them in this")
 		HomeScreen.vars.LevelStr5 = sticker.new("simulation.")
-		HomeScreen.vars.LevelStr6 = sticker.new("Difficulty: None (-/3)")
+		HomeScreen.vars.LevelStr6 = sticker.new("Difficulty: None (-/3) [Unavaliable]")
 	end
 	
 	HomeScreen.vars.LevelFuncs[2] = function()
@@ -45,7 +45,7 @@ function HomeScreen:Load()
 		HomeScreen.vars.LevelStr3 = sticker.new("after their initial retreat!")
 		HomeScreen.vars.LevelStr4 = sticker.new("You must stop them yet")
 		HomeScreen.vars.LevelStr5 = sticker.new("again.")
-		HomeScreen.vars.LevelStr6 = sticker.new("Difficulty: Medium (2/3)")
+		HomeScreen.vars.LevelStr6 = sticker.new("Difficulty: Medium (2/3) [Unavaliable]")
 	end
 	
 	HomeScreen.vars.LevelFuncs[4] = function()
@@ -55,7 +55,7 @@ function HomeScreen:Load()
 		HomeScreen.vars.LevelStr3 = sticker.new("to their ship!")
 		HomeScreen.vars.LevelStr4 = sticker.new("You must stop them from")
 		HomeScreen.vars.LevelStr5 = sticker.new("leaving.")
-		HomeScreen.vars.LevelStr6 = sticker.new("Difficulty: Hard (3/3)")
+		HomeScreen.vars.LevelStr6 = sticker.new("Difficulty: Hard (3/3) [Unavaliable]")
 	end
 	
 	HomeScreen.vars.Pick = false

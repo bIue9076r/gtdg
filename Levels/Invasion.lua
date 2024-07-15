@@ -100,8 +100,8 @@ function Invasion_Level:Draw()
 				
 				if t.tower then
 					love.graphics.rectangle("fill",
-						50 + ((t.tower.x - 1) * TileSize),
-						50 + ((t.tower.y - 1) * TileSize),
+						50 + ((t.tower.x - (1 + Towers.Offset)) * TileSize),
+						50 + ((t.tower.y - (1 + Towers.Offset)) * TileSize),
 						TileSize, TileSize
 					)
 				end
@@ -232,16 +232,16 @@ function Invasion_Level:Update(dt)
 	if love.mouse.isDown(1) then
 		local tile = Invasion_Level.Tiles:Get(LevelScreen.vars.sx, LevelScreen.vars.sy)
 		if tile and not tile.path then
-			playSFX("tile_selected")
+			--playSFX("tile_selected")
 			LevelScreen.vars.selected = true
 			Game.Paused = true
 		else
-			playSFX("tile_none")
+			--playSFX("tile_none")
 		end
 	end
 	
 	if love.mouse.isDown(2) then
-		playSFX("tile_deselected")
+		--playSFX("tile_deselected")
 		LevelScreen.vars.selected = false
 		Game.Paused = false
 	end
@@ -289,8 +289,9 @@ function Invasion_Level:Keypressed(key)
 			)
 			
 			if not t.tower then
-				t.tower = Towers.new(LevelScreen.vars.sx, LevelScreen.vars.sy, n)
-				t.tower:Act()
+				t.tower = Towers.new(LevelScreen.vars.sx + Towers.Offset, LevelScreen.vars.sy + Towers.Offset, n)
+				t.tower:Act(Invasion_Level.Path)
+				t.tower:Act(Invasion_Level.Objects)
 			end
 		end
 	end
@@ -305,6 +306,10 @@ function Invasion_Level:Keypressed(key)
 		if key == "return" then
 			
 		end
+	end
+	
+	if key == "=" then
+		Invasion_Level.Objects:Insert(0,0,10,"none")
 	end
 end
 

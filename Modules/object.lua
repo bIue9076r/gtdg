@@ -76,3 +76,28 @@ function ObjectTable:Lerp(PT)
 		self.tbl[i]:Lerp(PT)
 	end
 end
+
+function ObjectTable:GetClosest(Obj)
+	local closest = 1
+	local sd = nil
+	local sx = Obj.x
+	local sy = Obj.y
+	
+	for i,v in pairs(self.tbl) do
+		local d = math.sqrt(
+			(v.x - sx)*(v.x - sx) + (v.y - sy)*(v.y - sy)
+		)
+		
+		if not sd then
+			sd = d
+			closest = i
+		end
+		
+		if d < sd then
+			sd = d
+			closest = i
+		end
+	end
+	
+	return self.tbl[closest], dis
+end

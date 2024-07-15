@@ -1,4 +1,5 @@
 Towers = {}
+Towers.Offset = 0.5
 
 function Towers.new(x,y,t)
 	local o = Object.new(x,y,0,
@@ -20,17 +21,16 @@ Towers[7] = Object.new(0,0,0,"tower7","Tower7") --
 Towers[8] = Object.new(0,0,0,"tower8","Tower8") -- 
 Towers[9] = Object.new(0,0,0,"tower9","Tower9") -- 
 
-Towers[1].Act = function(self)
-	-- first time?
-	print("first time")
-	self.vars["cpath"] = 1
-	self.Act = function(self)
+Towers[1].Act = function(self,pathTbl)
+	self.vars["cpath"] = pathTbl:GetClosest(self)
+	self.Act = function(self,objTbl)
 		-- main loop
-		print("loop", self.vars["cpath"])
+		print(objTbl:GetClosest(self))
+		print("loop", self.vars["cpath"],objTbl)
 	end
 end
 
-Towers[2].Act = function(self)
+Towers[2].Act = function(self,pathTbl)
 	
 	self.Act = function(self)
 		-- main loop
@@ -38,7 +38,7 @@ Towers[2].Act = function(self)
 	end
 end
 
-Towers[3].Act = function(self)
+Towers[3].Act = function(self,pathTbl)
 	
 	self.Act = function(self)
 		-- main loop
@@ -46,7 +46,7 @@ Towers[3].Act = function(self)
 	end
 end
 
-Towers[4].Act = function(self)
+Towers[4].Act = function(self,pathTbl)
 	
 	self.Act = function(self)
 		-- main loop
@@ -54,7 +54,7 @@ Towers[4].Act = function(self)
 	end
 end
 
-Towers[5].Act = function(self)
+Towers[5].Act = function(self,pathTbl)
 	
 	self.Act = function(self)
 		-- main loop
@@ -62,7 +62,7 @@ Towers[5].Act = function(self)
 	end
 end
 
-Towers[6].Act = function(self)
+Towers[6].Act = function(self,pathTbl)
 	
 	self.Act = function(self)
 		-- main loop
@@ -70,7 +70,7 @@ Towers[6].Act = function(self)
 	end
 end
 
-Towers[7].Act = function(self)
+Towers[7].Act = function(self,pathTbl)
 	
 	self.Act = function(self)
 		-- main loop
@@ -78,7 +78,7 @@ Towers[7].Act = function(self)
 	end
 end
 
-Towers[8].Act = function(self)
+Towers[8].Act = function(self,pathTbl)
 	
 	self.Act = function(self)
 		-- main loop
@@ -86,7 +86,7 @@ Towers[8].Act = function(self)
 	end
 end
 
-Towers[9].Act = function(self)
+Towers[9].Act = function(self,pathTbl)
 	
 	self.Act = function(self)
 		-- main loop
