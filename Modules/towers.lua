@@ -23,10 +23,23 @@ Towers[9] = Object.new(0,0,0,"tower9","Tower9") --
 
 Towers[1].Act = function(self,pathTbl)
 	self.vars["cpath"] = pathTbl:GetClosest(self)
+	self.vars.radius = 6
+	self.vars.damage = 10
+	self.vars.cooldown = 500
 	self.Act = function(self,objTbl)
 		-- main loop
-		print(objTbl:GetClosest(self))
-		print("loop", self.vars["cpath"],objTbl)
+		local o,d = objTbl:GetClosest(self)
+		if o and d and d < self.vars.radius then
+			if self.t:get() >= self.vars.cooldown then
+				print("Object Hit", d)
+				o:Hit(self.vars.damage)
+				self.t:set(0)
+			end
+			self.t()
+		else
+			-- Reset if no objects in radius
+			self.t:set(0)
+		end
 	end
 end
 

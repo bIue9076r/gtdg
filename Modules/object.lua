@@ -72,32 +72,43 @@ function ObjectTable:Insert(x,y,hp,img)
 end
 
 function ObjectTable:Lerp(PT)
-	for i,v in ipairs(self.tbl) do
+	for i,v in pairs(self.tbl) do
 		self.tbl[i]:Lerp(PT)
 	end
 end
 
+function ObjectTable:Clean(Id)
+	Id = Id or "Coconut"
+	for i,v in pairs(self.tbl) do
+		if v.hp < 1 then
+			self.tbl[i] = nil
+		end
+	end
+end
+
 function ObjectTable:GetClosest(Obj)
-	local closest = 1
+	local closest = 0
 	local sd = nil
 	local sx = Obj.x
 	local sy = Obj.y
 	
 	for i,v in pairs(self.tbl) do
-		local d = math.sqrt(
-			(v.x - sx)*(v.x - sx) + (v.y - sy)*(v.y - sy)
-		)
-		
-		if not sd then
-			sd = d
-			closest = i
-		end
-		
-		if d < sd then
-			sd = d
-			closest = i
+		if v.hp > 0 then
+			local d = math.sqrt(
+				(v.x - sx)*(v.x - sx) + (v.y - sy)*(v.y - sy)
+			)
+			
+			if not sd then
+				sd = d
+				closest = i
+			end
+			
+			if d < sd then
+				sd = d
+				closest = i
+			end
 		end
 	end
 	
-	return self.tbl[closest], dis
+	return self.tbl[closest], sd
 end

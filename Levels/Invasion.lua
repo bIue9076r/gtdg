@@ -65,7 +65,7 @@ Invasion_Level.Tiles:Set(4,25,false,14)
 Invasion_Level.Path:Insert(2.5,2.5,0,18.5,1000)
 Invasion_Level.Path:Insert(2.5,36,18.5,18.5,1000)
 
-Invasion_Level.Objects:Insert(0,0,10,"none")
+Invasion_Level.Objects:Insert(0,0,10,"Coconut")
 
 -- ^ ^ ^ Clean this up later ^ ^ ^ ---
 
@@ -190,26 +190,30 @@ function Invasion_Level:Draw()
 		
 		if Game.ShowHitBoxes then
 			for i,v in pairs(Invasion_Level.Objects.tbl) do
-				love.graphics.setColor(1,0,1)
-				love.graphics.rectangle("line",
-					(v.x + 1)*TileSize,
-					(v.y + 1)*TileSize,
-					20,
-					20
-				)
-				love.graphics.setColor(1,1,1)
+				if v.hp > 0 then
+					love.graphics.setColor(1,0,1)
+					love.graphics.rectangle("line",
+						(v.x + 1)*TileSize,
+						(v.y + 1)*TileSize,
+						20,
+						20
+					)
+					love.graphics.setColor(1,1,1)
+				end
 			end
 		end
 	end)
 	
 	LevelScreen.Window.fore:put(function()
 		for i,v in pairs(Invasion_Level.Objects.tbl) do
-			love.graphics.rectangle("fill",
-				(v.x + 1)*TileSize,
-				(v.y + 1)*TileSize,
-				20,
-				20
-			)
+			if v.hp > 0 then
+				love.graphics.rectangle("fill",
+					(v.x + 1)*TileSize,
+					(v.y + 1)*TileSize,
+					20,
+					20
+				)
+			end
 		end
 	end)
 end
@@ -248,6 +252,17 @@ function Invasion_Level:Update(dt)
 	
 	if not Game.Paused then
 		Invasion_Level.Objects:Lerp(Invasion_Level.Path)
+		
+		for y = 1,(500/TileSize) do
+			for x = 1,(700/TileSize) do
+				local t = Invasion_Level.Tiles:Get(x,y)
+				if t.tower then
+					t.tower:Act(Invasion_Level.Objects)
+				end
+			end
+		end
+		
+		Invasion_Level.Objects:Clean()
 	end
 end
 

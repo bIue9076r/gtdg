@@ -50,7 +50,7 @@ function PathTable:Lerp(t)
 	local f = 1
 	
 	-- should be a until loop tbh
-	for i,v in ipairs(self.tbl) do
+	for i,v in pairs(self.tbl) do
 		if t >= c then
 			c = c + v.tt
 			f = i
