@@ -6,7 +6,7 @@ Game.Muted = false
 Game.Volume = 0.5
 Game.FirstTime = true
 Game.Tutorial = false
-Game.Version = "0.0.68"
+Game.Version = "0.0.69"
 
 Game.ShowPath = true
 Game.ShowHitBoxes = true
@@ -73,6 +73,10 @@ end
 
 function iskeyBack(key)
 	return ((key == "b") or (key == "escape") or (key == "backspace"))
+end
+
+function secondsToTicks(s)
+	return (s/love.timer.getAverageDelta())
 end
 
 function playSFX(n)

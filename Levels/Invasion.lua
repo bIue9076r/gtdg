@@ -77,6 +77,8 @@ function Invasion_Level:Load()
 	
 	LevelScreen.vars.selected = false
 	LevelScreen.vars.building = false
+	LevelScreen.vars.poor = false
+	LevelScreen.vars.poort = ticker.new()
 	LevelScreen.vars.moving = false
 	LevelScreen.vars.destroying = false
 end
@@ -157,14 +159,18 @@ function Invasion_Level:Draw()
 			love.graphics.rectangle("fill",250,25,200,250)
 			love.graphics.print({{0,0,0},"Towers:"},260,35)
 			love.graphics.print({{0,0,0},"[1] $50: Basic"},260,75)
-			love.graphics.print({{0,0,0},"[2] $200: Double"},260,95)
-			love.graphics.print({{0,0,0},"[3] $350: Quad"},260,115)
-			love.graphics.print({{0,0,0},"[4] $200: Bomb"},260,135)
-			love.graphics.print({{0,0,0},"[5] $350: Double Bomb"},260,155)
-			love.graphics.print({{0,0,0},"[6] $500: Quad Bomb"},260,175)
-			love.graphics.print({{0,0,0},"[7] $250: Multi"},260,195)
-			love.graphics.print({{0,0,0},"[8] $400: Double Multi"},260,215)
-			love.graphics.print({{0,0,0},"[9] $1000: Mega"},260,235)
+			love.graphics.print({{0,0,0},"[2] $200: Bomb"},260,95)
+			love.graphics.print({{0,0,0},"[3] $1000: Mega"},260,115)
+			
+			if LevelScreen.vars.poor then
+				love.graphics.rectangle("fill",250,25,200,250)
+				love.graphics.print({{0,0,0},"Not enough money!"},260,35)
+				LevelScreen.vars.poort()
+				if LevelScreen.vars.poort:get() >= 100 then
+					LevelScreen.vars.poor = false
+					LevelScreen.vars.poort:set(0)
+				end
+			end
 		end
 		if LevelScreen.vars.destroying then
 			-- show options
@@ -296,17 +302,27 @@ function Invasion_Level:Keypressed(key)
 	
 	if LevelScreen.vars.building then
 		local n = tonumber(key)
-		if n and (n >= 1) and (n <= 9) then
+		if n and (n >= 1) and (n <= 3) then
 			local t = Invasion_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
 			print(n,
 				t.obj,
 				t.tower
 			)
 			
-			if not t.tower then
-				t.tower = Towers.new(LevelScreen.vars.sx + Towers.Offset, LevelScreen.vars.sy + Towers.Offset, n)
-				t.tower:Act(Invasion_Level.Path)
-				t.tower:Act(Invasion_Level.Objects)
+			local costs = {
+				[1] = 50,
+				[2] = 200,
+				[3] = 1000,
+			}
+			
+			if Player.Money >= costs then
+				if not t.tower then
+					t.tower = Towers.new(LevelScreen.vars.sx + Towers.Offset, LevelScreen.vars.sy + Towers.Offset, n)
+					t.tower:Act(Invasion_Level.Path)
+					t.tower:Act(Invasion_Level.Objects)
+				end
+			else
+				LevelScreen.vars.poor = true
 			end
 		end
 	end

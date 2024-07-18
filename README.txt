@@ -19,16 +19,17 @@ Current Timeline: (subject to change)
 		Stat Menu - [~] @ ??/07/2024
 		Save Menu - [X] @ 18/06/2024
 		Game Arena - [~] @ ??/07/2024
-			Tutorial Arena - [~] @ ??/07/2024
+			Tutorial Arena - [~] @ ??/??/202?
 			Arena #1 - [~] @ ??/07/2024
-			Arena #2 - [~] @ ??/07/2024
-			Arena #3 - [~] @ ??/07/2024
+			Arena #2 - [~] @ ??/??/202?
+			Arena #3 - [~] @ ??/??/202?
 
 	Visual Assets - [~] @ ??/??/2024
 		Title Screen - [X] @ 01/06/2024
 		Save Icons - [X] @ 17/06/2024
 		Level Previews - [_] @ ??/07/2024
 		Upgrade Previews - [_] @ ??/07/2024
+		Objects - [_] @ ??/07/2024
 		
 	Audio Assets - [~] @ ??/??/2024
 		Title Screen - [X] @ 01/06/2024
