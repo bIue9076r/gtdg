@@ -27,15 +27,22 @@ Towers[1].Act = function(self,pathTbl)
 	self.vars["cpath"] = pathTbl:GetClosest(self)
 	self.vars.radius = 6
 	self.vars.damage = 10
-	self.vars.cooldown = 500
+	self.vars.cooldown = secondsToTicks(2)
 	self.Act = function(self,objTbl)
 		-- main loop
 		local o,d = objTbl:GetClosest(self)
 		if o and d and d < self.vars.radius then
 			if self.t:get() >= self.vars.cooldown then
-				print("Object Hit", d)
 				o:Hit(self.vars.damage)
 				self.t:set(0)
+				
+				-- create bullet object
+				local v = {
+					(o.x - self.x)/d,
+					(o.y - self.y)/d
+				}
+				
+				objTbl:InsertObj(Bullet.new(self.x,self.y,v,d))
 			end
 			self.t()
 		else

@@ -65,7 +65,7 @@ Invasion_Level.Tiles:Set(4,25,false,14)
 Invasion_Level.Path:Insert(2.5,2.5,0,18.5,1000)
 Invasion_Level.Path:Insert(2.5,36,18.5,18.5,1000)
 
-Invasion_Level.Objects:Insert(0,0,10,"Coconut")
+Invasion_Level.Objects:Insert(0,0,10,"Coconut","Coconut")
 
 -- ^ ^ ^ Clean this up later ^ ^ ^ ---
 
@@ -213,12 +213,15 @@ function Invasion_Level:Draw()
 	LevelScreen.Window.fore:put(function()
 		for i,v in pairs(Invasion_Level.Objects.tbl) do
 			if v.hp > 0 then
+				local c = 1 * (v.hp/100)
+				love.graphics.setColor(c,c,c)
 				love.graphics.rectangle("fill",
 					(v.x + 1)*TileSize,
 					(v.y + 1)*TileSize,
 					20,
 					20
 				)
+				love.graphics.setColor(1,1,1)
 			end
 		end
 	end)
@@ -268,7 +271,7 @@ function Invasion_Level:Update(dt)
 			end
 		end
 		
-		Invasion_Level.Objects:Clean()
+		Invasion_Level.Objects:CleanAll()
 	end
 end
 
@@ -315,7 +318,7 @@ function Invasion_Level:Keypressed(key)
 				[3] = 1000,
 			}
 			
-			if Player.Money >= costs then
+			if Player.Money >= costs[n] then
 				if not t.tower then
 					t.tower = Towers.new(LevelScreen.vars.sx + Towers.Offset, LevelScreen.vars.sy + Towers.Offset, n)
 					t.tower:Act(Invasion_Level.Path)
@@ -340,7 +343,7 @@ function Invasion_Level:Keypressed(key)
 	end
 	
 	if key == "=" then
-		Invasion_Level.Objects:Insert(0,0,10,"none")
+		Invasion_Level.Objects:Insert(0,0,100 * (math.random()),"Coconut","Coconut")
 	end
 end
 

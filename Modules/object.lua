@@ -67,11 +67,24 @@ function ObjectTable.new()
 	return setmetatable(tbl,mt)
 end
 
-function ObjectTable:Insert(x,y,hp,img)
-	table.insert(self.tbl,Object.new(x,y,hp,img))
+function ObjectTable:Insert(x,y,hp,img,id)
+	table.insert(self.tbl,Object.new(x,y,hp,img,id))
 end
 
-function ObjectTable:Lerp(PT)
+function ObjectTable:InsertObj(obj)
+	table.insert(self.tbl,obj)
+end
+
+function ObjectTable:Lerp(PT,Id)
+	Id = Id or "Coconut"
+	for i,v in pairs(self.tbl) do
+		if v.id == Id then
+			self.tbl[i]:Lerp(PT)
+		end
+	end
+end
+
+function ObjectTable:LerpAll(PT)
 	for i,v in pairs(self.tbl) do
 		self.tbl[i]:Lerp(PT)
 	end
@@ -79,6 +92,14 @@ end
 
 function ObjectTable:Clean(Id)
 	Id = Id or "Coconut"
+	for i,v in pairs(self.tbl) do
+		if v.hp < 1 and v.id == Id then
+			self.tbl[i] = nil
+		end
+	end
+end
+
+function ObjectTable:CleanAll()
 	for i,v in pairs(self.tbl) do
 		if v.hp < 1 then
 			self.tbl[i] = nil
