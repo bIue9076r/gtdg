@@ -1,7 +1,7 @@
 -- Menu Screen State
 
 function MenuScreen:Load()
-	MenuScreen.vars.Bsound = files.assets.Audio.getSound("menu")
+	MenuScreen.vars.Bsound = files.assets.Audio.getSound("home")
 end
 
 function MenuScreen:Draw()

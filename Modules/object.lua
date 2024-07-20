@@ -3,6 +3,7 @@ Object.img = nil
 Object.hp = 0
 Object.x = 0
 Object.y = 0
+Object.s = 0
 Object.t = ticker.new()
 Object.id = "Type"
 Object.vars = {}
@@ -11,6 +12,7 @@ function Object.new(x,y,hp,img,id)
 	local tbl = {
 		x = x or 0,
 		y = y or 0,
+		s = TileSize,
 		hp = hp or 0,
 		img = img or "",
 		id = tostring(id) or "Object",

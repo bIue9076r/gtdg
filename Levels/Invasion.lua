@@ -201,8 +201,7 @@ function Invasion_Level:Draw()
 					love.graphics.rectangle("line",
 						(v.x + 1)*TileSize,
 						(v.y + 1)*TileSize,
-						20,
-						20
+						v.s,v.s
 					)
 					love.graphics.setColor(1,1,1)
 				end
@@ -218,8 +217,7 @@ function Invasion_Level:Draw()
 				love.graphics.rectangle("fill",
 					(v.x + 1)*TileSize,
 					(v.y + 1)*TileSize,
-					20,
-					20
+					v.s,v.s
 				)
 				love.graphics.setColor(1,1,1)
 			end
@@ -300,6 +298,8 @@ function Invasion_Level:Keypressed(key)
 				LevelScreen.vars.building = false
 				LevelScreen.vars.moving = false
 				LevelScreen.vars.destroying = false
+				LevelScreen.vars.poor = false
+				LevelScreen.vars.poort:set(0)
 			end
 		end
 	end

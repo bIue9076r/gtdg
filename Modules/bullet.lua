@@ -1,8 +1,10 @@
 Bullet = {}
 Bullet.MaxTime = 3
+Bullet.Size = 5
 
 function Bullet.new(x,y,v,d)
 	local o = Object.new(x,y,1,"bullet","bullet")
+	o.s = 5
 	
 	o.Act = function(self)
 		self.vars.origin = {self.x,self.y}

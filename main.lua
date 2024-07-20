@@ -48,6 +48,7 @@ files.assets.Audio.new("level","/Assets/level.mp3","stream")
 files.assets.Audio.new("menu","/Assets/menu.mp3","stream")
 files.assets.Audio.new("shop","/Assets/shop.mp3","stream")
 files.assets.Audio.new("save","/Assets/save.mp3","stream")
+files.assets.Audio.new("home","/Assets/level2.mp3","stream")
 
 love.graphics.setFont(
 	files.assets.Fonts.getFont("hex-sans-serif")
