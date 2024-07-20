@@ -30,7 +30,7 @@ Towers[1].Act = function(self,pathTbl)
 	self.vars.cooldown = secondsToTicks(2)
 	self.Act = function(self,objTbl)
 		-- main loop
-		local o,d = objTbl:GetClosest(self)
+		local o,d = objTbl:GetClosestId(self)
 		if o and d and d < self.vars.radius then
 			if self.t:get() >= self.vars.cooldown then
 				o:Hit(self.vars.damage)
@@ -56,7 +56,7 @@ Towers[2].Act = function(self,pathTbl)
 	
 	self.Act = function(self)
 		-- main loop
-		print("loop")
+		
 	end
 end
 
@@ -64,7 +64,7 @@ Towers[3].Act = function(self,pathTbl)
 	
 	self.Act = function(self)
 		-- main loop
-		print("loop")
+		
 	end
 end
 

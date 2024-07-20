@@ -107,7 +107,22 @@ function ObjectTable:CleanAll()
 	end
 end
 
-function ObjectTable:GetClosest(Obj)
+function ObjectTable:Act(Id)
+	Id = Id or "bullet"
+	for i,v in pairs(self.tbl) do
+		if v.id == Id then
+			self.tbl[i]:Act()
+		end
+	end
+end
+
+function ObjectTable:ActAll()
+	for i,v in pairs(self.tbl) do
+		self.tbl[i]:Act()
+	end
+end
+
+function ObjectTable:GetClosestAny(Obj)
 	local closest = 0
 	local sd = nil
 	local sx = Obj.x
@@ -115,6 +130,34 @@ function ObjectTable:GetClosest(Obj)
 	
 	for i,v in pairs(self.tbl) do
 		if v.hp > 0 then
+			local d = math.sqrt(
+				(v.x - sx)*(v.x - sx) + (v.y - sy)*(v.y - sy)
+			)
+			
+			if not sd then
+				sd = d
+				closest = i
+			end
+			
+			if d < sd then
+				sd = d
+				closest = i
+			end
+		end
+	end
+	
+	return self.tbl[closest], sd
+end
+
+function ObjectTable:GetClosestId(Obj,id)
+	id = id or "Coconut"
+	local closest = 0
+	local sd = nil
+	local sx = Obj.x
+	local sy = Obj.y
+	
+	for i,v in pairs(self.tbl) do
+		if v.hp > 0 and v.id == id then
 			local d = math.sqrt(
 				(v.x - sx)*(v.x - sx) + (v.y - sy)*(v.y - sy)
 			)

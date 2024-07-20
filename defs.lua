@@ -6,7 +6,7 @@ Game.Muted = false
 Game.Volume = 0.5
 Game.FirstTime = true
 Game.Tutorial = false
-Game.Version = "0.0.70"
+Game.Version = "0.0.71"
 
 Game.ShowPath = true
 Game.ShowHitBoxes = true

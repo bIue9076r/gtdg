@@ -59,7 +59,7 @@ end
 
 function LevelScreen:Keypressed(key)
 	LevelScreen.vars.level:Keypressed(key)
-	if key == "return" then
+	if key == "]" then
 		Game.Over = true
 	end
 end

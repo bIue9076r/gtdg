@@ -271,6 +271,7 @@ function Invasion_Level:Update(dt)
 			end
 		end
 		
+		Invasion_Level.Objects:Act()
 		Invasion_Level.Objects:CleanAll()
 	end
 end
@@ -323,22 +324,39 @@ function Invasion_Level:Keypressed(key)
 					t.tower = Towers.new(LevelScreen.vars.sx + Towers.Offset, LevelScreen.vars.sy + Towers.Offset, n)
 					t.tower:Act(Invasion_Level.Path)
 					t.tower:Act(Invasion_Level.Objects)
+					Player.Money = Player.Money - costs[n]
+					playSFX("cash_spend")
 				end
 			else
 				LevelScreen.vars.poor = true
+				playSFX("cash_denied")
 			end
 		end
 	end
 	
 	if LevelScreen.vars.moving then
 		if key == "return" then
-			
+			local t = Invasion_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
 		end
 	end
 	
 	if LevelScreen.vars.destroying then
 		if key == "return" then
+			local t = Invasion_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
 			
+			local costs = {
+				[1] = 50,
+				[2] = 200,
+				[3] = 1000,
+			}
+			
+			if t.tower then
+				local n = tonumber(t.tower.id:sub(-1)) or 1
+				Player.Money = Player.Money + costs[n]
+				t.tower = nil
+				LevelScreen.vars.destroying = false
+				playSFX("cash_get")
+			end
 		end
 	end
 	
