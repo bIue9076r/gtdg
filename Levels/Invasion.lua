@@ -64,10 +64,40 @@ function Invasion_Level:Load()
 	Invasion_Level.Tiles:Set(4,24,false,14)
 	Invasion_Level.Tiles:Set(4,25,false,14)
 	
-	Invasion_Level.Path:Insert(2.5,2.5,0,18.5,1000)
+	Invasion_Level.Path:Insert(2.5,2.5,-2.5,18.5,1000)
 	Invasion_Level.Path:Insert(2.5,36,18.5,18.5,1000)
 	
-	Invasion_Level.Objects:InsertObj(Enemies.new(10,"Coconut"))
+	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 100)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 200)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 300)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 400)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 500)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 600)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 700)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 800)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 900)))
+	
+	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 100)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 200)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 300)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 400)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 500)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 600)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 700)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 800)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 900)))
+	
+	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 100)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 200)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 300)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 400)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 500)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 600)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 700)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 800)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 900)))
+	
+	Invasion_Level.Objects:InsertObj(Enemies.new(1,"Victory",-5000))
 	-- ^ ^ ^ Clean this up later ^ ^ ^ ---
 
 	LevelScreen.vars.sx = 0
@@ -147,10 +177,15 @@ function Invasion_Level:Draw()
 			
 			love.graphics.print({{0,0,0},"Options: "},35,115)
 			love.graphics.print({{0,0,0},"Build - [a]"},35,155)
+			love.graphics.print({{0,0,0},"Destroy - [d]"},35,175)
+			love.graphics.print({{0,0,0},"Deselect - [b]"},35,195)
+			--[[
 			love.graphics.print({{0,0,0},"Move - [s]"},35,175)
 			love.graphics.print({{0,0,0},"Destroy - [d]"},35,195)
 			love.graphics.print({{0,0,0},"Deselect - [b]"},35,215)
+			]]
 		end
+		--[[
 		if LevelScreen.vars.moving then
 			love.graphics.setColor(0,1,1)
 			love.graphics.rectangle("line",
@@ -159,6 +194,7 @@ function Invasion_Level:Draw()
 			)
 			love.graphics.setColor(1,1,1)
 		end
+		]]
 		if LevelScreen.vars.building then
 			-- show building options
 			love.graphics.rectangle("fill",250,25,200,250)
@@ -227,10 +263,12 @@ function Invasion_Level:Update(dt)
 		LevelScreen.vars.sy = math.min(math.max(1,math.floor((500/TileSize)*(y/500)) - 1),(500/TileSize))
 	end
 	
+	--[[
 	if LevelScreen.vars.selected and LevelScreen.vars.moving then
 		LevelScreen.vars.mx = math.min(math.max(1,math.floor((700/TileSize)*(x/700)) - 1),(700/TileSize))
 		LevelScreen.vars.my = math.min(math.max(1,math.floor((500/TileSize)*(y/500)) - 1),(500/TileSize))
 	end
+	]]
 	
 	LevelScreen.vars.lx, LevelScreen.vars.ly = x, y
 	
@@ -252,8 +290,6 @@ function Invasion_Level:Update(dt)
 	end
 	
 	if not Game.Paused then
-		--Invasion_Level.Objects:Lerp(Invasion_Level.Path)
-		
 		for y = 1,(500/TileSize) do
 			for x = 1,(700/TileSize) do
 				local t = Invasion_Level.Tiles:Get(x,y)
@@ -276,9 +312,11 @@ function Invasion_Level:Keypressed(key)
 				LevelScreen.vars.building = true
 			end
 		elseif key == "s" then
+			--[[
 			if (not LevelScreen.vars.building) and (not LevelScreen.vars.destroying) then
 				LevelScreen.vars.moving = true
 			end
+			]]
 		elseif key == "d" then
 			if (not LevelScreen.vars.building) and (not LevelScreen.vars.moving) then
 				LevelScreen.vars.destroying = true
@@ -302,10 +340,6 @@ function Invasion_Level:Keypressed(key)
 		local n = tonumber(key)
 		if n and (n >= 1) and (n <= 3) then
 			local t = Invasion_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
-			print(n,
-				t.obj,
-				t.tower
-			)
 			
 			if Player.Money >= LevelScreen.vars.costs[n] then
 				if not t.tower then
@@ -322,11 +356,20 @@ function Invasion_Level:Keypressed(key)
 		end
 	end
 	
+	--[[
 	if LevelScreen.vars.moving then
 		if key == "return" then
-			local t = Invasion_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
+			local t1 = Invasion_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
+			local t2 = Invasion_Level.Tiles:Get(LevelScreen.vars.mx,LevelScreen.vars.my)
+			if t1.tower and not (t2.tower) then
+				t2.tower = t1.tower
+				t1.tower = nil
+				Invasion_Level.Tiles:Get(LevelScreen.vars.mx,LevelScreen.vars.my)
+				LevelScreen.vars.moving = false
+			end
 		end
 	end
+	]]
 	
 	if LevelScreen.vars.destroying then
 		if key == "return" then
@@ -341,7 +384,7 @@ function Invasion_Level:Keypressed(key)
 		end
 	end
 	
-	if key == "=" then
+	if Game.Debug and key == "=" then
 		Invasion_Level.Objects:InsertObj(
 			Enemies.new(100 * (math.random()),"Coconut")
 		)

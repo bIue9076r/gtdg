@@ -12,7 +12,7 @@ function updateFileDiscription(i)
 				"State: "..(tbl["state"] or ""),
 				"Money: "..(tbl["money"] or ""),
 				"Kills: "..(tbl["kills"] or ""),
-				"Tower Speed: "..(tbl["tower_speed"] or ""),
+				"",
 			}
 		else
 			SaveScreen.vars.SaveSaved[i] = "no"

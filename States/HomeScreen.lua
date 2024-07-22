@@ -231,9 +231,9 @@ function HomeScreen:Keypressed(key)
 		Game.State = ShopScreen
 		Game.State:Load()
 	elseif key == "," then
-		--HomeScreen.vars.Bsound:seek(0)
-		--HomeScreen.vars.Bsound:pause()
-		--Game.State = MenuScreen
-		--Game.State:Load()
+		HomeScreen.vars.Bsound:seek(0)
+		HomeScreen.vars.Bsound:pause()
+		Game.State = MenuScreen
+		Game.State:Load()
 	end
 end

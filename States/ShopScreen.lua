@@ -2,10 +2,10 @@
 
 function ShopScreen:Load()
 	ShopScreen.vars.Items = {
-		"Tower Speed",
-		"Tower Damage",
+		"Tower Timer",
+		"Tower Radius",
 		"Bomb Fuse",
-		"Bomb Damage",
+		"Bomb Radius",
 		"Multi Bullet",
 	}
 	
@@ -20,21 +20,31 @@ function ShopScreen:Load()
 	ShopScreen.vars.ItemFuncs = {}
 	ShopScreen.vars.ItemFuncs[1] = function()
 		ShopScreen.vars.ItemImg = ""
-		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[1]..": Costs $"..(Player.Tower_Speed_Base_Cost + ((Player.Tower_Speed_Level - 1) * Player.Tower_Speed_Upgrade_Cost))
-		ShopScreen.vars.ItemStr2 = sticker.new("Increases tower speed.")
+		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[1]..": Costs $"..(Player.Tower_Timer_Base_Cost + ((Player.Tower_Timer_Level - 1) * Player.Tower_Timer_Upgrade_Cost))
+		ShopScreen.vars.ItemStr2 = sticker.new("Decreases tower timer.")
 		ShopScreen.vars.ItemStr3 = sticker.new("")
-		ShopScreen.vars.ItemStr4 = sticker.new("Current Speed: "..(Player.Tower_Speed))
-		ShopScreen.vars.ItemStr5 = sticker.new("New Speed: "..(Player.Tower_Speed + Player.Tower_Speed_Upgrade))
+		if Player.Tower_Timer_Level <= 8 then
+			ShopScreen.vars.ItemStr4 = sticker.new("Current timer: "..(Player.Tower_Timer))
+			ShopScreen.vars.ItemStr5 = sticker.new("New timer: "..(Player.Tower_Timer + Player.Tower_Timer_Upgrade))
+		else
+			ShopScreen.vars.ItemStr4 = sticker.new("Unavaliable")
+			ShopScreen.vars.ItemStr5 = sticker.new("")
+		end
 		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
 	ShopScreen.vars.ItemFuncs[2] = function()
 		ShopScreen.vars.ItemImg = ""
-		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[2]..": Costs $"..(Player.Tower_Damage_Base_Cost + ((Player.Tower_Damage_Level - 1) * Player.Tower_Damage_Upgrade_Cost))
-		ShopScreen.vars.ItemStr2 = sticker.new("Increases tower damage.")
+		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[2]..": Costs $"..(Player.Tower_Radius_Base_Cost + ((Player.Tower_Radius_Level - 1) * Player.Tower_Radius_Upgrade_Cost))
+		ShopScreen.vars.ItemStr2 = sticker.new("Increases tower radius.")
 		ShopScreen.vars.ItemStr3 = sticker.new("")
-		ShopScreen.vars.ItemStr4 = sticker.new("Current damage: "..(Player.Tower_Damage))
-		ShopScreen.vars.ItemStr5 = sticker.new("New damage: "..(Player.Tower_Damage + Player.Tower_Damage_Upgrade))
+		if Player.Tower_Radius_Level <= 8 then
+			ShopScreen.vars.ItemStr4 = sticker.new("Current radius: "..(Player.Tower_Radius))
+			ShopScreen.vars.ItemStr5 = sticker.new("New radius: "..(Player.Tower_Radius + Player.Tower_Radius_Upgrade))
+		else
+			ShopScreen.vars.ItemStr4 = sticker.new("Unavaliable")
+			ShopScreen.vars.ItemStr5 = sticker.new("")
+		end
 		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
@@ -55,11 +65,16 @@ function ShopScreen:Load()
 	
 	ShopScreen.vars.ItemFuncs[4] = function()
 		ShopScreen.vars.ItemImg = ""
-		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[4]..": Costs $"..(Player.Bomb_Damage_Base_Cost + ((Player.Bomb_Damage_Level - 1) * Player.Bomb_Damage_Upgrade_Cost))
-		ShopScreen.vars.ItemStr2 = sticker.new("Increases bomb damage.")
+		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[4]..": Costs $"..(Player.Bomb_Radius_Base_Cost + ((Player.Bomb_Radius_Level - 1) * Player.Bomb_Radius_Upgrade_Cost))
+		ShopScreen.vars.ItemStr2 = sticker.new("Increases bomb Radius.")
 		ShopScreen.vars.ItemStr3 = sticker.new("")
-		ShopScreen.vars.ItemStr4 = sticker.new("Current damage: "..(Player.Bomb_Damage))
-		ShopScreen.vars.ItemStr5 = sticker.new("New damage: "..(Player.Bomb_Damage + Player.Bomb_Damage_Upgrade))
+		if Player.Bomb_Radius_Level <= 8 then
+			ShopScreen.vars.ItemStr4 = sticker.new("Current Radius: "..(Player.Bomb_Radius))
+			ShopScreen.vars.ItemStr5 = sticker.new("New Radius: "..(Player.Bomb_Radius + Player.Bomb_Radius_Upgrade))
+		else
+			ShopScreen.vars.ItemStr4 = sticker.new("Unavaliable")
+			ShopScreen.vars.ItemStr5 = sticker.new("")
+		end
 		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
@@ -68,8 +83,13 @@ function ShopScreen:Load()
 		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[5]..": Costs $"..(Player.Multi_Tower_Base_Cost + ((Player.Multi_Tower_Level - 1) * Player.Multi_Tower_Upgrade_Cost))
 		ShopScreen.vars.ItemStr2 = sticker.new("Increases number bullets in")
 		ShopScreen.vars.ItemStr3 = sticker.new("multi tower.")
-		ShopScreen.vars.ItemStr4 = sticker.new("Current number: "..(Player.Multi_Tower))
-		ShopScreen.vars.ItemStr5 = sticker.new("New number: "..(Player.Multi_Tower + Player.Multi_Tower_Upgrade))
+		if Player.Multi_Tower_Level <= 8 then
+			ShopScreen.vars.ItemStr4 = sticker.new("Current Number: "..(Player.Multi_Tower))
+			ShopScreen.vars.ItemStr5 = sticker.new("New Number: "..(Player.Multi_Tower + Player.Multi_Tower_Upgrade))
+		else
+			ShopScreen.vars.ItemStr4 = sticker.new("Unavaliable")
+			ShopScreen.vars.ItemStr5 = sticker.new("")
+		end
 		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
@@ -208,7 +228,7 @@ function ShopScreen:Keypressed(key)
 		playSFX("option_moved")
 	elseif key == "return" then
 		if ShopScreen.vars.Pick then
-			playSFX("item_bought")
+			playSFX("cash_spend")
 		else
 			if not (ShopScreen.vars.SelectLast == 0) then
 				ShopScreen.vars.ItemFuncs[ShopScreen.vars.Select]()

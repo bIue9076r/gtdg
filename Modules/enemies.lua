@@ -1,15 +1,26 @@
 Enemies = {}
 
-function Enemies.new(hp,t)
-	hp = hp or 10
-	t = t or "Coconut"
-	local o = Object.new(0,0,hp,t,t)
+function Enemies.new(hp,ty,t)
+	hp = hp or 100
+	ty = ty or "Coconut"
+	t = t or 0
+	local o = Object.new(0,0,hp,ty,ty)
+	if ty == "Victory" then
+		o.img = 1
+	end
 	
+	o.t:set(t)
 	o.Act = function(self,Lvl)
 		local of = self:Lerp(Lvl.Path)
 		if self.t:get() > of then
-			Lvl.Damage = Lvl.Damage + self.hp
-			self.hp = 0
+			if not (self.id == "Victory") then
+				Lvl.Damage = Lvl.Damage + self.hp
+				self.hp = 0
+			else
+				Game.Over = true
+				Game.Victory = true
+				AddCash(1000)
+			end
 		end
 	end
 	

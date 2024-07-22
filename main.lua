@@ -62,37 +62,37 @@ love.graphics.setFont(
 )
 
 Player = {}
-Player.Money = 2000
+Player.Money = 300
 Player.Kills = 0
 
-Player.Tower_Speed = 10
-Player.Tower_Damage = 15
+Player.Tower_Timer = 5
+Player.Tower_Radius = 5
 Player.Bomb_Fuse = 100
-Player.Bomb_Damage = 150
+Player.Bomb_Radius = 15
 Player.Multi_Tower = 2
 
-Player.Tower_Speed_Level = 1
-Player.Tower_Damage_Level = 1
+Player.Tower_Timer_Level = 1
+Player.Tower_Radius_Level = 1
 Player.Bomb_Fuse_Level = 1
-Player.Bomb_Damage_Level = 1
+Player.Bomb_Radius_Level = 1
 Player.Multi_Tower_Level = 1
 
-Player.Tower_Speed_Base_Cost = 3000
-Player.Tower_Damage_Base_Cost = 3000
+Player.Tower_Timer_Base_Cost = 3000
+Player.Tower_Radius_Base_Cost = 3000
 Player.Bomb_Fuse_Base_Cost = 3000
-Player.Bomb_Damage_Base_Cost = 3000
+Player.Bomb_Radius_Base_Cost = 3000
 Player.Multi_Tower_Base_Cost = 3000
 
-Player.Tower_Speed_Upgrade_Cost = 1000
-Player.Tower_Damage_Upgrade_Cost = 1000
+Player.Tower_Timer_Upgrade_Cost = 1000
+Player.Tower_Radius_Upgrade_Cost = 1000
 Player.Bomb_Fuse_Upgrade_Cost = 1000
-Player.Bomb_Damage_Upgrade_Cost = 1000
+Player.Bomb_Radius_Upgrade_Cost = 1000
 Player.Multi_Tower_Upgrade_Cost = 1000
 
-Player.Tower_Speed_Upgrade = 5
-Player.Tower_Damage_Upgrade = 15
+Player.Tower_Timer_Upgrade = -0.5
+Player.Tower_Radius_Upgrade = 2.5
 Player.Bomb_Fuse_Upgrade = -10
-Player.Bomb_Damage_Upgrade = 50
+Player.Bomb_Radius_Upgrade = 5
 Player.Multi_Tower_Upgrade = 1
 
 function AddCash(n)
@@ -181,15 +181,15 @@ function saveGame(file)
 	file:NewField("state",tostring(Game.State.Id))
 	file:NewField("money",tostring(Player.Money))
 	file:NewField("kills",tostring(Player.Kills))
-	file:NewField("tower_speed",tostring(Player.Tower_Speed))
-	file:NewField("tower_damage",tostring(Player.Tower_Damage))
+	file:NewField("tower_timer",tostring(Player.Tower_Timer))
+	file:NewField("tower_radius",tostring(Player.Tower_Radius))
 	file:NewField("bomb_fuse",tostring(Player.Bomb_Fuse))
-	file:NewField("bomb_damage",tostring(Player.Bomb_Damage))
+	file:NewField("bomb_radius",tostring(Player.Bomb_Radius))
 	file:NewField("multi_tower",tostring(Player.Multi_Tower))
-	file:NewField("tower_speed_level",tostring(Player.Tower_Speed_Level))
-	file:NewField("tower_damage_level",tostring(Player.Tower_Damage_Level))
+	file:NewField("tower_timer_level",tostring(Player.Tower_Timer_Level))
+	file:NewField("tower_radius_level",tostring(Player.Tower_Radius_Level))
 	file:NewField("bomb_fuse_level",tostring(Player.Bomb_Fuse_Level))
-	file:NewField("bomb_damage_level",tostring(Player.Bomb_Damage_Level))
+	file:NewField("bomb_radius_level",tostring(Player.Bomb_Radius_Level))
 	file:NewField("multi_tower_level",tostring(Player.Multi_Tower_Level))
 	dQSave(50)
 end
@@ -209,18 +209,18 @@ function loadGame(file)
 			Game.State:Load(lv)
 		end
 		
-		Player.Money = tbl["money"] or Player.Money
-		Player.Kills = tbl["kills"] or Player.Kills
-		Player.Tower_Speed = tbl["tower_speed"] or Player.Tower_Speed
-		Player.Tower_Damage = tbl["tower_damage"] or Player.Tower_Damage
-		Player.Bomb_Fuse = tbl["bomb_fuse"] or Player.Bomb_Fuse
-		Player.Bomb_Damage = tbl["bomb_damage"] or Player.Bomb_Damage
-		Player.Multi_Tower = tbl["multi_tower"] or Player.Multi_Tower
-		Player.Tower_Speed_Level = tbl["tower_speed_level"] or Player.Tower_Speed_Level
-		Player.Tower_Damage_Level = tbl["tower_damage_level"] or Player.Tower_Damage_Level
-		Player.Bomb_Fuse_Level = tbl["bomb_fuse_level"] or Player.Bomb_Fuse_Level
-		Player.Bomb_Damage_Level = tbl["bomb_damage_level"] or Player.Bomb_Damage_Level
-		Player.Multi_Tower_Level = tbl["multi_tower_level"] or Player.Multi_Tower_Level
+		Player.Money = tonumber(tbl["money"]) or Player.Money
+		Player.Kills = tonumber(tbl["kills"]) or Player.Kills
+		Player.Tower_Timer = tonumber(tbl["tower_timer"]) or Player.Tower_Timer
+		Player.Tower_Radius = tonumber(tbl["tower_radius"]) or Player.Tower_Radius
+		Player.Bomb_Fuse = tonumber(tbl["bomb_fuse"]) or Player.Bomb_Fuse
+		Player.Bomb_Radius = tonumber(tbl["bomb_radius"]) or Player.Bomb_Radius
+		Player.Multi_Tower = tonumber(tbl["multi_tower"]) or Player.Multi_Tower
+		Player.Tower_Timer_Level = tonumber(tbl["tower_timer_level"]) or Player.Tower_Timer_Level
+		Player.Tower_Radius_Level = tonumber(tbl["tower_radius_level"]) or Player.Tower_Radius_Level
+		Player.Bomb_Fuse_Level = tonumber(tbl["bomb_fuse_level"]) or Player.Bomb_Fuse_Level
+		Player.Bomb_Radius_Level = tonumber(tbl["bomb_radius_level"]) or Player.Bomb_Radius_Level
+		Player.Multi_Tower_Level = tonumber(tbl["multi_tower_level"]) or Player.Multi_Tower_Level
 	else
 		print(e)
 	end
