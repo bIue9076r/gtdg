@@ -4,6 +4,11 @@ Object.hp = 0
 Object.x = 0
 Object.y = 0
 Object.s = 0
+Object.c = {
+	r = 0,
+	g = 0,
+	b = 0,
+}
 Object.t = ticker.new()
 Object.id = "Type"
 Object.vars = {}
@@ -13,6 +18,7 @@ function Object.new(x,y,hp,img,id)
 		x = x or 0,
 		y = y or 0,
 		s = TileSize,
+		c = {r=0,g=0,b=0},
 		hp = hp or 0,
 		img = img or "",
 		id = tostring(id) or "Object",
@@ -38,19 +44,32 @@ end
 
 function Object:Draw()
 	if self.hp > 0 then
-		love.graphics.draw(
-			files.assets.Textures.getImage(self.img),
-			self.x,
-			self.y
-		)
+		if not (self.img == "") then
+			love.graphics.draw(
+				files.assets.Textures.getImage(self.img),
+				(self.x + 1)*TileSize,
+				(self.y + 1)*TileSize
+			)
+		else
+			local c = 1 * (self.hp/100)
+			self.c = {r=c,g=c,b=c}
+			love.graphics.setColor(self.c.r,self.c.g,self.c.b)
+			love.graphics.rectangle("fill",
+				(self.x + 1)*TileSize,
+				(self.y + 1)*TileSize,
+				self.s,self.s
+			)
+			love.graphics.setColor(1,1,1)
+		end
 	end
 end
 
 function Object:Lerp(PT)
-	local c = PT:Lerp(self.t:get())
+	local c, o = PT:Lerp(self.t:get())
 	self.x = c.x
 	self.y = c.y
 	self.t()
+	return o
 end
 
 
@@ -77,6 +96,22 @@ function ObjectTable:InsertObj(obj)
 	table.insert(self.tbl,obj)
 end
 
+function ObjectTable:Draw(Id)
+	Id = Id or "Coconut"
+	for i,v in pairs(self.tbl) do
+		if v.id == Id then
+			self.tbl[i]:Draw()
+		end
+	end
+end
+
+function ObjectTable:DrawAll()
+	for i,v in pairs(self.tbl) do
+		self.tbl[i]:Draw()
+	end
+end
+
+--[[
 function ObjectTable:Lerp(PT,Id)
 	Id = Id or "Coconut"
 	for i,v in pairs(self.tbl) do
@@ -91,6 +126,7 @@ function ObjectTable:LerpAll(PT)
 		self.tbl[i]:Lerp(PT)
 	end
 end
+]]
 
 function ObjectTable:Clean(Id)
 	Id = Id or "Coconut"
@@ -109,18 +145,18 @@ function ObjectTable:CleanAll()
 	end
 end
 
-function ObjectTable:Act(Id)
+function ObjectTable:Act(Id,Arg1)
 	Id = Id or "bullet"
 	for i,v in pairs(self.tbl) do
 		if v.id == Id then
-			self.tbl[i]:Act()
+			self.tbl[i]:Act(Arg1)
 		end
 	end
 end
 
-function ObjectTable:ActAll()
+function ObjectTable:ActAll(Arg1)
 	for i,v in pairs(self.tbl) do
-		self.tbl[i]:Act()
+		self.tbl[i]:Act(Arg1)
 	end
 end
 

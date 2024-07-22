@@ -1,7 +1,16 @@
 -- Level Screen State
 
 function LevelScreen:Load(l)
-	LevelScreen.vars.Bsound = files.assets.Audio.getSound("level")
+	LevelScreen.vars.Bsoundn = math.random(1,2)
+	LevelScreen.vars.Bsoundl = LevelScreen.vars.Bsoundn
+	LevelScreen.vars.Bsounds = {
+		[1] = "",
+		[2] = "2"
+	}
+	
+	LevelScreen.vars.Bsound = files.assets.Audio.getSound(
+		"level"..LevelScreen.vars.Bsounds[LevelScreen.vars.Bsoundn]
+	)
 	LevelScreen.vars.ntos = {
 		[1] = "d",
 		[2] = "d",
@@ -33,6 +42,17 @@ function LevelScreen:Draw()
 	end)
 	
 	if not Game.muted then
+		if not LevelScreen.vars.Bsound:isPlaying() then
+			repeat
+				LevelScreen.vars.Bsoundn = math.random(1,2)
+			until not(LevelScreen.vars.Bsoundn == LevelScreen.vars.Bsoundl)
+			
+			LevelScreen.vars.Bsoundl = LevelScreen.vars.Bsoundn
+			LevelScreen.vars.Bsound = files.assets.Audio.getSound(
+				"level"..LevelScreen.vars.Bsounds[LevelScreen.vars.Bsoundn]
+			)
+		end
+		
 		LevelScreen.vars.Bsound:play()
 	else
 		LevelScreen.vars.Bsound:pause()
@@ -42,6 +62,10 @@ end
 
 function LevelScreen:Update(dt)
 	LevelScreen.vars.level:Update(dt)
+	
+	if LevelScreen.vars.level.Damage >= LevelScreen.vars.level.MaxDamage then
+		Game.Over = true
+	end
 	
 	if Game.Over then
 		LevelScreen.vars.Bsound:seek(0)

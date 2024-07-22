@@ -127,7 +127,8 @@ function HomeScreen:Draw()
 			love.graphics.setColor(1,1,1)
 			
 			love.graphics.print({{0,0,0},"Options:"},300,420)
-			love.graphics.print({{0,0,0},"Shop: [m]  Menu: [,]  Back [n]"},300,440)
+			love.graphics.print({{0,0,0},"Shop: [m]  Back [n]"},300,440)
+			--love.graphics.print({{0,0,0},"Shop: [m]  Menu: [,]  Back [n]"},300,440)
 		end
 	end)
 	
@@ -230,9 +231,9 @@ function HomeScreen:Keypressed(key)
 		Game.State = ShopScreen
 		Game.State:Load()
 	elseif key == "," then
-		HomeScreen.vars.Bsound:seek(0)
-		HomeScreen.vars.Bsound:pause()
-		Game.State = MenuScreen
-		Game.State:Load()
+		--HomeScreen.vars.Bsound:seek(0)
+		--HomeScreen.vars.Bsound:pause()
+		--Game.State = MenuScreen
+		--Game.State:Load()
 	end
 end

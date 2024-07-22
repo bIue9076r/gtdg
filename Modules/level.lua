@@ -2,6 +2,8 @@ Level = {}
 Level.name = ""
 Level.Path = PathTable.new()
 Level.Tiles = TileTable.new()
+Level.Damage = 0
+Level.MaxDamage = 1000
 
 function Level.new(n)
 	local tbl = {

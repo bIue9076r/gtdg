@@ -1,80 +1,87 @@
 Invasion_Level = Level.new("Invasion")
-Invasion_Level.Tiles = TileTable.new((700/TileSize),(500/TileSize))
-Invasion_Level.Objects = ObjectTable.new()
-Invasion_Level.Path = PathTable.new()
-
-for i = 1,(500/TileSize) do
-	for j = 1,(700/TileSize) do
-		Invasion_Level.Tiles(false,14)
-	end
-end
-
--- Cue the Level Design
-for i = 1,(500/TileSize) do
-	Invasion_Level.Tiles:Set(1,i,true,1)
-	Invasion_Level.Tiles:Set(2,i,true,1)
-	Invasion_Level.Tiles:Set(3,i,true,1)
-	Invasion_Level.Tiles:Set(4,i,true,3)
-end
-
-for j = 5,(700/TileSize) do
-	Invasion_Level.Tiles:Set(j,17,true,5)
-	Invasion_Level.Tiles:Set(j,18,true,1)
-	Invasion_Level.Tiles:Set(j,19,true,4)
-end
-
-Invasion_Level.Tiles:Set(4,17,true,9)
-Invasion_Level.Tiles:Set(4,18,true,1)
-Invasion_Level.Tiles:Set(4,19,true,7)
-
-Invasion_Level.Tiles:Set(3,19,true,4)
-Invasion_Level.Tiles:Set(2,19,true,4)
-Invasion_Level.Tiles:Set(1,19,true,4)
-
-Invasion_Level.Tiles:Set(2,18,true,1)
-Invasion_Level.Tiles:Set(4,19,true,4)
-
-Invasion_Level.Tiles:Set(1,20,false,14)
-Invasion_Level.Tiles:Set(1,21,false,14)
-Invasion_Level.Tiles:Set(1,22,false,14)
-Invasion_Level.Tiles:Set(1,23,false,14)
-Invasion_Level.Tiles:Set(1,24,false,14)
-Invasion_Level.Tiles:Set(1,25,false,14)
-
-Invasion_Level.Tiles:Set(2,20,false,14)
-Invasion_Level.Tiles:Set(2,21,false,14)
-Invasion_Level.Tiles:Set(2,22,false,14)
-Invasion_Level.Tiles:Set(2,23,false,14)
-Invasion_Level.Tiles:Set(2,24,false,14)
-Invasion_Level.Tiles:Set(2,25,false,14)
-
-Invasion_Level.Tiles:Set(3,20,false,14)
-Invasion_Level.Tiles:Set(3,21,false,14)
-Invasion_Level.Tiles:Set(3,22,false,14)
-Invasion_Level.Tiles:Set(3,23,false,14)
-Invasion_Level.Tiles:Set(3,24,false,14)
-Invasion_Level.Tiles:Set(3,25,false,14)
-
-Invasion_Level.Tiles:Set(4,20,false,14)
-Invasion_Level.Tiles:Set(4,21,false,14)
-Invasion_Level.Tiles:Set(4,22,false,14)
-Invasion_Level.Tiles:Set(4,23,false,14)
-Invasion_Level.Tiles:Set(4,24,false,14)
-Invasion_Level.Tiles:Set(4,25,false,14)
-
-Invasion_Level.Path:Insert(2.5,2.5,0,18.5,1000)
-Invasion_Level.Path:Insert(2.5,36,18.5,18.5,1000)
-
-Invasion_Level.Objects:Insert(0,0,10,"Coconut","Coconut")
-
--- ^ ^ ^ Clean this up later ^ ^ ^ ---
 
 function Invasion_Level:Load()
+	Invasion_Level.Tiles = TileTable.new((700/TileSize),(500/TileSize))
+	Invasion_Level.Objects = ObjectTable.new()
+	Invasion_Level.Path = PathTable.new()
+	
+	for i = 1,(500/TileSize) do
+		for j = 1,(700/TileSize) do
+			Invasion_Level.Tiles(false,14)
+		end
+	end
+	
+	-- Cue the Level Design
+	for i = 1,(500/TileSize) do
+		Invasion_Level.Tiles:Set(1,i,true,1)
+		Invasion_Level.Tiles:Set(2,i,true,1)
+		Invasion_Level.Tiles:Set(3,i,true,1)
+		Invasion_Level.Tiles:Set(4,i,true,3)
+	end
+	
+	for j = 5,(700/TileSize) do
+		Invasion_Level.Tiles:Set(j,17,true,5)
+		Invasion_Level.Tiles:Set(j,18,true,1)
+		Invasion_Level.Tiles:Set(j,19,true,4)
+	end
+	
+	Invasion_Level.Tiles:Set(4,17,true,9)
+	Invasion_Level.Tiles:Set(4,18,true,1)
+	Invasion_Level.Tiles:Set(4,19,true,7)
+	
+	Invasion_Level.Tiles:Set(3,19,true,4)
+	Invasion_Level.Tiles:Set(2,19,true,4)
+	Invasion_Level.Tiles:Set(1,19,true,4)
+	
+	Invasion_Level.Tiles:Set(2,18,true,1)
+	Invasion_Level.Tiles:Set(4,19,true,4)
+	
+	Invasion_Level.Tiles:Set(1,20,false,14)
+	Invasion_Level.Tiles:Set(1,21,false,14)
+	Invasion_Level.Tiles:Set(1,22,false,14)
+	Invasion_Level.Tiles:Set(1,23,false,14)
+	Invasion_Level.Tiles:Set(1,24,false,14)
+	Invasion_Level.Tiles:Set(1,25,false,14)
+	
+	Invasion_Level.Tiles:Set(2,20,false,14)
+	Invasion_Level.Tiles:Set(2,21,false,14)
+	Invasion_Level.Tiles:Set(2,22,false,14)
+	Invasion_Level.Tiles:Set(2,23,false,14)
+	Invasion_Level.Tiles:Set(2,24,false,14)
+	Invasion_Level.Tiles:Set(2,25,false,14)
+	
+	Invasion_Level.Tiles:Set(3,20,false,14)
+	Invasion_Level.Tiles:Set(3,21,false,14)
+	Invasion_Level.Tiles:Set(3,22,false,14)
+	Invasion_Level.Tiles:Set(3,23,false,14)
+	Invasion_Level.Tiles:Set(3,24,false,14)
+	Invasion_Level.Tiles:Set(3,25,false,14)
+	
+	Invasion_Level.Tiles:Set(4,20,false,14)
+	Invasion_Level.Tiles:Set(4,21,false,14)
+	Invasion_Level.Tiles:Set(4,22,false,14)
+	Invasion_Level.Tiles:Set(4,23,false,14)
+	Invasion_Level.Tiles:Set(4,24,false,14)
+	Invasion_Level.Tiles:Set(4,25,false,14)
+	
+	Invasion_Level.Path:Insert(2.5,2.5,0,18.5,1000)
+	Invasion_Level.Path:Insert(2.5,36,18.5,18.5,1000)
+	
+	Invasion_Level.Objects:InsertObj(Enemies.new(10,"Coconut"))
+	-- ^ ^ ^ Clean this up later ^ ^ ^ ---
+
 	LevelScreen.vars.sx = 0
 	LevelScreen.vars.sy = 0
 	LevelScreen.vars.lx = 0
 	LevelScreen.vars.ly = 0
 	
+	LevelScreen.vars.costs = {
+		[1] = 100,
+		[2] = 400,
+		[3] = 2000,
+	}
+	
+	Invasion_Level.Damage = 0
 	LevelScreen.vars.selected = false
 	LevelScreen.vars.building = false
 	LevelScreen.vars.poor = false
@@ -85,8 +92,10 @@ end
 
 function Invasion_Level:Draw()
 	LevelScreen.Window.back:put(function()
-		love.graphics.rectangle("fill",650,10,135,30)
-		love.graphics.print({{0,0.8,0},"Cash: $"..(Player.Money)},660,20)
+		love.graphics.rectangle("fill",380,10,135,30)
+		love.graphics.print({{0,0.8,0},"Cash: $"..(Player.Money)},390,20)
+		love.graphics.rectangle("fill",515,10,185,30)
+		love.graphics.print({{0,0,0},"Damage: "..math.floor(Invasion_Level.Damage).."/"..(Invasion_Level.MaxDamage)},525,20)
 		
 		love.graphics.rectangle("line",50,50,700,500)
 		
@@ -101,11 +110,7 @@ function Invasion_Level:Draw()
 				)
 				
 				if t.tower then
-					love.graphics.rectangle("fill",
-						50 + ((t.tower.x - (1 + Towers.Offset)) * TileSize),
-						50 + ((t.tower.y - (1 + Towers.Offset)) * TileSize),
-						TileSize, TileSize
-					)
+					t.tower:Draw()
 				end
 			end
 		end
@@ -158,9 +163,9 @@ function Invasion_Level:Draw()
 			-- show building options
 			love.graphics.rectangle("fill",250,25,200,250)
 			love.graphics.print({{0,0,0},"Towers:"},260,35)
-			love.graphics.print({{0,0,0},"[1] $50: Basic"},260,75)
-			love.graphics.print({{0,0,0},"[2] $200: Bomb"},260,95)
-			love.graphics.print({{0,0,0},"[3] $1000: Mega"},260,115)
+			love.graphics.print({{0,0,0},"[1] $"..(LevelScreen.vars.costs[1])..": Basic"},260,75)
+			love.graphics.print({{0,0,0},"[2] $"..(LevelScreen.vars.costs[2])..": Bomb"},260,95)
+			love.graphics.print({{0,0,0},"[3] $"..(LevelScreen.vars.costs[3])..": Mega"},260,115)
 			
 			if LevelScreen.vars.poor then
 				love.graphics.rectangle("fill",250,25,200,250)
@@ -210,18 +215,7 @@ function Invasion_Level:Draw()
 	end)
 	
 	LevelScreen.Window.fore:put(function()
-		for i,v in pairs(Invasion_Level.Objects.tbl) do
-			if v.hp > 0 then
-				local c = 1 * (v.hp/100)
-				love.graphics.setColor(c,c,c)
-				love.graphics.rectangle("fill",
-					(v.x + 1)*TileSize,
-					(v.y + 1)*TileSize,
-					v.s,v.s
-				)
-				love.graphics.setColor(1,1,1)
-			end
-		end
+		Invasion_Level.Objects:DrawAll()
 	end)
 end
 
@@ -258,7 +252,7 @@ function Invasion_Level:Update(dt)
 	end
 	
 	if not Game.Paused then
-		Invasion_Level.Objects:Lerp(Invasion_Level.Path)
+		--Invasion_Level.Objects:Lerp(Invasion_Level.Path)
 		
 		for y = 1,(500/TileSize) do
 			for x = 1,(700/TileSize) do
@@ -269,7 +263,7 @@ function Invasion_Level:Update(dt)
 			end
 		end
 		
-		Invasion_Level.Objects:Act()
+		Invasion_Level.Objects:ActAll(Invasion_Level)
 		Invasion_Level.Objects:CleanAll()
 	end
 end
@@ -313,18 +307,12 @@ function Invasion_Level:Keypressed(key)
 				t.tower
 			)
 			
-			local costs = {
-				[1] = 50,
-				[2] = 200,
-				[3] = 1000,
-			}
-			
-			if Player.Money >= costs[n] then
+			if Player.Money >= LevelScreen.vars.costs[n] then
 				if not t.tower then
 					t.tower = Towers.new(LevelScreen.vars.sx + Towers.Offset, LevelScreen.vars.sy + Towers.Offset, n)
 					t.tower:Act(Invasion_Level.Path)
 					t.tower:Act(Invasion_Level.Objects)
-					Player.Money = Player.Money - costs[n]
+					Player.Money = Player.Money - LevelScreen.vars.costs[n]
 					playSFX("cash_spend")
 				end
 			else
@@ -343,16 +331,9 @@ function Invasion_Level:Keypressed(key)
 	if LevelScreen.vars.destroying then
 		if key == "return" then
 			local t = Invasion_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
-			
-			local costs = {
-				[1] = 50,
-				[2] = 200,
-				[3] = 1000,
-			}
-			
 			if t.tower then
 				local n = tonumber(t.tower.id:sub(-1)) or 1
-				Player.Money = Player.Money + costs[n]
+				Player.Money = Player.Money + LevelScreen.vars.costs[n]
 				t.tower = nil
 				LevelScreen.vars.destroying = false
 				playSFX("cash_get")
@@ -361,7 +342,9 @@ function Invasion_Level:Keypressed(key)
 	end
 	
 	if key == "=" then
-		Invasion_Level.Objects:Insert(0,0,100 * (math.random()),"Coconut","Coconut")
+		Invasion_Level.Objects:InsertObj(
+			Enemies.new(100 * (math.random()),"Coconut")
+		)
 	end
 end
 

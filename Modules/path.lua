@@ -58,7 +58,7 @@ function PathTable:Lerp(t)
 		end
 	end
 	
-	return self.tbl[f](t,n)
+	return self.tbl[f](t,n), c
 end
 
 function PathTable:GetClosest(Obj)

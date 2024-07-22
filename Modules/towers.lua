@@ -8,6 +8,14 @@ function Towers.new(x,y,t)
 	)
 	
 	o.Act = Towers[t].Act
+	o.Draw = function(self)
+		love.graphics.draw(
+			files.assets.Textures.getImage(self.img),
+			50 + ((self.x - (1 + Towers.Offset)) * TileSize),
+			50 + ((self.y - (1 + Towers.Offset)) * TileSize)
+		)
+	end
+	
 	return o
 end
 
@@ -28,12 +36,14 @@ Towers[1].Act = function(self,pathTbl)
 	self.vars.radius = 6
 	self.vars.damage = 10
 	self.vars.cooldown = secondsToTicks(2)
+	self.vars.bonus = self.vars.damage * 5
 	self.Act = function(self,objTbl)
 		-- main loop
 		local o,d = objTbl:GetClosestId(self)
 		if o and d and d < self.vars.radius then
 			if self.t:get() >= self.vars.cooldown then
 				o:Hit(self.vars.damage)
+				AddCash(self.vars.bonus)
 				self.t:set(0)
 				
 				-- create bullet object

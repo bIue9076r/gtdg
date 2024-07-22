@@ -8,6 +8,7 @@ require("/Modules/state")
 require("/Modules/path")
 require("/Modules/object")
 require("/Modules/tile")
+require("/Modules/enemies")
 require("/Modules/bullet")
 require("/Modules/towers")
 require("/Modules/level")
@@ -15,6 +16,7 @@ require("/defs")
 
 files.assets.Fonts.newFont("hex-sans-serif","/Assets/hex-sans-serif.ttf",13)
 files.assets.Fonts.newFont("hex-sans-serif-26","/Assets/hex-sans-serif.ttf",26)
+files.assets.Textures.newImage(1,"/Assets/blank.png")
 files.assets.Textures.newImage("title","/Assets/title.png")
 files.assets.Textures.newImage("back-d","/Assets/background_day.png")
 files.assets.Textures.newImage("back-e","/Assets/background_evening.png")
@@ -42,13 +44,18 @@ files.assets.Textures.newImage("shore_CTL_20","/Assets/shore_CTL_20.png")
 files.assets.Textures.newImage("shore_CTR_20","/Assets/shore_CTR_20.png")
 files.assets.Textures.newImage("sand_20","/Assets/sand_20.png")
 
+files.assets.Textures.newImage("Coconut","/Assets/Coconut.png")
+files.assets.Textures.newImage("bullet","/Assets/bullet.png")
+files.assets.Textures.newImage("tower1","/Assets/tower1.png")
+files.assets.Textures.newImage("tower2","/Assets/tower2.png")
+files.assets.Textures.newImage("tower3","/Assets/tower3.png")
 
 files.assets.Audio.new("title","/Assets/intro.mp3","stream")
 files.assets.Audio.new("level","/Assets/level.mp3","stream")
+files.assets.Audio.new("level2","/Assets/level2.mp3","stream")
 files.assets.Audio.new("menu","/Assets/menu.mp3","stream")
 files.assets.Audio.new("shop","/Assets/shop.mp3","stream")
 files.assets.Audio.new("save","/Assets/save.mp3","stream")
-files.assets.Audio.new("home","/Assets/level2.mp3","stream")
 
 love.graphics.setFont(
 	files.assets.Fonts.getFont("hex-sans-serif")
@@ -87,6 +94,21 @@ Player.Tower_Damage_Upgrade = 15
 Player.Bomb_Fuse_Upgrade = -10
 Player.Bomb_Damage_Upgrade = 50
 Player.Multi_Tower_Upgrade = 1
+
+function AddCash(n)
+	Player.Money = Player.Money + n
+	playSFX("cash_get")
+end
+
+function SubCash(n)
+	if Player.Money - n < 0 then
+		Player.Money = Player.Money - n
+		playSFX("cash_spend")
+		return false
+	end
+	playSFX("cash_denied")
+	return true
+end
 
 require("/States/LoadScreen")
 require("/States/HomeScreen")
