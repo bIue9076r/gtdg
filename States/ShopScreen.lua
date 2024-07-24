@@ -93,6 +93,62 @@ function ShopScreen:Load()
 		ShopScreen.vars.ItemStr6 = sticker.new("")
 	end
 	
+	ShopScreen.vars.ItemBuyFuncs = {}
+	ShopScreen.vars.ItemBuyFuncs[1] = function()
+		if Player.Money >= (Player.Tower_Timer_Base_Cost + ((Player.Tower_Timer_Level - 1) * Player.Tower_Timer_Upgrade_Cost)) then
+			Player.Money = Player.Money - (Player.Tower_Timer_Base_Cost + ((Player.Tower_Timer_Level - 1) * Player.Tower_Timer_Upgrade_Cost))
+			Player.Tower_Timer_Level = Player.Tower_Timer_Level + 1
+			Player.Tower_Timer = Player.Tower_Timer + Player.Tower_Timer_Upgrade
+			playSFX("cash_spend")
+		else
+			playSFX("cash_denied")
+		end
+	end
+	
+	ShopScreen.vars.ItemBuyFuncs[2] = function()
+		if Player.Money >= (Player.Tower_Radius_Base_Cost + ((Player.Tower_Radius_Level - 1) * Player.Tower_Radius_Upgrade_Cost)) then
+			Player.Money = Player.Money - (Player.Tower_Radius_Base_Cost + ((Player.Tower_Radius_Level - 1) * Player.Tower_Radius_Upgrade_Cost))
+			Player.Tower_Radius_Level = Player.Tower_Radius_Level + 1
+			Player.Tower_Radius = Player.Tower_Radius + Player.Tower_Radius_Upgrade
+			playSFX("cash_spend")
+		else
+			playSFX("cash_denied")
+		end
+	end
+	
+	ShopScreen.vars.ItemBuyFuncs[3] = function()
+		if Player.Money >= (Player.Bomb_Fuse_Base_Cost + ((Player.Bomb_Fuse_Level - 1) * Player.Bomb_Fuse_Upgrade_Cost)) then
+			Player.Money = Player.Money - (Player.Bomb_Fuse_Base_Cost + ((Player.Bomb_Fuse_Level - 1) * Player.Bomb_Fuse_Upgrade_Cost))
+			Player.Bomb_Fuse_Level = Player.Bomb_Fuse_Level + 1
+			Player.Bomb_Fuse = Player.Bomb_Fuse + Player.Bomb_Fuse_Upgrade
+			playSFX("cash_spend")
+		else
+			playSFX("cash_denied")
+		end
+	end
+	
+	ShopScreen.vars.ItemBuyFuncs[4] = function()
+		if Player.Money >= (Player.Bomb_Radius_Base_Cost + ((Player.Bomb_Radius_Level - 1) * Player.Bomb_Radius_Upgrade_Cost)) then
+			Player.Money = Player.Money - (Player.Bomb_Radius_Base_Cost + ((Player.Bomb_Radius_Level - 1) * Player.Bomb_Radius_Upgrade_Cost))
+			Player.Bomb_Radius_Level = Player.Bomb_Radius_Level + 1
+			Player.Bomb_Radius = Player.Bomb_Radius + Player.Bomb_Radius_Upgrade
+			playSFX("cash_spend")
+		else
+			playSFX("cash_denied")
+		end
+	end
+	
+	ShopScreen.vars.ItemBuyFuncs[5] = function()
+		if Player.Money >= (Player.Multi_Tower_Base_Cost + ((Player.Multi_Tower_Level - 1) * Player.Multi_Tower_Upgrade_Cost)) then
+			Player.Money = Player.Money - (Player.Multi_Tower_Base_Cost + ((Player.Multi_Tower_Level - 1) * Player.Multi_Tower_Upgrade_Cost))
+			Player.Multi_Tower_Level = Player.Multi_Tower_Level + 1
+			Player.Multi_Tower = Player.Multi_Tower + Player.Multi_Tower_Upgrade
+			playSFX("cash_spend")
+		else
+			playSFX("cash_denied")
+		end
+	end
+	
 	ShopScreen.vars.Pick = false
 	ShopScreen.vars.Select = 1
 	ShopScreen.vars.SelectLast = 0
@@ -228,7 +284,7 @@ function ShopScreen:Keypressed(key)
 		playSFX("option_moved")
 	elseif key == "return" then
 		if ShopScreen.vars.Pick then
-			playSFX("cash_spend")
+			ShopScreen.vars.ItemBuyFuncs[ShopScreen.vars.Select]()
 		else
 			if not (ShopScreen.vars.SelectLast == 0) then
 				ShopScreen.vars.ItemFuncs[ShopScreen.vars.Select]()
