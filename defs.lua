@@ -7,7 +7,7 @@ Game.Volume = 0.5
 Game.FirstTime = true
 Game.Tutorial = false
 Game.Debug = false--true
-Game.Version = "0.0.76"
+Game.Version = "0.0.77"
 
 Game.ShowPath = false--true
 Game.ShowHitBoxes = false--true
@@ -16,6 +16,8 @@ Game.Over = false
 Game.Victory = false
 
 TileSize = 20
+Tile_Y = (500/TileSize)
+Tile_X = (700/TileSize)
 
 LoadScreen = State.new(1)
 HomeScreen = State.new(2)
@@ -52,10 +54,6 @@ LevelTiles = {
 	[14] = "sand_20",
 }
 
-SoundSFX = {
-	[1] = "title"
-}
-
 function isKeyUp(key)
 	return ((key == "up") or (key == "w"))
 end
@@ -80,13 +78,17 @@ function secondsToTicks(s)
 	return (s/love.timer.getAverageDelta())
 end
 
+function isInside(x,y)
+	return (x >= 0) and (y >= 0) and (x <= Tile_X) and (y <= Tile_Y)
+end
+
 function playSFX(n)
-	print(n) -- TODO: Sfx
-	--local s = files.assets.Audio.getSound(SoundSFX[n or 1])
+	print(n)
+	local s = files.assets.Audio.getSound(n)
 	if not Game.Muted then
-	--	s:seek(0)
-	--	s:play()
+		s:seek(0)
+		s:play()
 	else
-	--	s:pause()
+		s:pause()
 	end
 end

@@ -1,25 +1,25 @@
 Invasion_Level = Level.new("Invasion")
 
 function Invasion_Level:Load()
-	Invasion_Level.Tiles = TileTable.new((700/TileSize),(500/TileSize))
+	Invasion_Level.Tiles = TileTable.new(Tile_X,Tile_Y)
 	Invasion_Level.Objects = ObjectTable.new()
 	Invasion_Level.Path = PathTable.new()
 	
-	for i = 1,(500/TileSize) do
-		for j = 1,(700/TileSize) do
+	for i = 1,Tile_Y do
+		for j = 1,Tile_X do
 			Invasion_Level.Tiles(false,14)
 		end
 	end
 	
 	-- Cue the Level Design
-	for i = 1,(500/TileSize) do
+	for i = 1,Tile_Y do
 		Invasion_Level.Tiles:Set(1,i,true,1)
 		Invasion_Level.Tiles:Set(2,i,true,1)
 		Invasion_Level.Tiles:Set(3,i,true,1)
 		Invasion_Level.Tiles:Set(4,i,true,3)
 	end
 	
-	for j = 5,(700/TileSize) do
+	for j = 5,Tile_X do
 		Invasion_Level.Tiles:Set(j,17,true,5)
 		Invasion_Level.Tiles:Set(j,18,true,1)
 		Invasion_Level.Tiles:Set(j,19,true,4)
@@ -133,8 +133,8 @@ function Invasion_Level:Draw()
 		
 		love.graphics.rectangle("line",50,50,700,500)
 		
-		for y = 1,(500/TileSize) do
-			for x = 1,(700/TileSize) do
+		for y = 1,Tile_Y do
+			for x = 1,Tile_X do
 				local t = Invasion_Level.Tiles:Get(x,y)
 				love.graphics.draw(
 					files.assets.Textures.getImage(
@@ -263,14 +263,14 @@ function Invasion_Level:Update(dt)
 	local x, y = love.mouse.getPosition()
 	
 	if not LevelScreen.vars.selected then
-		LevelScreen.vars.sx = math.min(math.max(1,math.floor((700/TileSize)*(x/700)) - 1),(700/TileSize))
-		LevelScreen.vars.sy = math.min(math.max(1,math.floor((500/TileSize)*(y/500)) - 1),(500/TileSize))
+		LevelScreen.vars.sx = math.min(math.max(1,math.floor(Tile_X*(x/700)) - 1),Tile_X)
+		LevelScreen.vars.sy = math.min(math.max(1,math.floor(Tile_Y*(y/500)) - 1),Tile_Y)
 	end
 	
 	--[[
 	if LevelScreen.vars.selected and LevelScreen.vars.moving then
-		LevelScreen.vars.mx = math.min(math.max(1,math.floor((700/TileSize)*(x/700)) - 1),(700/TileSize))
-		LevelScreen.vars.my = math.min(math.max(1,math.floor((500/TileSize)*(y/500)) - 1),(500/TileSize))
+		LevelScreen.vars.mx = math.min(math.max(1,math.floor(Tile_X*(x/700)) - 1),Tile_X)
+		LevelScreen.vars.my = math.min(math.max(1,math.floor(Tile_Y*(y/500)) - 1),Tile_Y)
 	end
 	]]
 	
@@ -294,8 +294,8 @@ function Invasion_Level:Update(dt)
 	end
 	
 	if not Game.Paused then
-		for y = 1,(500/TileSize) do
-			for x = 1,(700/TileSize) do
+		for y = 1,Tile_Y do
+			for x = 1,Tile_X do
 				local t = Invasion_Level.Tiles:Get(x,y)
 				if t.tower then
 					t.tower:Act(Invasion_Level.Objects)
