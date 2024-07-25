@@ -216,7 +216,7 @@ function loadGame(file)
 	local tbl,e  = file:Read()
 	if not e then
 		for i,v in pairs(tbl) do
-			print("["..tostring(i).."]:",v)
+			print("["..tostring(i).."]: ",v)
 		end
 		
 		if tbl["state"] then

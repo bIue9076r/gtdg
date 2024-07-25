@@ -72,3 +72,36 @@ function File:Read()
 	end
 	return r, e
 end
+
+function File:Log(...)
+	self.file = love.filesystem.newFile(self.path)
+	self.file:open("a")
+	self.file:write("[Log]: ")
+	for i,v in pairs({...}) do
+		self.file:write(tostring(v))
+	end
+	self.file:write("\n")
+	self.file:close()
+end
+
+function File:Warn(...)
+	self.file = love.filesystem.newFile(self.path)
+	self.file:open("a")
+	self.file:write("[Warning]: ")
+	for i,v in pairs({...}) do
+		self.file:write(tostring(v))
+	end
+	self.file:write("\n")
+	self.file:close()
+end
+
+function File:Error(...)
+	self.file = love.filesystem.newFile(self.path)
+	self.file:open("a")
+	self.file:write("[Error]: ")
+	for i,v in pairs({...}) do
+		self.file:write(tostring(v))
+	end
+	self.file:write("\n")
+	self.file:close()
+end

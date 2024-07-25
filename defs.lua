@@ -7,7 +7,7 @@ Game.Volume = 0.5
 Game.FirstTime = true
 Game.Tutorial = false
 Game.Debug = false--true
-Game.Version = "0.0.77"
+Game.Version = "0.0.78"
 
 Game.ShowPath = false--true
 Game.ShowHitBoxes = false--true
@@ -53,6 +53,23 @@ LevelTiles = {
 	[13] = "shore_CTR_20",
 	[14] = "sand_20",
 }
+
+LUAPRINT = print
+LogFile = File.new("/Log.txt")
+
+function Log(...)
+	LogFile:Log(...)
+end
+
+function Warn(...)
+	LogFile:Warn(...)
+end
+
+function Error(...)
+	LogFile:Error(...)
+end
+
+print = Log
 
 function isKeyUp(key)
 	return ((key == "up") or (key == "w"))
