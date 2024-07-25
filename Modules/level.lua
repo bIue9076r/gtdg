@@ -3,7 +3,7 @@ Level.name = ""
 Level.Path = PathTable.new()
 Level.Tiles = TileTable.new()
 Level.Damage = 0
-Level.MaxDamage = 1000
+Level.MaxDamage = 500
 
 function Level.new(n)
 	local tbl = {

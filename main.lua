@@ -273,6 +273,15 @@ function ctrlOps(key)
 			local s = File.new("/Saves/QuickSave.sav")
 			loadGame(s)
 			Game.Alt = false
+		elseif Game.Debug and key == "=" then
+			AddCash(100)
+		elseif key == "s" then
+			Game.ShowPath = not Game.ShowPath
+			Game.ShowHitBoxes = not Game.ShowHitBoxes
+			Game.Alt = false
+		elseif key == "d" then
+			Game.Debug = not Game.Debug
+			Game.Alt = false
 		end
 	end
 end

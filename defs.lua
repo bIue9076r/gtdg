@@ -6,8 +6,8 @@ Game.Muted = false
 Game.Volume = 0.5
 Game.FirstTime = true
 Game.Tutorial = false
-Game.Debug = true
-Game.Version = "0.0.75"
+Game.Debug = false--true
+Game.Version = "0.0.76"
 
 Game.ShowPath = false--true
 Game.ShowHitBoxes = false--true

@@ -95,7 +95,7 @@ function ShopScreen:Load()
 	
 	ShopScreen.vars.ItemBuyFuncs = {}
 	ShopScreen.vars.ItemBuyFuncs[1] = function()
-		if Player.Money >= (Player.Tower_Timer_Base_Cost + ((Player.Tower_Timer_Level - 1) * Player.Tower_Timer_Upgrade_Cost)) then
+		if Player.Money >= (Player.Tower_Timer_Base_Cost + ((Player.Tower_Timer_Level - 1) * Player.Tower_Timer_Upgrade_Cost)) and (Player.Tower_Timer_Level <= 8) then
 			Player.Money = Player.Money - (Player.Tower_Timer_Base_Cost + ((Player.Tower_Timer_Level - 1) * Player.Tower_Timer_Upgrade_Cost))
 			Player.Tower_Timer_Level = Player.Tower_Timer_Level + 1
 			Player.Tower_Timer = Player.Tower_Timer + Player.Tower_Timer_Upgrade
@@ -106,7 +106,7 @@ function ShopScreen:Load()
 	end
 	
 	ShopScreen.vars.ItemBuyFuncs[2] = function()
-		if Player.Money >= (Player.Tower_Radius_Base_Cost + ((Player.Tower_Radius_Level - 1) * Player.Tower_Radius_Upgrade_Cost)) then
+		if Player.Money >= (Player.Tower_Radius_Base_Cost + ((Player.Tower_Radius_Level - 1) * Player.Tower_Radius_Upgrade_Cost)) and (Player.Tower_Radius_Level <= 8) then
 			Player.Money = Player.Money - (Player.Tower_Radius_Base_Cost + ((Player.Tower_Radius_Level - 1) * Player.Tower_Radius_Upgrade_Cost))
 			Player.Tower_Radius_Level = Player.Tower_Radius_Level + 1
 			Player.Tower_Radius = Player.Tower_Radius + Player.Tower_Radius_Upgrade
@@ -117,7 +117,7 @@ function ShopScreen:Load()
 	end
 	
 	ShopScreen.vars.ItemBuyFuncs[3] = function()
-		if Player.Money >= (Player.Bomb_Fuse_Base_Cost + ((Player.Bomb_Fuse_Level - 1) * Player.Bomb_Fuse_Upgrade_Cost)) then
+		if Player.Money >= (Player.Bomb_Fuse_Base_Cost + ((Player.Bomb_Fuse_Level - 1) * Player.Bomb_Fuse_Upgrade_Cost)) and (Player.Bomb_Fuse_Level <= 8) then
 			Player.Money = Player.Money - (Player.Bomb_Fuse_Base_Cost + ((Player.Bomb_Fuse_Level - 1) * Player.Bomb_Fuse_Upgrade_Cost))
 			Player.Bomb_Fuse_Level = Player.Bomb_Fuse_Level + 1
 			Player.Bomb_Fuse = Player.Bomb_Fuse + Player.Bomb_Fuse_Upgrade
@@ -128,7 +128,7 @@ function ShopScreen:Load()
 	end
 	
 	ShopScreen.vars.ItemBuyFuncs[4] = function()
-		if Player.Money >= (Player.Bomb_Radius_Base_Cost + ((Player.Bomb_Radius_Level - 1) * Player.Bomb_Radius_Upgrade_Cost)) then
+		if Player.Money >= (Player.Bomb_Radius_Base_Cost + ((Player.Bomb_Radius_Level - 1) * Player.Bomb_Radius_Upgrade_Cost)) and (Player.Bomb_Radius_Level <= 8) then
 			Player.Money = Player.Money - (Player.Bomb_Radius_Base_Cost + ((Player.Bomb_Radius_Level - 1) * Player.Bomb_Radius_Upgrade_Cost))
 			Player.Bomb_Radius_Level = Player.Bomb_Radius_Level + 1
 			Player.Bomb_Radius = Player.Bomb_Radius + Player.Bomb_Radius_Upgrade
@@ -139,7 +139,7 @@ function ShopScreen:Load()
 	end
 	
 	ShopScreen.vars.ItemBuyFuncs[5] = function()
-		if Player.Money >= (Player.Multi_Tower_Base_Cost + ((Player.Multi_Tower_Level - 1) * Player.Multi_Tower_Upgrade_Cost)) then
+		if Player.Money >= (Player.Multi_Tower_Base_Cost + ((Player.Multi_Tower_Level - 1) * Player.Multi_Tower_Upgrade_Cost)) and (Player.Multi_Tower_Level <= 8) then
 			Player.Money = Player.Money - (Player.Multi_Tower_Base_Cost + ((Player.Multi_Tower_Level - 1) * Player.Multi_Tower_Upgrade_Cost))
 			Player.Multi_Tower_Level = Player.Multi_Tower_Level + 1
 			Player.Multi_Tower = Player.Multi_Tower + Player.Multi_Tower_Upgrade
@@ -285,6 +285,7 @@ function ShopScreen:Keypressed(key)
 	elseif key == "return" then
 		if ShopScreen.vars.Pick then
 			ShopScreen.vars.ItemBuyFuncs[ShopScreen.vars.Select]()
+			ShopScreen.vars.Pick = false
 		else
 			if not (ShopScreen.vars.SelectLast == 0) then
 				ShopScreen.vars.ItemFuncs[ShopScreen.vars.Select]()

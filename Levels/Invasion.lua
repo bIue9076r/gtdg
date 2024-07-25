@@ -67,35 +67,35 @@ function Invasion_Level:Load()
 	Invasion_Level.Path:Insert(2.5,2.5,-2.5,18.5,1000)
 	Invasion_Level.Path:Insert(2.5,36,18.5,18.5,1000)
 	
-	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 100)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 200)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 300)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 400)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 500)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 600)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 700)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 800)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(30,"Coconut",-(0 + 900)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 100)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 200)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 300)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 400)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 500)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 600)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 700)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 800)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 900)))
 	
-	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 100)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 200)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 300)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 400)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 500)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 600)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 700)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 800)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(50,"Coconut",-(2000 + 900)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 100)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 200)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 300)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 400)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 500)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 600)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 700)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 800)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 900)))
 	
-	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 100)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 200)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 300)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 400)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 500)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 600)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 700)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 800)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(70,"Coconut",-(4000 + 900)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 100)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 200)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 300)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 400)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 500)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 600)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 700)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 800)))
+	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 900)))
 	
 	Invasion_Level.Objects:InsertObj(Enemies.new(1,"Victory",-5000))
 	-- ^ ^ ^ Clean this up later ^ ^ ^ ---
@@ -110,6 +110,10 @@ function Invasion_Level:Load()
 		[2] = 400,
 		[3] = 2000,
 	}
+	
+	if Player.Money < LevelScreen.vars.costs[1] then
+		Player.Money = LevelScreen.vars.costs[1]
+	end
 	
 	Invasion_Level.Damage = 0
 	LevelScreen.vars.selected = false

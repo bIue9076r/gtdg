@@ -57,10 +57,9 @@ Towers[1].Act = function(self,pathTbl)
 				
 				objTbl:InsertObj(Bullet.new(self.x,self.y,v,d))
 			end
+		end
+		if self.t:get() < self.vars.cooldown then
 			self.t()
-		else
-			-- Reset if no objects in radius
-			self.t:set(0)
 		end
 	end
 end
@@ -91,10 +90,9 @@ Towers[2].Act = function(self,pathTbl)
 				
 				objTbl:InsertObj(Bullet.new(self.x,self.y,v,d))
 			end
+		end
+		if self.t:get() < self.vars.cooldown then
 			self.t()
-		else
-			-- Reset if no objects in radius
-			self.t:set(0)
 		end
 	end
 end
@@ -125,10 +123,9 @@ Towers[3].Act = function(self,pathTbl)
 				
 				objTbl:InsertObj(Bullet.new(self.x,self.y,v,d))
 			end
+		end
+		if self.t:get() < self.vars.cooldown then
 			self.t()
-		else
-			-- Reset if no objects in radius
-			self.t:set(0)
 		end
 	end
 end
