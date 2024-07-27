@@ -6,11 +6,11 @@ Game.Muted = false
 Game.Volume = 0.5
 Game.FirstTime = true
 Game.Tutorial = false
-Game.Debug = false--true
-Game.Version = "0.0.78"
+Game.Debug = false
+Game.Version = "0.0.79"
 
-Game.ShowPath = false--true
-Game.ShowHitBoxes = false--true
+Game.ShowPath = false
+Game.ShowHitBoxes = false
 Game.Paused = false
 Game.Over = false
 Game.Victory = false

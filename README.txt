@@ -36,7 +36,7 @@ Current Timeline: (subject to change) (0.1.0)
 		Game Arena - [X] @ 03/06/2024
 		SFXs - [X] @ 24/07/2024
 	
-	Logger - [_] @ 2?/07/2024
+	Logger - [X] @ 25/07/2024
 
 Update 0.2.0:
 	Main game loop - [~] @ ??/??/2024

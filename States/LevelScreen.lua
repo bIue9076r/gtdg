@@ -1,11 +1,12 @@
 -- Level Screen State
 
 function LevelScreen:Load(l)
-	LevelScreen.vars.Bsoundn = math.random(1,2)
+	LevelScreen.vars.Bsoundn = math.random(1,3)
 	LevelScreen.vars.Bsoundl = LevelScreen.vars.Bsoundn
 	LevelScreen.vars.Bsounds = {
 		[1] = "",
 		[2] = "2"
+		[3] = "3"
 	}
 	
 	LevelScreen.vars.Bsound = files.assets.Audio.getSound(
