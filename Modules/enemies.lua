@@ -19,7 +19,7 @@ function Enemies.new(hp,ty,t)
 			else
 				Game.Over = true
 				Game.Victory = true
-				AddCash(1000)
+				AddCash(2000)
 			end
 		end
 	end

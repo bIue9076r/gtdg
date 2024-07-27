@@ -45,7 +45,7 @@ function LevelScreen:Draw()
 	if not Game.muted then
 		if not LevelScreen.vars.Bsound:isPlaying() then
 			repeat
-				LevelScreen.vars.Bsoundn = math.random(1,2)
+				LevelScreen.vars.Bsoundn = math.random(1,3)
 			until not(LevelScreen.vars.Bsoundn == LevelScreen.vars.Bsoundl)
 			
 			LevelScreen.vars.Bsoundl = LevelScreen.vars.Bsoundn
@@ -84,7 +84,11 @@ end
 
 function LevelScreen:Keypressed(key)
 	LevelScreen.vars.level:Keypressed(key)
-	if key == "]" then
+	if key == "q" then
+		LevelScreen.vars.shouldQuit = true
+	end
+	
+	if LevelScreen.vars.shouldQuit and key == "return" then
 		Game.Over = true
 	end
 end

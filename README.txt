@@ -27,6 +27,12 @@ Current Timeline: (subject to change) (0.1.0)
 		Title Screen - [X] @ 01/06/2024
 		Save Icons - [X] @ 17/06/2024
 		Objects - [X] @ 21/07/2024
+		Level Previews - [X] @ 27/07/2024
+			Level #1 - [X] @ 27/07/2024
+		Upgrade Previews - [X] @ 27/07/2024
+			Tower Timer - [X] @ 27/07/2024
+			Tower Radius - [X] @ 27/07/2024
+			Multi Tower - [X] @ 27/07/2024
 		
 	Audio Assets - [X] @ 24/07/2024
 		Title Screen - [X] @ 01/06/2024
@@ -47,7 +53,12 @@ Update 0.2.0:
 
 	Visual Assets - [~] @ ??/??/2024
 		Level Previews - [_] @ ??/??/2024
+			Tutorial - [_] @ ??/??/2024
+			Level #2 - [_] @ ??/??/2024
+			Level #3 - [_] @ ??/??/2024
 		Upgrade Previews - [_] @ ??/??/2024
+			Bomb Fuse - [_] @ ??/??/2024
+			Bomb Radius - [_] @ ??/??/2024
 		
 	Audio Assets - [~] @ ??/??/2024
 		SFXs - [_] @ ??/??/2024

@@ -26,6 +26,17 @@ files.assets.Textures.newImage("yesav","/Assets/yesav.png")
 files.assets.Textures.newImage("nosav","/Assets/nosav.png")
 files.assets.Textures.newImage("ersav","/Assets/ersav.png")
 
+--files.assets.Textures.newImage("tutorial","/Assets/tutorial.png")
+files.assets.Textures.newImage("level_1","/Assets/level_1.png")
+--files.assets.Textures.newImage("level_2","/Assets/level_2.png")
+--files.assets.Textures.newImage("level_3","/Assets/level_3.png")
+
+files.assets.Textures.newImage("tower_timer","/Assets/tower_timer.png")
+files.assets.Textures.newImage("tower_radius","/Assets/tower_radius.png")
+--files.assets.Textures.newImage("bomb_fuse","/Assets/bomb_fuse.png")
+--files.assets.Textures.newImage("bomb_radius","/Assets/bomb_radius.png")
+files.assets.Textures.newImage("multi_tower","/Assets/multi_tower.png")
+
 files.assets.Textures.newImage("tile_20","/Assets/tile_20.png")
 files.assets.Textures.newImage("tile_25","/Assets/tile_25.png")
 
@@ -293,7 +304,8 @@ function ctrlOps(key)
 			Game.Alt = false
 		elseif Game.Debug and key == "=" then
 			AddCash(100)
-		elseif key == "s" then
+			Game.Alt = false
+		elseif Game.Debug and key == "s" then
 			Game.ShowPath = not Game.ShowPath
 			Game.ShowHitBoxes = not Game.ShowHitBoxes
 			Game.Alt = false

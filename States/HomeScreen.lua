@@ -19,7 +19,7 @@ function HomeScreen:Load()
 	
 	HomeScreen.vars.LevelFuncs = {}
 	HomeScreen.vars.LevelFuncs[1] = function()
-		HomeScreen.vars.LevelImg = ""
+		HomeScreen.vars.LevelImg = "tutorial"
 		HomeScreen.vars.LevelStr1 = HomeScreen.vars.Levels[1]..":"
 		HomeScreen.vars.LevelStr2 = sticker.new("The Coconuts have declared")
 		HomeScreen.vars.LevelStr3 = sticker.new("war!")
@@ -29,7 +29,7 @@ function HomeScreen:Load()
 	end
 	
 	HomeScreen.vars.LevelFuncs[2] = function()
-		HomeScreen.vars.LevelImg = ""
+		HomeScreen.vars.LevelImg = "level_1"
 		HomeScreen.vars.LevelStr1 = HomeScreen.vars.Levels[2]..":"
 		HomeScreen.vars.LevelStr2 = sticker.new("The Coconuts are invading")
 		HomeScreen.vars.LevelStr3 = sticker.new("the beach!")
@@ -39,7 +39,7 @@ function HomeScreen:Load()
 	end
 	
 	HomeScreen.vars.LevelFuncs[3] = function()
-		HomeScreen.vars.LevelImg = ""
+		HomeScreen.vars.LevelImg = "level_2"
 		HomeScreen.vars.LevelStr1 = HomeScreen.vars.Levels[3]..":"
 		HomeScreen.vars.LevelStr2 = sticker.new("The Coconuts have returned")
 		HomeScreen.vars.LevelStr3 = sticker.new("after their initial retreat!")
@@ -49,7 +49,7 @@ function HomeScreen:Load()
 	end
 	
 	HomeScreen.vars.LevelFuncs[4] = function()
-		HomeScreen.vars.LevelImg = ""
+		HomeScreen.vars.LevelImg = "level_3"
 		HomeScreen.vars.LevelStr1 = HomeScreen.vars.Levels[4]..":"
 		HomeScreen.vars.LevelStr2 = sticker.new("The Coconuts are retreating")
 		HomeScreen.vars.LevelStr3 = sticker.new("to their ship!")
@@ -106,9 +106,12 @@ function HomeScreen:Draw()
 			love.graphics.rectangle("line",285,55,490,290)
 			love.graphics.setColor(1,1,1)
 			
-			love.graphics.setColor(1,0,1)
-			love.graphics.rectangle("fill",300,70,190,190)
-			love.graphics.setColor(1,1,1)
+			--love.graphics.setColor(1,0,1)
+			--love.graphics.rectangle("fill",300,70,190,190)
+			--love.graphics.setColor(1,1,1)
+			love.graphics.draw(
+				files.assets.Textures.getImage(HomeScreen.vars.LevelImg)
+			,300,70)
 			
 			love.graphics.print({{0,0,0},HomeScreen.vars.LevelStr1},510,80)
 			love.graphics.print({{0,0,0},HomeScreen.vars.LevelStr2()},510,120)

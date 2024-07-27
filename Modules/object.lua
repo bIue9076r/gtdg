@@ -195,7 +195,7 @@ function ObjectTable:GetClosestId(Obj,id)
 	local sy = Obj.y
 	
 	for i,v in pairs(self.tbl) do
-		if v.hp > 0 and v.id == id then
+		if v.hp > 0 and v.id == id and isInside(v.x,v.y) then
 			local d = math.sqrt(
 				(v.x - sx)*(v.x - sx) + (v.y - sy)*(v.y - sy)
 			)

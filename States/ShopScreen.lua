@@ -19,7 +19,7 @@ function ShopScreen:Load()
 	
 	ShopScreen.vars.ItemFuncs = {}
 	ShopScreen.vars.ItemFuncs[1] = function()
-		ShopScreen.vars.ItemImg = ""
+		ShopScreen.vars.ItemImg = "tower_timer"
 		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[1]..": Costs $"..(Player.Tower_Timer_Base_Cost + ((Player.Tower_Timer_Level - 1) * Player.Tower_Timer_Upgrade_Cost))
 		ShopScreen.vars.ItemStr2 = sticker.new("Decreases tower timer.")
 		ShopScreen.vars.ItemStr3 = sticker.new("")
@@ -34,7 +34,7 @@ function ShopScreen:Load()
 	end
 	
 	ShopScreen.vars.ItemFuncs[2] = function()
-		ShopScreen.vars.ItemImg = ""
+		ShopScreen.vars.ItemImg = "tower_radius"
 		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[2]..": Costs $"..(Player.Tower_Radius_Base_Cost + ((Player.Tower_Radius_Level - 1) * Player.Tower_Radius_Upgrade_Cost))
 		ShopScreen.vars.ItemStr2 = sticker.new("Increases tower radius.")
 		ShopScreen.vars.ItemStr3 = sticker.new("")
@@ -49,7 +49,7 @@ function ShopScreen:Load()
 	end
 	
 	ShopScreen.vars.ItemFuncs[3] = function()
-		ShopScreen.vars.ItemImg = ""
+		ShopScreen.vars.ItemImg = "bomb_fuse"
 		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[3]..": Costs $"..(Player.Bomb_Fuse_Base_Cost + ((Player.Bomb_Fuse_Level - 1) * Player.Bomb_Fuse_Upgrade_Cost))
 		ShopScreen.vars.ItemStr2 = sticker.new("Decreases bomb fuse.")
 		ShopScreen.vars.ItemStr3 = sticker.new("")
@@ -64,7 +64,7 @@ function ShopScreen:Load()
 	end
 	
 	ShopScreen.vars.ItemFuncs[4] = function()
-		ShopScreen.vars.ItemImg = ""
+		ShopScreen.vars.ItemImg = "bomb_radius"
 		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[4]..": Costs $"..(Player.Bomb_Radius_Base_Cost + ((Player.Bomb_Radius_Level - 1) * Player.Bomb_Radius_Upgrade_Cost))
 		ShopScreen.vars.ItemStr2 = sticker.new("Increases bomb Radius.")
 		ShopScreen.vars.ItemStr3 = sticker.new("")
@@ -79,7 +79,7 @@ function ShopScreen:Load()
 	end
 	
 	ShopScreen.vars.ItemFuncs[5] = function()
-		ShopScreen.vars.ItemImg = ""
+		ShopScreen.vars.ItemImg = "multi_tower"
 		ShopScreen.vars.ItemStr1 = ShopScreen.vars.Items[5]..": Costs $"..(Player.Multi_Tower_Base_Cost + ((Player.Multi_Tower_Level - 1) * Player.Multi_Tower_Upgrade_Cost))
 		ShopScreen.vars.ItemStr2 = sticker.new("Increases number bullets in")
 		ShopScreen.vars.ItemStr3 = sticker.new("multi tower.")
@@ -199,9 +199,12 @@ function ShopScreen:Draw()
 			love.graphics.rectangle("line",285,55,490,290)
 			love.graphics.setColor(1,1,1)
 			
-			love.graphics.setColor(1,0,1)
-			love.graphics.rectangle("fill",300,70,190,190)
-			love.graphics.setColor(1,1,1)
+			--love.graphics.setColor(1,0,1)
+			--love.graphics.rectangle("fill",300,70,190,190)
+			--love.graphics.setColor(1,1,1)
+			love.graphics.draw(
+				files.assets.Textures.getImage(ShopScreen.vars.ItemImg)
+			,300,70)
 			
 			love.graphics.print({{0,0,0},ShopScreen.vars.ItemStr1},510,80)
 			love.graphics.print({{0,0,0},ShopScreen.vars.ItemStr2()},510,120)

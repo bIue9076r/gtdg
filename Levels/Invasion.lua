@@ -388,7 +388,7 @@ function Invasion_Level:Keypressed(key)
 		end
 	end
 	
-	if Game.Debug and key == "=" then
+	if Game.Debug and key == "0" then
 		Invasion_Level.Objects:InsertObj(
 			Enemies.new(100 * (math.random()),"Coconut")
 		)
