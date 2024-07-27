@@ -5,8 +5,8 @@ function LevelScreen:Load(l)
 	LevelScreen.vars.Bsoundl = LevelScreen.vars.Bsoundn
 	LevelScreen.vars.Bsounds = {
 		[1] = "",
-		[2] = "2"
-		[3] = "3"
+		[2] = "2",
+		[3] = "3",
 	}
 	
 	LevelScreen.vars.Bsound = files.assets.Audio.getSound(
