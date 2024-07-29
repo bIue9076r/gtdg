@@ -100,8 +100,8 @@ function Invasion_Level:Load()
 	Invasion_Level.Objects:InsertObj(Enemies.new(1,"Victory",-5000))
 	-- ^ ^ ^ Clean this up later ^ ^ ^ ---
 
-	LevelScreen.vars.sx = 0
-	LevelScreen.vars.sy = 0
+	LevelScreen.vars.sx = 1
+	LevelScreen.vars.sy = 1
 	LevelScreen.vars.lx = 0
 	LevelScreen.vars.ly = 0
 	
@@ -183,29 +183,14 @@ function Invasion_Level:Draw()
 			love.graphics.print({{0,0,0},"Build - [a]"},35,155)
 			love.graphics.print({{0,0,0},"Destroy - [d]"},35,175)
 			love.graphics.print({{0,0,0},"Deselect - [b]"},35,195)
-			--[[
-			love.graphics.print({{0,0,0},"Move - [s]"},35,175)
-			love.graphics.print({{0,0,0},"Destroy - [d]"},35,195)
-			love.graphics.print({{0,0,0},"Deselect - [b]"},35,215)
-			]]
 		end
-		--[[
-		if LevelScreen.vars.moving then
-			love.graphics.setColor(0,1,1)
-			love.graphics.rectangle("line",
-				50 + ((LevelScreen.vars.mx-1)*TileSize),50 + ((LevelScreen.vars.my-1)*TileSize),
-				TileSize,TileSize
-			)
-			love.graphics.setColor(1,1,1)
-		end
-		]]
 		if LevelScreen.vars.building then
 			-- show building options
 			love.graphics.rectangle("fill",250,25,200,250)
 			love.graphics.print({{0,0,0},"Towers:"},260,35)
-			love.graphics.print({{0,0,0},"[1] $"..(LevelScreen.vars.costs[1])..": Basic"},260,75)
-			love.graphics.print({{0,0,0},"[2] $"..(LevelScreen.vars.costs[2])..": Bomb"},260,95)
-			love.graphics.print({{0,0,0},"[3] $"..(LevelScreen.vars.costs[3])..": Mega"},260,115)
+			love.graphics.print({{0,0,0},"[1] $"..(LevelScreen.vars.costs[1])..": Wood Tower"},260,75)
+			love.graphics.print({{0,0,0},"[2] $"..(LevelScreen.vars.costs[2])..": Iron Tower"},260,95)
+			love.graphics.print({{0,0,0},"[3] $"..(LevelScreen.vars.costs[3])..": Gold Tower"},260,115)
 			
 			if LevelScreen.vars.poor then
 				love.graphics.rectangle("fill",250,25,200,250)
@@ -262,33 +247,29 @@ end
 function Invasion_Level:Update(dt)
 	local x, y = love.mouse.getPosition()
 	
+	local dx, dy = LevelScreen.vars.lx - x, LevelScreen.vars.ly - y
 	if not LevelScreen.vars.selected then
-		LevelScreen.vars.sx = math.min(math.max(1,math.floor(Tile_X*(x/700)) - 1),Tile_X)
-		LevelScreen.vars.sy = math.min(math.max(1,math.floor(Tile_Y*(y/500)) - 1),Tile_Y)
+		if not(dx == 0) or not(dy == 0) then
+			LevelScreen.vars.sx = math.min(math.max(1,math.floor(Tile_X*(x/700)) - 1),Tile_X)
+			LevelScreen.vars.sy = math.min(math.max(1,math.floor(Tile_Y*(y/500)) - 1),Tile_Y)
+		end
 	end
-	
-	--[[
-	if LevelScreen.vars.selected and LevelScreen.vars.moving then
-		LevelScreen.vars.mx = math.min(math.max(1,math.floor(Tile_X*(x/700)) - 1),Tile_X)
-		LevelScreen.vars.my = math.min(math.max(1,math.floor(Tile_Y*(y/500)) - 1),Tile_Y)
-	end
-	]]
 	
 	LevelScreen.vars.lx, LevelScreen.vars.ly = x, y
 	
 	if love.mouse.isDown(1) then
 		local tile = Invasion_Level.Tiles:Get(LevelScreen.vars.sx, LevelScreen.vars.sy)
 		if tile and not tile.path then
-			--playSFX("tile_selected")
+			playSFX("tile_selected")
 			LevelScreen.vars.selected = true
 			Game.Paused = true
 		else
-			--playSFX("tile_none")
+			playSFX("tile_none")
 		end
 	end
 	
 	if love.mouse.isDown(2) then
-		--playSFX("tile_deselected")
+		playSFX("tile_deselected")
 		LevelScreen.vars.selected = false
 		Game.Paused = false
 	end
@@ -309,18 +290,28 @@ function Invasion_Level:Update(dt)
 end
 
 function Invasion_Level:Keypressed(key)
+	if not LevelScreen.vars.selected then
+		if isKeyUp(key) then
+			LevelScreen.vars.sy = math.min(math.max(1,math.floor(LevelScreen.vars.sy - 1,Tile_Y)))
+		elseif isKeyDown(key) then
+			LevelScreen.vars.sy = math.min(math.max(1,math.floor(LevelScreen.vars.sy + 1,Tile_Y)))
+		elseif isKeyLeft(key) then
+			LevelScreen.vars.sx = math.min(math.max(1,math.floor(LevelScreen.vars.sx - 1,Tile_X)))
+		elseif isKeyRight(key) then
+			LevelScreen.vars.sx = math.min(math.max(1,math.floor(LevelScreen.vars.sx + 1,Tile_X)))
+		elseif key == "return" then
+			playSFX("tile_selected")
+			LevelScreen.vars.selected = true
+			Game.Paused = true
+		end
+	end
+	
 	if LevelScreen.vars.selected then
 		-- Tile options
 		if key == "a" then
 			if (not LevelScreen.vars.moving) and (not LevelScreen.vars.destroying) then
 				LevelScreen.vars.building = true
 			end
-		elseif key == "s" then
-			--[[
-			if (not LevelScreen.vars.building) and (not LevelScreen.vars.destroying) then
-				LevelScreen.vars.moving = true
-			end
-			]]
 		elseif key == "d" then
 			if (not LevelScreen.vars.building) and (not LevelScreen.vars.moving) then
 				LevelScreen.vars.destroying = true
@@ -359,21 +350,6 @@ function Invasion_Level:Keypressed(key)
 			end
 		end
 	end
-	
-	--[[
-	if LevelScreen.vars.moving then
-		if key == "return" then
-			local t1 = Invasion_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
-			local t2 = Invasion_Level.Tiles:Get(LevelScreen.vars.mx,LevelScreen.vars.my)
-			if t1.tower and not (t2.tower) then
-				t2.tower = t1.tower
-				t1.tower = nil
-				Invasion_Level.Tiles:Get(LevelScreen.vars.mx,LevelScreen.vars.my)
-				LevelScreen.vars.moving = false
-			end
-		end
-	end
-	]]
 	
 	if LevelScreen.vars.destroying then
 		if key == "return" then

@@ -1,8 +1,14 @@
 -- Load Screen State
 
-function LoadScreen:Load()
+function LoadScreen:Load(n)
+	LoadScreen.vars.bgss = {
+		[1] = "title",
+		[2] = "victory",
+		[3] = "loss",
+	}
+	
 	LoadScreen.vars.img = files.assets.Textures.getImage("title")
-	LoadScreen.vars.bgs = files.assets.Audio.getSound("title")
+	LoadScreen.vars.bgs = files.assets.Audio.getSound(LoadScreen.vars.bgss[n or 1])
 	LoadScreen.vars.ticker = files.ticker.new()
 	LoadScreen.vars.backlist = {'d','e','n'}
 	LoadScreen.vars.backlistn = math.random(1,#LoadScreen.vars.backlist)

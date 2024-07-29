@@ -62,6 +62,9 @@ files.assets.Textures.newImage("tower2","/Assets/tower2.png")
 files.assets.Textures.newImage("tower3","/Assets/tower3.png")
 
 files.assets.Audio.new("title","/Assets/intro.mp3","stream")
+files.assets.Audio.new("victory","/Assets/victory.mp3","stream")
+files.assets.Audio.new("loss","/Assets/loss.mp3","stream")
+
 files.assets.Audio.new("level","/Assets/level.mp3","stream")
 files.assets.Audio.new("level2","/Assets/level2.mp3","stream")
 files.assets.Audio.new("level3","/Assets/level3.mp3","stream")

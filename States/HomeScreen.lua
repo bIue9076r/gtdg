@@ -155,6 +155,7 @@ function HomeScreen:Update(dt)
 				HomeScreen.vars.Select = math.max(1,math.min(4,math.floor(((y-15)/(385))*4)+1))
 				if not (HomeScreen.vars.SelectLast == HomeScreen.vars.Select) then
 					HomeScreen.vars.LevelFuncs[HomeScreen.vars.Select]()
+					playSFX("option_moved")
 				end
 				HomeScreen.vars.Inside = true
 			else
@@ -166,12 +167,12 @@ function HomeScreen:Update(dt)
 	end
 	
 	if HomeScreen.vars.Inside and love.mouse.isDown(1) then
-		--playSFX("level_selected")
+		playSFX("level_selected")
 		HomeScreen.vars.Pick = true
 	end
 	
 	if love.mouse.isDown(2) and HomeScreen.vars.Pick then
-		--playSFX("level_deselected")
+		playSFX("level_deselected")
 		HomeScreen.vars.Pick = false
 	end
 	

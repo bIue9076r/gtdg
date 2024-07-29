@@ -72,12 +72,13 @@ function LevelScreen:Update(dt)
 		LevelScreen.vars.Bsound:seek(0)
 		LevelScreen.vars.Bsound:pause()
 		Game.State = LoadScreen
-		Game.State:Load()
 		Game.Over = false
 		if Game.Victory then
 			print("Win")
+			Game.State:Load(2)
 		else
 			print("Loss")
+			Game.State:Load(3)
 		end
 	end
 end
@@ -85,10 +86,17 @@ end
 function LevelScreen:Keypressed(key)
 	LevelScreen.vars.level:Keypressed(key)
 	if key == "q" then
-		LevelScreen.vars.shouldQuit = true
+		LevelScreen.vars.shouldQuit1 = true
 	end
 	
-	if LevelScreen.vars.shouldQuit and key == "return" then
+	if LevelScreen.vars.shouldQuit1 and key == "p" then
+		LevelScreen.vars.shouldQuit2 = true
+	end
+	
+	if LevelScreen.vars.shouldQuit2 and key == "q" then
+		LevelScreen.vars.shouldQuit1 = false
+		LevelScreen.vars.shouldQuit2 = false
+		Game.Victory = false
 		Game.Over = true
 	end
 end

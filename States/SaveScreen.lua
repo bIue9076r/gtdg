@@ -217,6 +217,7 @@ function SaveScreen:Update(dt)
 				SaveScreen.vars.Select = math.max(1,math.min(5,math.floor(((y-15)/(485))*5)+1))
 				if not (SaveScreen.vars.SelectLast == SaveScreen.vars.Select) then
 					SaveScreen.vars.SaveFuncs[SaveScreen.vars.Select]()
+					playSFX("option_moved")
 				end
 				SaveScreen.vars.Inside = true
 			else
@@ -228,12 +229,12 @@ function SaveScreen:Update(dt)
 	end
 	
 	if SaveScreen.vars.Inside and love.mouse.isDown(1) then
-		--playSFX("save_selected")
+		playSFX("save_selected")
 		SaveScreen.vars.Pick = true
 	end
 	
 	if love.mouse.isDown(2) and SaveScreen.vars.Pick then
-		--playSFX("save_deselected")
+		playSFX("save_deselected")
 		SaveScreen.vars.Pick = false
 	end
 	

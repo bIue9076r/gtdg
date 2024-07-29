@@ -7,7 +7,7 @@ Game.Volume = 0.5
 Game.FirstTime = true
 Game.Tutorial = false
 Game.Debug = false
-Game.Version = "0.0.81"
+Game.Version = "0.0.83"
 
 Game.ShowPath = false
 Game.ShowHitBoxes = false
@@ -80,11 +80,11 @@ function isKeyDown(key)
 end
 
 function isKeyLeft(key)
-	return ((key == "left") or (key == "d"))
+	return ((key == "left") or (key == "a"))
 end
 
 function isKeyRight(key)
-	return ((key == "right") or (key == "a"))
+	return ((key == "right") or (key == "d"))
 end
 
 function iskeyBack(key)

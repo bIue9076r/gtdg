@@ -238,6 +238,7 @@ function ShopScreen:Update(dt)
 				ShopScreen.vars.Select = math.max(1,math.min(5,math.floor(((y-15)/(485))*5)+1))
 				if not (ShopScreen.vars.SelectLast == ShopScreen.vars.Select) then
 					ShopScreen.vars.ItemFuncs[ShopScreen.vars.Select]()
+					playSFX("option_moved")
 				end
 				ShopScreen.vars.Inside = true
 			else
@@ -250,12 +251,12 @@ function ShopScreen:Update(dt)
 	
 	if ShopScreen.vars.Inside and love.mouse.isDown(1) then
 		ShopScreen.vars.Pick = true
-		--playSFX("item_selected")
+		playSFX("item_selected")
 	end
 	
 	if love.mouse.isDown(2) and ShopScreen.vars.Pick then
 		ShopScreen.vars.Pick = false
-		--playSFX("item_deselected")
+		playSFX("item_deselected")
 	end
 	
 	ShopScreen.vars.lx, ShopScreen.vars.ly = x, y
