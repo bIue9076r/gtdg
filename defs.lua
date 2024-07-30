@@ -7,7 +7,7 @@ Game.Volume = 0.5
 Game.FirstTime = true
 Game.Tutorial = false
 Game.Debug = false
-Game.Version = "0.0.83"
+Game.Version = "0.0.84"
 
 Game.ShowPath = false
 Game.ShowHitBoxes = false
@@ -52,6 +52,19 @@ LevelTiles = {
 	[12] = "shore_CTL_20",
 	[13] = "shore_CTR_20",
 	[14] = "sand_20",
+	[15] = "grass_L_20",
+	[16] = "grass_R_20",
+	[17] = "grass_B_20",
+	[18] = "grass_T_20",
+	[19] = "grass_BL_20",
+	[20] = "grass_BR_20",
+	[21] = "grass_TL_20",
+	[22] = "grass_TR_20",
+	[23] = "grass_CBL_20",
+	[24] = "grass_CBR_20",
+	[25] = "grass_CTL_20",
+	[26] = "grass_CTR_20",
+	[27] = "grass_20",
 }
 
 LUAPRINT = print
@@ -96,7 +109,7 @@ function secondsToTicks(s)
 end
 
 function isInside(x,y)
-	return (x >= 0) and (y >= 0) and (x <= Tile_X) and (y <= Tile_Y)
+	return (x >= 1) and (y >= 1) and (x <= Tile_X) and (y <= Tile_Y)
 end
 
 function playSFX(n)

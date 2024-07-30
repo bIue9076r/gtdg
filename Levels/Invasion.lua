@@ -58,11 +58,35 @@ function Invasion_Level:Load()
 	Invasion_Level.Tiles:Set(3,25,false,14)
 	
 	Invasion_Level.Tiles:Set(4,20,false,14)
-	Invasion_Level.Tiles:Set(4,21,false,14)
+	Invasion_Level.Tiles:Set(4,21,false,17)
 	Invasion_Level.Tiles:Set(4,22,false,14)
 	Invasion_Level.Tiles:Set(4,23,false,14)
 	Invasion_Level.Tiles:Set(4,24,false,14)
 	Invasion_Level.Tiles:Set(4,25,false,14)
+	
+	for j = 1,Tile_X do
+		Invasion_Level.Tiles:Set(j,21,false,17)
+		Invasion_Level.Tiles:Set(j,22,false,27)
+		Invasion_Level.Tiles:Set(j,23,false,27)
+		Invasion_Level.Tiles:Set(j,24,false,27)
+		Invasion_Level.Tiles:Set(j,25,false,27)
+	end
+	
+	Invasion_Level.Tiles:Set(9,15,true,22)
+	
+	for i = 1,14 do
+		Invasion_Level.Tiles:Set(9,i,true,16)
+	end
+	
+	for j = 10,Tile_X do
+		Invasion_Level.Tiles:Set(j,15,false,18)
+	end
+	 
+	for i = 1,14 do
+		for j = 10,Tile_X do
+			Invasion_Level.Tiles:Set(j,i,false,27)
+		end
+	end
 	
 	Invasion_Level.Path:Insert(2.5,2.5,-2.5,18.5,1000)
 	Invasion_Level.Path:Insert(2.5,36,18.5,18.5,1000)
