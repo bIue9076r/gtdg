@@ -1,5 +1,5 @@
 function love.conf(t)
-	t.identity = "GTDG"
+	t.identity = "gtdg"
 	t.window.title = "Generic Tower Defence Game"
 	t.window.width = 800
 	t.window.height = 600

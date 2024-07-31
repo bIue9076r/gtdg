@@ -333,33 +333,45 @@ function ctrlOps(key)
 end
 
 function love.load()
-	-- Save File Handling
-	
-	if not love.filesystem.getInfo("/Saves") then
-		love.filesystem.createDirectory("/Saves")
-	end
-	
-	for i = 1,5 do
-		if not love.filesystem.getInfo("/Saves/SaveSlot_"..i..".sav") then
-			file = File.new("/Saves/SaveSlot_"..i..".sav")
-			file:SetHeader()
+	local c,e = pcall(function()
+		-- Save File Handling
+		
+		if not love.filesystem.getInfo("/Saves") then
+			love.filesystem.createDirectory("/Saves")
 		end
-	end
-	
-	love.audio.setVolume(Game.Volume)
+		
+		for i = 1,5 do
+			if not love.filesystem.getInfo("/Saves/SaveSlot_"..i..".sav") then
+				file = File.new("/Saves/SaveSlot_"..i..".sav")
+				file:SetHeader()
+			end
+		end
+		
+		love.audio.setVolume(Game.Volume)
+	end)
+	if c then Error(e) end
 end
 
 function love.keypressed(key)
-	if Game.State.Keypressed then Game.State:Keypressed(key) end
-	ctrlOps(key)
+	local c,e = pcall(function()
+		if Game.State.Keypressed then Game.State:Keypressed(key) end
+		ctrlOps(key)
+	end)
+	if c then Error(e) end
 end
 
 function love.update(dt)
-	if Game.State.Update then Game.State:Update(dt) end
-	files.update(dt)
+	local c,e = pcall(function()
+		if Game.State.Update then Game.State:Update(dt) end
+		files.update(dt)
+	end)
+	if c then Error(e) end
 end
 
 function love.draw()
-	if Game.State.Draw then Game.State:Draw(dt) end
-	files.draw()
+	local c,e = pcall(function()
+		if Game.State.Draw then Game.State:Draw(dt) end
+		files.draw()
+	end)
+	if c then Error(e) end
 end
