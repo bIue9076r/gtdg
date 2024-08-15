@@ -11,6 +11,7 @@ require("/Modules/tile")
 require("/Modules/enemies")
 require("/Modules/bullet")
 require("/Modules/towers")
+require("/Modules/bombs")
 require("/Modules/level")
 require("/defs")
 
@@ -67,6 +68,14 @@ files.assets.Textures.newImage("grass_CBR_20","/Assets/grass_CBR_20.png")
 files.assets.Textures.newImage("grass_CTL_20","/Assets/grass_CTL_20.png")
 files.assets.Textures.newImage("grass_CTR_20","/Assets/grass_CTR_20.png")
 files.assets.Textures.newImage("grass_20","/Assets/grass_20.png")
+files.assets.Textures.newImage("grass_tree_1_20","/Assets/grass_tree_1_20.png")
+files.assets.Textures.newImage("grass_tree_2_20","/Assets/grass_tree_2_20.png")
+files.assets.Textures.newImage("grass_tree_3_20","/Assets/grass_tree_3_20.png")
+files.assets.Textures.newImage("grass_tree_4_20","/Assets/grass_tree_4_20.png")
+files.assets.Textures.newImage("trees_1_20","/Assets/trees_1_20.png")
+files.assets.Textures.newImage("trees_2_20","/Assets/trees_2_20.png")
+files.assets.Textures.newImage("trees_3_20","/Assets/trees_3_20.png")
+files.assets.Textures.newImage("trees_4_20","/Assets/trees_4_20.png")
 
 files.assets.Textures.newImage("Coconut","/Assets/Coconut.png")
 files.assets.Textures.newImage("bullet","/Assets/bullet.png")
@@ -114,7 +123,7 @@ Player.Kills = 0
 Player.Tower_Timer = 5
 Player.Tower_Radius = 5
 Player.Bomb_Fuse = 100
-Player.Bomb_Radius = 15
+Player.Bomb_Radius = 10
 Player.Multi_Tower = 2
 
 Player.Tower_Timer_Level = 1
@@ -138,7 +147,7 @@ Player.Multi_Tower_Upgrade_Cost = 1000
 Player.Tower_Timer_Upgrade = -0.5
 Player.Tower_Radius_Upgrade = 2.5
 Player.Bomb_Fuse_Upgrade = -10
-Player.Bomb_Radius_Upgrade = 5
+Player.Bomb_Radius_Upgrade = 2.5
 Player.Multi_Tower_Upgrade = 1
 
 function AddCash(n)
@@ -334,7 +343,7 @@ function ctrlOps(key)
 end
 
 function love.load()
-	local c,e = pcall(function()
+	--local c,e = pcall(function()
 		-- Save File Handling
 		
 		if not love.filesystem.getInfo("/Saves") then
@@ -349,30 +358,30 @@ function love.load()
 		end
 		
 		love.audio.setVolume(Game.Volume)
-	end)
-	if c then Error(e) end
+	--end)
+	--if c then Error(e) end
 end
 
 function love.keypressed(key)
-	local c,e = pcall(function()
+	--local c,e = pcall(function()
 		if Game.State.Keypressed then Game.State:Keypressed(key) end
 		ctrlOps(key)
-	end)
-	if c then Error(e) end
+	--end)
+	--if c then Error(e) end
 end
 
 function love.update(dt)
-	local c,e = pcall(function()
+	--local c,e = pcall(function()
 		if Game.State.Update then Game.State:Update(dt) end
 		files.update(dt)
-	end)
-	if c then Error(e) end
+	--end)
+	--if c then Error(e) end
 end
 
 function love.draw()
-	local c,e = pcall(function()
+	--local c,e = pcall(function()
 		if Game.State.Draw then Game.State:Draw(dt) end
 		files.draw()
-	end)
-	if c then Error(e) end
+	--end)
+	--if c then Error(e) end
 end

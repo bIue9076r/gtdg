@@ -12,6 +12,8 @@ Object.c = {
 Object.t = ticker.new()
 Object.id = "Type"
 Object.vars = {}
+Object.parent = nil
+Object.index = nil
 
 function Object.new(x,y,hp,img,id)
 	local tbl = {
@@ -24,6 +26,9 @@ function Object.new(x,y,hp,img,id)
 		id = tostring(id) or "Object",
 		t = ticker.new(),
 		vars = {},
+		
+		parent = nil,
+		index = nil,
 	}
 	
 	local mt = {
@@ -36,6 +41,11 @@ end
 
 function Object:Hit(d)
 	self.hp = math.max(0,self.hp - d)
+end
+
+function Object:SetParent(p,i)
+	self.parent = p or nil
+	self.index = i or nil
 end
 
 function Object:Act()
@@ -89,10 +99,13 @@ function ObjectTable.new()
 end
 
 function ObjectTable:Insert(x,y,hp,img,id)
-	table.insert(self.tbl,Object.new(x,y,hp,img,id))
+	obj = Object.new(x,y,hp,img,id)
+	obj:SetParent(self, #self.tbl + 1)
+	table.insert(self.tbl,obj)
 end
 
 function ObjectTable:InsertObj(obj)
+	obj:SetParent(self, #self.tbl + 1)
 	table.insert(self.tbl,obj)
 end
 
@@ -213,4 +226,26 @@ function ObjectTable:GetClosestId(Obj,id)
 	end
 	
 	return self.tbl[closest], sd
+end
+
+function ObjectTable:GetClosestInRId(Obj,id,r)
+	id = id or "Coconut"
+	r = r or 5
+	local closest = {}
+	local sx = Obj.x
+	local sy = Obj.y
+	
+	for i,v in pairs(self.tbl) do
+		if v.hp > 0 and v.id == id and isInside(v.x,v.y) then
+			local d = math.sqrt(
+				(v.x - sx)*(v.x - sx) + (v.y - sy)*(v.y - sy)
+			)
+			
+			if d <= r then
+				table.insert(closest,{v,d});
+			end
+		end
+	end
+	
+	return closest
 end

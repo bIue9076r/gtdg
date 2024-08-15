@@ -7,7 +7,7 @@ Game.Volume = 0.5
 Game.FirstTime = true
 Game.Tutorial = false
 Game.Debug = false
-Game.Version = "0.1.1"
+Game.Version = "0.1.2"
 
 Game.ShowPath = false
 Game.ShowHitBoxes = false
@@ -65,6 +65,14 @@ LevelTiles = {
 	[25] = "grass_CTL_20",
 	[26] = "grass_CTR_20",
 	[27] = "grass_20",
+	[28] = "grass_tree_1_20",
+	[29] = "grass_tree_2_20",
+	[30] = "grass_tree_3_20",
+	[31] = "grass_tree_4_20",
+	[32] = "trees_1_20",
+	[33] = "trees_2_20",
+	[34] = "trees_3_20",
+	[35] = "trees_4_20",
 }
 
 LUAPRINT = print

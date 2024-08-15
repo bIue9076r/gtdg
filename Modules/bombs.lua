@@ -21,33 +21,27 @@ end
 
 Bombs.Act = function(self,pathTbl)
 	--self.vars["cpath"] = pathTbl:GetClosest(self)
-	self.vars.damage = 10
-	self.vars.bonus = self.vars.damage * 5
+	self.hp = 1
+	self.vars.damage = 200
+	self.vars.bonus = self.vars.damage
 	self.Act = function(self,objTbl)
 		-- main loop
-		self.vars.radius = Player.Tower_Radius
-		self.vars.cooldown = secondsToTicks(Player.Tower_Timer)
-		local o,d = objTbl:GetClosestId(self)
-		if o and d and d < self.vars.radius then
-			if self.t:get() >= self.vars.cooldown then
-				o:Hit(self.vars.damage)
-				AddCash(self.vars.bonus)
-				self.t:set(0)
-				if o.hp <= 0 then
-					Player.Kills = Player.Kills + 1
-				end
-				
-				-- create bullet object
-				local v = {
-					(o.x - self.x)/d,
-					(o.y - self.y)/d
-				}
-				
-				objTbl:InsertObj(Bullet.new(self.x,self.y,v,d))
-			end
-		end
+		self.vars.radius = Player.Bomb_Radius
+		self.vars.cooldown = Player.Bomb_Fuse
 		if self.t:get() < self.vars.cooldown then
 			self.t()
+		else
+			local o = objTbl:GetClosestInRId(self,nil,self.vars.radius)
+			if o then
+				for i,v in pairs(o) do
+					v[1]:Hit(math.ceil(self.vars.damage * (v[2]/self.vars.radius)))
+					AddCash(math.ceil(self.vars.bonus * (v[2]/self.vars.radius)))
+					if v[1].hp <= 0 then
+						Player.Kills = Player.Kills + 1
+					end
+				end
+			end
+			self.parent[self.index] = nil
 		end
 	end
 end

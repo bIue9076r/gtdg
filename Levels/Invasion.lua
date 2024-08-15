@@ -88,6 +88,34 @@ function Invasion_Level:Load()
 		end
 	end
 	
+	for i = 1, 11, 2 do
+		for j = 11, Tile_X, 2 do
+			Invasion_Level.Tiles:Set(j,i,false,32)
+			Invasion_Level.Tiles:Set(j+1,i,false,33)
+			Invasion_Level.Tiles:Set(j,i+1,false,34)
+			Invasion_Level.Tiles:Set(j+1,i+1,false,35)
+		end
+	end
+	
+	for j = 11, Tile_X, 2 do
+		Invasion_Level.Tiles:Set(j,13,false,32)
+		Invasion_Level.Tiles:Set(j+1,13,false,33)
+	end
+	
+	for j = 1, Tile_X, 2 do
+		Invasion_Level.Tiles:Set(j,23,false,34)
+		Invasion_Level.Tiles:Set(j+1,23,false,35)
+		Invasion_Level.Tiles:Set(j,24,false,32)
+		Invasion_Level.Tiles:Set(j+1,24,false,33)
+		Invasion_Level.Tiles:Set(j,25,false,34)
+		Invasion_Level.Tiles:Set(j+1,25,false,35)
+	end
+	
+	for j = 1, Tile_X, 2 do
+		Invasion_Level.Tiles:Set(j,22,false,28)
+		Invasion_Level.Tiles:Set(j+1,22,false,29)
+	end
+	
 	Invasion_Level.Path:Insert(2.5,2.5,-2.5,18.5,1000)
 	Invasion_Level.Path:Insert(2.5,36,18.5,18.5,1000)
 	
@@ -133,6 +161,7 @@ function Invasion_Level:Load()
 		[1] = 100,
 		[2] = 400,
 		[3] = 2000,
+		[4] = 500,
 	}
 	
 	if Player.Money < LevelScreen.vars.costs[1] then
@@ -215,6 +244,7 @@ function Invasion_Level:Draw()
 			love.graphics.print({{0,0,0},"[1] $"..(LevelScreen.vars.costs[1])..": Wood Tower"},260,75)
 			love.graphics.print({{0,0,0},"[2] $"..(LevelScreen.vars.costs[2])..": Iron Tower"},260,95)
 			love.graphics.print({{0,0,0},"[3] $"..(LevelScreen.vars.costs[3])..": Gold Tower"},260,115)
+			love.graphics.print({{0,0,0},"[4] $"..(LevelScreen.vars.costs[4])..": Bomb"},260,135)
 			
 			if LevelScreen.vars.poor then
 				love.graphics.rectangle("fill",250,25,200,250)
@@ -357,16 +387,26 @@ function Invasion_Level:Keypressed(key)
 	
 	if LevelScreen.vars.building then
 		local n = tonumber(key)
-		if n and (n >= 1) and (n <= 3) then
+		if n and (n >= 1) and (n <= 4) then
 			local t = Invasion_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
 			
 			if Player.Money >= LevelScreen.vars.costs[n] then
 				if not t.tower then
-					t.tower = Towers.new(LevelScreen.vars.sx + Towers.Offset, LevelScreen.vars.sy + Towers.Offset, n)
-					t.tower:Act(Invasion_Level.Path)
-					t.tower:Act(Invasion_Level.Objects)
-					Player.Money = Player.Money - LevelScreen.vars.costs[n]
-					playSFX("cash_spend")
+					if not (n == 4) then
+						t.tower = Towers.new(LevelScreen.vars.sx + Towers.Offset, LevelScreen.vars.sy + Towers.Offset, n)
+						t.tower:Act(Invasion_Level.Path)
+						t.tower:Act(Invasion_Level.Objects)
+						Player.Money = Player.Money - LevelScreen.vars.costs[n]
+						playSFX("cash_spend")
+					else
+						t.tower = Bombs.new(LevelScreen.vars.sx + Bombs.Offset, LevelScreen.vars.sy + Bombs.Offset)
+						t.tower.parent = t
+						t.tower.index = "tower"
+						t.tower:Act(Invasion_Level.Path)
+						t.tower:Act(Invasion_Level.Objects)
+						Player.Money = Player.Money - LevelScreen.vars.costs[n]
+						playSFX("cash_spend")
+					end
 				end
 			else
 				LevelScreen.vars.poor = true
