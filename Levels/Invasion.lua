@@ -89,7 +89,7 @@ function Invasion_Level:Load()
 	end
 	
 	for i = 1, 11, 2 do
-		for j = 11, Tile_X, 2 do
+		for j = 12, Tile_X, 2 do
 			Invasion_Level.Tiles:Set(j,i,false,32)
 			Invasion_Level.Tiles:Set(j+1,i,false,33)
 			Invasion_Level.Tiles:Set(j,i+1,false,34)
@@ -97,23 +97,24 @@ function Invasion_Level:Load()
 		end
 	end
 	
-	for j = 11, Tile_X, 2 do
-		Invasion_Level.Tiles:Set(j,13,false,32)
-		Invasion_Level.Tiles:Set(j+1,13,false,33)
+	for i = 1, 12, 2 do
+		Invasion_Level.Tiles:Set(11,i,false,30)
+		Invasion_Level.Tiles:Set(11,i+1,false,28)
+	end
+	
+	Invasion_Level.Tiles:Set(11,13,false,30)
+	
+	for j = 13, Tile_X, 2 do
+		Invasion_Level.Tiles:Set(j,13,false,30)
 	end
 	
 	for j = 1, Tile_X, 2 do
-		Invasion_Level.Tiles:Set(j,23,false,34)
-		Invasion_Level.Tiles:Set(j+1,23,false,35)
+		Invasion_Level.Tiles:Set(j,23,false,29)
+		Invasion_Level.Tiles:Set(j+1,23,false,28)
 		Invasion_Level.Tiles:Set(j,24,false,32)
 		Invasion_Level.Tiles:Set(j+1,24,false,33)
 		Invasion_Level.Tiles:Set(j,25,false,34)
 		Invasion_Level.Tiles:Set(j+1,25,false,35)
-	end
-	
-	for j = 1, Tile_X, 2 do
-		Invasion_Level.Tiles:Set(j,22,false,28)
-		Invasion_Level.Tiles:Set(j+1,22,false,29)
 	end
 	
 	Invasion_Level.Path:Insert(2.5,2.5,-2.5,18.5,1000)
