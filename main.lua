@@ -29,13 +29,13 @@ files.assets.Textures.newImage("ersav","/Assets/ersav.png")
 
 --files.assets.Textures.newImage("tutorial","/Assets/tutorial.png")
 files.assets.Textures.newImage("level_1","/Assets/level_1.png")
---files.assets.Textures.newImage("level_2","/Assets/level_2.png")
---files.assets.Textures.newImage("level_3","/Assets/level_3.png")
+files.assets.Textures.newImage("level_2","/Assets/level_2.png")
+files.assets.Textures.newImage("level_3","/Assets/level_3.png")
 
 files.assets.Textures.newImage("tower_timer","/Assets/tower_timer.png")
 files.assets.Textures.newImage("tower_radius","/Assets/tower_radius.png")
---files.assets.Textures.newImage("bomb_fuse","/Assets/bomb_fuse.png")
---files.assets.Textures.newImage("bomb_radius","/Assets/bomb_radius.png")
+files.assets.Textures.newImage("bomb_fuse","/Assets/bomb_fuse.png")
+files.assets.Textures.newImage("bomb_radius","/Assets/bomb_radius.png")
 files.assets.Textures.newImage("multi_tower","/Assets/multi_tower.png")
 
 files.assets.Textures.newImage("tile_20","/Assets/tile_20.png")
@@ -343,45 +343,32 @@ function ctrlOps(key)
 end
 
 function love.load()
-	--local c,e = pcall(function()
-		-- Save File Handling
-		
-		if not love.filesystem.getInfo("/Saves") then
-			love.filesystem.createDirectory("/Saves")
+	-- Save File Handling
+	if not love.filesystem.getInfo("/Saves") then
+		love.filesystem.createDirectory("/Saves")
+	end
+	
+	for i = 1,5 do
+		if not love.filesystem.getInfo("/Saves/SaveSlot_"..i..".sav") then
+			file = File.new("/Saves/SaveSlot_"..i..".sav")
+			file:SetHeader()
 		end
-		
-		for i = 1,5 do
-			if not love.filesystem.getInfo("/Saves/SaveSlot_"..i..".sav") then
-				file = File.new("/Saves/SaveSlot_"..i..".sav")
-				file:SetHeader()
-			end
-		end
-		
-		love.audio.setVolume(Game.Volume)
-	--end)
-	--if c then Error(e) end
+	end
+	
+	love.audio.setVolume(Game.Volume)
 end
 
 function love.keypressed(key)
-	--local c,e = pcall(function()
-		if Game.State.Keypressed then Game.State:Keypressed(key) end
-		ctrlOps(key)
-	--end)
-	--if c then Error(e) end
+	if Game.State.Keypressed then Game.State:Keypressed(key) end
+	ctrlOps(key)
 end
 
 function love.update(dt)
-	--local c,e = pcall(function()
-		if Game.State.Update then Game.State:Update(dt) end
-		files.update(dt)
-	--end)
-	--if c then Error(e) end
+	if Game.State.Update then Game.State:Update(dt) end
+	files.update(dt)
 end
 
 function love.draw()
-	--local c,e = pcall(function()
-		if Game.State.Draw then Game.State:Draw(dt) end
-		files.draw()
-	--end)
-	--if c then Error(e) end
+	if Game.State.Draw then Game.State:Draw(dt) end
+	files.draw()
 end
