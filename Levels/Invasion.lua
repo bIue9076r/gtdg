@@ -120,35 +120,11 @@ function Invasion_Level:Load()
 	Invasion_Level.Path:Insert(2.5,2.5,-2.5,18.5,1000)
 	Invasion_Level.Path:Insert(2.5,36,18.5,18.5,1000)
 	
-	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 100)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 200)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 300)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 400)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 500)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 600)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 700)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 800)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + 900)))
-	
-	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 100)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 200)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 300)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 400)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 500)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 600)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 700)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 800)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + 900)))
-	
-	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 100)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 200)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 300)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 400)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 500)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 600)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 700)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 800)))
-	Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + 900)))
+	for i = 1,9 do
+		Invasion_Level.Objects:InsertObj(Enemies.new(60,"Coconut",-(0 + (100 * i))))
+		Invasion_Level.Objects:InsertObj(Enemies.new(120,"Coconut",-(2000 + (100 * i))))
+		Invasion_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(4000 + (100 * i))))
+	end
 	
 	Invasion_Level.Objects:InsertObj(Enemies.new(1,"Victory",-5000))
 	-- ^ ^ ^ Clean this up later ^ ^ ^ ---
@@ -174,7 +150,6 @@ function Invasion_Level:Load()
 	LevelScreen.vars.building = false
 	LevelScreen.vars.poor = false
 	LevelScreen.vars.poort = ticker.new()
-	LevelScreen.vars.moving = false
 	LevelScreen.vars.destroying = false
 end
 
@@ -347,13 +322,13 @@ end
 function Invasion_Level:Keypressed(key)
 	if not LevelScreen.vars.selected then
 		if isKeyUp(key) then
-			LevelScreen.vars.sy = math.min(math.max(1,math.floor(LevelScreen.vars.sy - 1,Tile_Y)))
+			LevelScreen.vars.sy = math.max(math.floor(LevelScreen.vars.sy - 1),1)
 		elseif isKeyDown(key) then
-			LevelScreen.vars.sy = math.min(math.max(1,math.floor(LevelScreen.vars.sy + 1,Tile_Y)))
+			LevelScreen.vars.sy = math.min(math.floor(LevelScreen.vars.sy + 1),Tile_Y)
 		elseif isKeyLeft(key) then
-			LevelScreen.vars.sx = math.min(math.max(1,math.floor(LevelScreen.vars.sx - 1,Tile_X)))
+			LevelScreen.vars.sx = math.max(math.floor(LevelScreen.vars.sx - 1),1)
 		elseif isKeyRight(key) then
-			LevelScreen.vars.sx = math.min(math.max(1,math.floor(LevelScreen.vars.sx + 1,Tile_X)))
+			LevelScreen.vars.sx = math.min(math.floor(LevelScreen.vars.sx + 1),Tile_X)
 		elseif key == "return" then
 			playSFX("tile_selected")
 			LevelScreen.vars.selected = true
@@ -364,21 +339,20 @@ function Invasion_Level:Keypressed(key)
 	if LevelScreen.vars.selected then
 		-- Tile options
 		if key == "a" then
-			if (not LevelScreen.vars.moving) and (not LevelScreen.vars.destroying) then
+			if (not LevelScreen.vars.destroying) then
 				LevelScreen.vars.building = true
 			end
 		elseif key == "d" then
-			if (not LevelScreen.vars.building) and (not LevelScreen.vars.moving) then
+			if (not LevelScreen.vars.building) then
 				LevelScreen.vars.destroying = true
 			end
 		elseif iskeyBack(key) then
 			playSFX("tile_deselected")
-			if (not LevelScreen.vars.building) and (not LevelScreen.vars.moving) and (not LevelScreen.vars.destroying) then
+			if (not LevelScreen.vars.building) and (not LevelScreen.vars.destroying) then
 				LevelScreen.vars.selected = false
 				Game.Paused = false
 			else
 				LevelScreen.vars.building = false
-				LevelScreen.vars.moving = false
 				LevelScreen.vars.destroying = false
 				LevelScreen.vars.poor = false
 				LevelScreen.vars.poort:set(0)
@@ -413,6 +387,8 @@ function Invasion_Level:Keypressed(key)
 				LevelScreen.vars.poor = true
 				playSFX("cash_denied")
 			end
+			LevelScreen.vars.selected = false
+			LevelScreen.vars.building = false
 		end
 	end
 	
@@ -423,6 +399,7 @@ function Invasion_Level:Keypressed(key)
 				local n = tonumber(t.tower.id:sub(-1)) or 1
 				Player.Money = Player.Money + LevelScreen.vars.costs[n]
 				t.tower = nil
+				LevelScreen.vars.selected = false
 				LevelScreen.vars.destroying = false
 				playSFX("cash_get")
 			end

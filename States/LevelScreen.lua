@@ -21,7 +21,7 @@ function LevelScreen:Load(l)
 	
 	l = l or 1
 	-- Other levels soon
-	if not (l == 2) then
+	if not((l == 2) or (l == 3) or (l == 4)) then
 		LevelScreen.vars.Bsound:seek(0)
 		LevelScreen.vars.Bsound:pause()
 		Game.State = HomeScreen
