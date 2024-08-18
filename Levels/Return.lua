@@ -107,6 +107,7 @@ function Return_Level:Load()
 	end
 	
 	Return_Level.Damage = 0
+	Return_Level.MaxDamage = 10
 	LevelScreen.vars.selected = false
 	LevelScreen.vars.building = false
 	LevelScreen.vars.poor = false

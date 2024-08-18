@@ -4,7 +4,7 @@ Update 0.2.0:
 	Main game loop - [~] @ ??/??/2024
 		Game Arena - [~] @ ??/??/2024
 			Tutorial Arena - [_] @ ??/??/2024
-			Arena #2 - [~] @ 1?/08/2024
+			Arena #2 - [~] @ 2?/08/2024
 			Arena #3 - [~] @ ??/08/2024
 
 	Visual Assets - [~] @ ??/??/2024
