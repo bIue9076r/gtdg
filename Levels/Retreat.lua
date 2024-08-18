@@ -117,8 +117,9 @@ function Retreat_Level:Load()
 		Retreat_Level.Tiles:Set(j+1,25,false,35)
 	end
 	
-	Retreat_Level.Path:Insert(2.5,2.5,-2.5,18.5,1000)
-	Retreat_Level.Path:Insert(2.5,36,18.5,18.5,1000)
+	Retreat_Level.Path:Insert(40.5,2.5,18.5,18.5,800)
+	Retreat_Level.Path:Insert(2.5,2.5,18.5,0,800)
+	
 	
 	for i = 1,9 do
 		Retreat_Level.Objects:InsertObj(Enemies.new(480,"Coconut",-(0 + (100 * i))))
@@ -384,12 +385,13 @@ function Retreat_Level:Keypressed(key)
 						playSFX("cash_spend")
 					end
 				end
+				LevelScreen.vars.selected = false
+				LevelScreen.vars.building = false
+				Game.Paused = false
 			else
 				LevelScreen.vars.poor = true
 				playSFX("cash_denied")
 			end
-			LevelScreen.vars.selected = false
-			LevelScreen.vars.building = false
 		end
 	end
 	
@@ -402,6 +404,7 @@ function Retreat_Level:Keypressed(key)
 				t.tower = nil
 				LevelScreen.vars.selected = false
 				LevelScreen.vars.destroying = false
+				Game.Paused = false
 				playSFX("cash_get")
 			end
 		end

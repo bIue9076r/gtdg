@@ -1,4 +1,4 @@
-"I did it."
+"Patching."
 
 Update 0.2.0:
 	Main game loop - [~] @ ??/??/2024
@@ -8,7 +8,7 @@ Update 0.2.0:
 			Arena #3 - [~] @ ??/08/2024
 
 	Visual Assets - [~] @ ??/??/2024
-		Level Previews - [_] @ ??/??/2024
+		Level Previews - [~] @ ??/??/2024
 			Tutorial - [_] @ ??/08/2024
 			Level #2 - [X] @ 16/08/2024
 			Level #3 - [X] @ 16/08/2024

@@ -383,12 +383,13 @@ function Invasion_Level:Keypressed(key)
 						playSFX("cash_spend")
 					end
 				end
+				LevelScreen.vars.selected = false
+				LevelScreen.vars.building = false
+				Game.Paused = false
 			else
 				LevelScreen.vars.poor = true
 				playSFX("cash_denied")
 			end
-			LevelScreen.vars.selected = false
-			LevelScreen.vars.building = false
 		end
 	end
 	
@@ -401,6 +402,7 @@ function Invasion_Level:Keypressed(key)
 				t.tower = nil
 				LevelScreen.vars.selected = false
 				LevelScreen.vars.destroying = false
+				Game.Paused = false
 				playSFX("cash_get")
 			end
 		end
