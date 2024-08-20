@@ -82,9 +82,9 @@ function Return_Level:Load()
 	Return_Level.Tiles:Set(6,17,true,13)
 	
 	Return_Level.Path:Insert(1,5.5,-2.5,26,500)
-	Return_Level.Path:Insert(5.5,11.5,26,26,1)
+	--Return_Level.Path:Insert(5.5,11.5,26,26,1)
 	Return_Level.Path:Insert(11.5,21.5,26,1,500)
-	Return_Level.Path:Insert(21.5,27.5,1,1,1)
+	--Return_Level.Path:Insert(21.5,27.5,1,1,1)
 	Return_Level.Path:Insert(27.5,36,1,12,500)
 	
 	Return_Level.Objects:InsertObj(Enemies.new(10,"Coconut",-(0 + (100 * 1))))
