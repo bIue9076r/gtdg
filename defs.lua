@@ -7,7 +7,7 @@ Game.Volume = 0.5
 Game.FirstTime = true
 Game.Tutorial = false
 Game.Debug = true
-Game.Version = "0.1.9"
+Game.Version = "0.1.10"
 
 Game.ShowPath = false
 Game.ShowHitBoxes = false
@@ -73,6 +73,14 @@ LevelTiles = {
 	[33] = "trees_2_20",
 	[34] = "trees_3_20",
 	[35] = "trees_4_20",
+}
+
+TileName = {
+	["NULL_"] = 0,
+	["WATER"] = 1,
+	["SHORE"] = 1,
+	["SHO_L"] = 1,
+	["SHO_R"] = 1,
 }
 
 LUAPRINT = print
