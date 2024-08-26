@@ -148,6 +148,8 @@ function Invasion_Level:Load()
 	Invasion_Level.Damage = 0
 	LevelScreen.vars.selected = false
 	LevelScreen.vars.building = false
+	LevelScreen.vars.inval = false
+	LevelScreen.vars.invalt = ticker.new()
 	LevelScreen.vars.poor = false
 	LevelScreen.vars.poort = ticker.new()
 	LevelScreen.vars.destroying = false
@@ -229,6 +231,15 @@ function Invasion_Level:Draw()
 				if LevelScreen.vars.poort:get() >= 100 then
 					LevelScreen.vars.poor = false
 					LevelScreen.vars.poort:set(0)
+				end
+			end
+			if LevelScreen.vars.inval then
+				love.graphics.rectangle("fill",250,25,200,250)
+				love.graphics.print({{0,0,0},"Invalid Tile!"},260,35)
+				LevelScreen.vars.invalt()
+				if LevelScreen.vars.invalt:get() >= 100 then
+					LevelScreen.vars.inval = false
+					LevelScreen.vars.invalt:set(0)
 				end
 			end
 		end
@@ -356,6 +367,8 @@ function Invasion_Level:Keypressed(key)
 				LevelScreen.vars.destroying = false
 				LevelScreen.vars.poor = false
 				LevelScreen.vars.poort:set(0)
+				LevelScreen.vars.inval = false
+				LevelScreen.vars.invalt:set(0)
 			end
 		end
 	end
@@ -365,7 +378,7 @@ function Invasion_Level:Keypressed(key)
 		if n and (n >= 1) and (n <= 4) then
 			local t = Invasion_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
 			
-			if Player.Money >= LevelScreen.vars.costs[n] then
+			if Player.Money >= LevelScreen.vars.costs[n] and not(t.path) then
 				if not t.tower then
 					if not (n == 4) then
 						t.tower = Towers.new(LevelScreen.vars.sx + Towers.Offset, LevelScreen.vars.sy + Towers.Offset, n)
@@ -385,9 +398,17 @@ function Invasion_Level:Keypressed(key)
 				end
 				LevelScreen.vars.selected = false
 				LevelScreen.vars.building = false
+				LevelScreen.vars.poor = false
+				LevelScreen.vars.poort:set(0)
+				LevelScreen.vars.inval = false
+				LevelScreen.vars.invalt:set(0)
 				Game.Paused = false
 			else
-				LevelScreen.vars.poor = true
+				if not t.path then
+					LevelScreen.vars.poor = true
+				else
+					LevelScreen.vars.inval = true
+				end
 				playSFX("cash_denied")
 			end
 		end
