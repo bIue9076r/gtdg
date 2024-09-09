@@ -465,7 +465,17 @@ function Return_Level:Load()
 		Return_Level.Tiles:Set(34,i,true,TileName["GRASS"])
 		Return_Level.Tiles:Set(35,i,true,TileName["GRASS"])
 	end
-	
+
+	Return_Level.Tiles:Set(32,1,true,TileName["GR_TR"])
+	Return_Level.Tiles:Set(33,1,true,TileName["GRCTR"])
+	Return_Level.Tiles:Set(33,2,true,TileName["GR_TR"])
+	Return_Level.Tiles:Set(34,2,true,TileName["GRCTR"])
+	Return_Level.Tiles:Set(34,3,true,TileName["GR_TR"])
+	Return_Level.Tiles:Set(35,3,true,TileName["GRCTR"])
+	Return_Level.Tiles:Set(34,1,true,TileName["GRASS"])
+	Return_Level.Tiles:Set(35,1,true,TileName["GRASS"])
+	Return_Level.Tiles:Set(35,2,true,TileName["GRASS"])
+
 	Return_Level.Path:Insert(1,5.5,-2.5,26,500)
 	Return_Level.Path:Insert(11.5,21.5,26,1,500)
 	Return_Level.Path:Insert(27.5,36,1,12,500)
