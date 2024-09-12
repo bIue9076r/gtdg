@@ -476,11 +476,18 @@ function Return_Level:Load()
 	Return_Level.Tiles:Set(35,1,false,TileName["GRASS"])
 	Return_Level.Tiles:Set(35,2,false,TileName["GRASS"])
 
-	Return_Level.Path:Insert(1,5.5,-2.5,26,500)
-	Return_Level.Path:Insert(11.5,21.5,26,1,500)
-	Return_Level.Path:Insert(27.5,36,1,12,500)
+	Return_Level.Path:Insert(1,5.5,-2.5,26,900)
+	Return_Level.Path:Insert(11.5,21.5,26,1,900)
+	Return_Level.Path:Insert(27.5,36,1,12,900)
 	
-	--Return_Level.Objects:InsertObj(Enemies.new(10,"Coconut",-(0 + (100 * 1))))
+	for i = 1,9 do
+		Return_Level.Objects:InsertObj(Enemies.new(240,"Coconut",-(0 + (100 * i))))
+		Return_Level.Objects:InsertObj(Enemies.new(300,"Coconut",-(2000 + (100 * i))))
+		Return_Level.Objects:InsertObj(Enemies.new(360,"Coconut",-(4000 + (100 * i))))
+		Return_Level.Objects:InsertObj(Enemies.new(420,"Coconut",-(6000 + (100 * i))))
+	end
+	
+	Return_Level.Objects:InsertObj(Enemies.new(1,"Victory",-7000))
 	-- ^ ^ ^ Clean this up later ^ ^ ^ ---
 
 	LevelScreen.vars.sx = 1
