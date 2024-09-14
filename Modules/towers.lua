@@ -22,6 +22,7 @@ end
 Towers[1] = Object.new(0,0,0,"tower1","Tower1") -- 
 Towers[2] = Object.new(0,0,0,"tower2","Tower2") -- 
 Towers[3] = Object.new(0,0,0,"tower3","Tower3") -- 
+Towers[4] = Object.new(0,0,0,"tower2","Tower4") -- 
 
 -- Multi towers need GetClosest + 2nd
 --Towers[4] = Object.new(0,0,0,"tower4","Tower4") -- 
@@ -130,7 +131,7 @@ Towers[3].Act = function(self,pathTbl)
 	end
 end
 
-Towers[4].Act = function(self,pathTbl)
+Towers[1].Act = function(self,pathTbl)
 	--self.vars["cpath"] = pathTbl:GetClosest(self)
 	self.vars.damage = 30
 	self.vars.bonus = self.vars.damage * 5
@@ -140,6 +141,9 @@ Towers[4].Act = function(self,pathTbl)
 		self.vars.cooldown = secondsToTicks(Player.Tower_Timer)
 		local o = objTbl:GetClosestInRId(self,nil,self.vars.radius)
 		if o then
+			for i,v in pairs(o) do
+				LUAPRINT(i..":{"..tostring(v[2])..","..tostring(v[1]).."}")
+			end
 			--[[
 			if self.t:get() >= self.vars.cooldown then
 				o:Hit(self.vars.damage)
