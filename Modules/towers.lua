@@ -40,12 +40,11 @@ Towers[1].Act = function(self,pathTbl)
 		-- main loop
 		self.vars.radius = Player.Tower_Radius
 		self.vars.cooldown = secondsToTicks(Player.Tower_Timer)
-		local o,d = objTbl:GetClosestId(self)
-		if o and d and d < self.vars.radius then
-			if self.t:get() >= self.vars.cooldown then
+		if self.t:get() >= self.vars.cooldown then
+			local o,d = objTbl:GetClosestId(self)
+			if o and d and d < self.vars.radius then
 				o:Hit(self.vars.damage)
 				AddCash(self.vars.bonus)
-				self.t:set(0)
 				if o.hp <= 0 then
 					Player.Kills = Player.Kills + 1
 				end
@@ -57,6 +56,7 @@ Towers[1].Act = function(self,pathTbl)
 				}
 				
 				objTbl:InsertObj(Bullet.new(self.x,self.y,v,d))
+				self.t:set(0)
 			end
 		end
 		if self.t:get() < self.vars.cooldown then
@@ -73,12 +73,11 @@ Towers[2].Act = function(self,pathTbl)
 		-- main loop
 		self.vars.radius = Player.Tower_Radius
 		self.vars.cooldown = secondsToTicks(Player.Tower_Timer)
-		local o,d = objTbl:GetClosestId(self)
-		if o and d and d < self.vars.radius then
-			if self.t:get() >= self.vars.cooldown then
+		if self.t:get() >= self.vars.cooldown then
+			local o,d = objTbl:GetClosestId(self)
+			if o and d and d < self.vars.radius then
 				o:Hit(self.vars.damage)
 				AddCash(self.vars.bonus)
-				self.t:set(0)
 				if o.hp <= 0 then
 					Player.Kills = Player.Kills + 1
 				end
@@ -90,6 +89,7 @@ Towers[2].Act = function(self,pathTbl)
 				}
 				
 				objTbl:InsertObj(Bullet.new(self.x,self.y,v,d))
+				self.t:set(0)
 			end
 		end
 		if self.t:get() < self.vars.cooldown then
@@ -106,12 +106,11 @@ Towers[3].Act = function(self,pathTbl)
 		-- main loop
 		self.vars.radius = Player.Tower_Radius
 		self.vars.cooldown = secondsToTicks(Player.Tower_Timer)
-		local o,d = objTbl:GetClosestId(self)
-		if o and d and d < self.vars.radius then
-			if self.t:get() >= self.vars.cooldown then
+		if self.t:get() >= self.vars.cooldown then
+			local o,d = objTbl:GetClosestId(self)
+			if o and d and d < self.vars.radius then
 				o:Hit(self.vars.damage)
 				AddCash(self.vars.bonus)
-				self.t:set(0)
 				if o.hp <= 0 then
 					Player.Kills = Player.Kills + 1
 				end
@@ -123,6 +122,7 @@ Towers[3].Act = function(self,pathTbl)
 				}
 				
 				objTbl:InsertObj(Bullet.new(self.x,self.y,v,d))
+				self.t:set(0)
 			end
 		end
 		if self.t:get() < self.vars.cooldown then
@@ -139,29 +139,32 @@ Towers[1].Act = function(self,pathTbl)
 		-- main loop
 		self.vars.radius = Player.Tower_Radius
 		self.vars.cooldown = secondsToTicks(Player.Tower_Timer)
-		local o = objTbl:GetClosestInRId(self,nil,self.vars.radius)
-		if o then
-			for i,v in pairs(o) do
-				LUAPRINT(i..":{"..tostring(v[2])..","..tostring(v[1]).."}")
-			end
-			--[[
-			if self.t:get() >= self.vars.cooldown then
-				o:Hit(self.vars.damage)
-				AddCash(self.vars.bonus)
-				self.t:set(0)
-				if o.hp <= 0 then
-					Player.Kills = Player.Kills + 1
+		self.vars.multi = Player.Multi_Tower
+		if self.t:get() >= self.vars.cooldown then
+			local o = objTbl:GetClosestInRId(self,nil,self.vars.radius)
+			if o then
+				local s = sortTbl(o)
+				if s then
+					for i = 1,self.vars.multi do
+						if s[i] then
+							s[i][1]:Hit(self.vars.damage)
+							AddCash(self.vars.bonus)
+							if s[i][1].hp <= 0 then
+								Player.Kills = Player.Kills + 1
+							end
+							
+							-- create bullet object
+							local v = {
+								(s[i][1].x - self.x)/s[i][2],
+								(s[i][1].y - self.y)/s[i][2]
+							}
+							
+							objTbl:InsertObj(Bullet.new(self.x,self.y,v,s[i][2]))
+							self.t:set(0)
+						end
+					end
 				end
-				
-				-- create bullet object
-				local v = {
-					(o.x - self.x)/d,
-					(o.y - self.y)/d
-				}
-				
-				objTbl:InsertObj(Bullet.new(self.x,self.y,v,d))
 			end
-			]]
 		end
 		if self.t:get() < self.vars.cooldown then
 			self.t()

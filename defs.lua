@@ -169,3 +169,31 @@ function playSFX(n)
 		s:pause()
 	end
 end
+
+function sortTbl(tbl)
+	local rtbl = {}
+	local ctbl = tbl
+	local lowest = nil
+	local index = nil
+	
+	for l = 1,#tbl do
+		for i,v in pairs(ctbl) do
+			if not lowest then
+				lowest = v
+				index = i
+			else
+				if lowest[2] > v[2] then
+					lowest = v
+					index = i
+				end
+			end
+		end
+		
+		table.insert(rtbl,lowest)
+		ctbl[index] = nil
+		lowest = nil
+		index = nil
+	end
+	
+	return rtbl
+end
