@@ -22,7 +22,7 @@ end
 Towers[1] = Object.new(0,0,0,"tower1","Tower1") -- 
 Towers[2] = Object.new(0,0,0,"tower2","Tower2") -- 
 Towers[3] = Object.new(0,0,0,"tower3","Tower3") -- 
-Towers[4] = Object.new(0,0,0,"tower2","Tower4") -- 
+Towers[5] = Object.new(0,0,0,"tower2","Tower4") -- 
 
 -- Multi towers need GetClosest + 2nd
 --Towers[4] = Object.new(0,0,0,"tower4","Tower4") -- 
@@ -131,7 +131,7 @@ Towers[3].Act = function(self,pathTbl)
 	end
 end
 
-Towers[1].Act = function(self,pathTbl)
+Towers[5].Act = function(self,pathTbl)
 	--self.vars["cpath"] = pathTbl:GetClosest(self)
 	self.vars.damage = 30
 	self.vars.bonus = self.vars.damage * 5

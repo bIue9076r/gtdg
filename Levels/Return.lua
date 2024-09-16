@@ -500,6 +500,7 @@ function Return_Level:Load()
 		[2] = 400,
 		[3] = 2000,
 		[4] = 500,
+		[5] = 1000,
 	}
 	
 	if Player.Money < LevelScreen.vars.costs[1] then
@@ -585,6 +586,7 @@ function Return_Level:Draw()
 			love.graphics.print({{0,0,0},"[2] $"..(LevelScreen.vars.costs[2])..": Iron Tower"},260,95)
 			love.graphics.print({{0,0,0},"[3] $"..(LevelScreen.vars.costs[3])..": Gold Tower"},260,115)
 			love.graphics.print({{0,0,0},"[4] $"..(LevelScreen.vars.costs[4])..": Bomb"},260,135)
+			love.graphics.print({{0,0,0},"[5] $"..(LevelScreen.vars.costs[5])..": Multi Tower"},260,155)
 			
 			if LevelScreen.vars.poor then
 				love.graphics.rectangle("fill",250,25,200,250)
@@ -737,7 +739,7 @@ function Return_Level:Keypressed(key)
 	
 	if LevelScreen.vars.building then
 		local n = tonumber(key)
-		if n and (n >= 1) and (n <= 4) then
+		if n and (n >= 1) and (n <= 5) then
 			local t = Return_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
 			
 			if Player.Money >= LevelScreen.vars.costs[n] and not(t.path) then

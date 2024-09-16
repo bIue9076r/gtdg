@@ -82,6 +82,7 @@ files.assets.Textures.newImage("bullet","/Assets/bullet.png")
 files.assets.Textures.newImage("tower1","/Assets/tower1.png")
 files.assets.Textures.newImage("tower2","/Assets/tower2.png")
 files.assets.Textures.newImage("tower3","/Assets/tower3.png")
+files.assets.Textures.newImage("tower5","/Assets/tower2.png")
 files.assets.Textures.newImage("bomb","/Assets/bomb.png")
 
 files.assets.Audio.new("title","/Assets/intro.mp3","stream")
