@@ -21,16 +21,16 @@ function LevelScreen:Load(l)
 	
 	l = l or 1
 	-- Other levels soon
-	if not((l == 2) or (l == 3) or (l == 4)) then
-		LevelScreen.vars.Bsound:seek(0)
-		LevelScreen.vars.Bsound:pause()
-		Game.State = HomeScreen
-		Game.State:Load()
-	else
+	--if not((l == 2) or (l == 3) or (l == 4)) then
+	--	LevelScreen.vars.Bsound:seek(0)
+	--	LevelScreen.vars.Bsound:pause()
+	--	Game.State = HomeScreen
+	--	Game.State:Load()
+	--else
 		LevelScreen.vars.s = LevelScreen.vars.ntos[l]
 		LevelScreen.vars.level = Game.Levels[l]
 		LevelScreen.vars.level:Load()
-	end
+	--end
 end
 
 function LevelScreen:Draw()
