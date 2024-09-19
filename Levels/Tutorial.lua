@@ -4,6 +4,12 @@ function Tutorial_Level:Load()
 	Tutorial_Level.Tiles = TileTable.new(Tile_X,Tile_Y)
 	Tutorial_Level.Objects = ObjectTable.new()
 	Tutorial_Level.Path = PathTable.new()
+	
+	for i = 1,Tile_Y do
+		for j = 1,Tile_X do
+			Tutorial_Level.Tiles(false,14)
+		end
+	end
 end
 
 function Tutorial_Level:Draw()
@@ -42,7 +48,48 @@ function Tutorial_Level:Draw()
 end
 
 function Tutorial_Level:Update(dt)
+	local x, y = love.mouse.getPosition()
 	
+	local dx, dy = LevelScreen.vars.lx - x, LevelScreen.vars.ly - y
+	if not LevelScreen.vars.selected then
+		if not(dx == 0) or not(dy == 0) then
+			LevelScreen.vars.sx = math.min(math.max(1,math.floor(Tile_X*(x/700)) - 1),Tile_X)
+			LevelScreen.vars.sy = math.min(math.max(1,math.floor(Tile_Y*(y/500)) - 1),Tile_Y)
+		end
+	end
+	
+	LevelScreen.vars.lx, LevelScreen.vars.ly = x, y
+	
+	if love.mouse.isDown(1) then
+		local tile = Return_Level.Tiles:Get(LevelScreen.vars.sx, LevelScreen.vars.sy)
+		if tile and not tile.path then
+			playSFX("tile_selected")
+			LevelScreen.vars.selected = true
+			Game.Paused = true
+		else
+			playSFX("tile_none")
+		end
+	end
+	
+	if love.mouse.isDown(2) then
+		playSFX("tile_deselected")
+		LevelScreen.vars.selected = false
+		Game.Paused = false
+	end
+	
+	if not Game.Paused then
+		for y = 1,Tile_Y do
+			for x = 1,Tile_X do
+				local t = Tutorial_Level.Tiles:Get(x,y)
+				if t.tower then
+					t.tower:Act(Tutorial_Level.Objects)
+				end
+			end
+		end
+		
+		Tutorial_Level.Objects:ActAll(Tutorial_Level)
+		Tutorial_Level.Objects:CleanAll()
+	end
 end
 
 function Tutorial_Level:Keypressed(key)
