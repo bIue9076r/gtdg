@@ -147,6 +147,7 @@ function Retreat_Level:Load()
 	if Player.Money < LevelScreen.vars.costs[1] then
 		Player.Money = LevelScreen.vars.costs[1]
 	end
+	LevelScreen.vars.LastPlayer = nil
 	
 	Retreat_Level.Damage = 0
 	LevelScreen.vars.selected = false

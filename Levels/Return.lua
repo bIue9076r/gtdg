@@ -506,6 +506,7 @@ function Return_Level:Load()
 	if Player.Money < LevelScreen.vars.costs[1] then
 		Player.Money = LevelScreen.vars.costs[1]
 	end
+	LevelScreen.vars.LastPlayer = nil
 	
 	Return_Level.Damage = 0
 	Return_Level.MaxDamage = 1000

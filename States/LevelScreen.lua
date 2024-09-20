@@ -98,5 +98,9 @@ function LevelScreen:Keypressed(key)
 		LevelScreen.vars.shouldQuit2 = false
 		Game.Victory = false
 		Game.Over = true
+		if LevelScreen.vars.LastPlayer then
+			Player = LevelScreen.vars.LastPlayer
+			LevelScreen.vars.LastPlayer = nil
+		end
 	end
 end

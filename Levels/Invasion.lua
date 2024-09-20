@@ -145,6 +145,7 @@ function Invasion_Level:Load()
 	if Player.Money < LevelScreen.vars.costs[1] then
 		Player.Money = LevelScreen.vars.costs[1]
 	end
+	LevelScreen.vars.LastPlayer = nil
 	
 	Invasion_Level.Damage = 0
 	LevelScreen.vars.selected = false

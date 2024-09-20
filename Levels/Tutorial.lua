@@ -10,6 +10,42 @@ function Tutorial_Level:Load()
 			Tutorial_Level.Tiles(false,14)
 		end
 	end
+	
+	LevelScreen.vars.sx = 1
+	LevelScreen.vars.sy = 1
+	LevelScreen.vars.lx = 0
+	LevelScreen.vars.ly = 0
+	
+	LevelScreen.vars.LastPlayer = Player
+	Player = {
+		Money = 300,
+		Kills = 0,
+		Tower_Timer = 5,
+		Tower_Radius = 5,
+		Bomb_Fuse = 100,
+		Bomb_Radius = 10,
+		Multi_Tower = 2,
+		Tower_Timer_Level = 1,
+		Tower_Radius_Level = 1,
+		Bomb_Fuse_Level = 1,
+		Bomb_Radius_Level = 1,
+		Multi_Tower_Level = 1,
+		Tower_Timer_Base_Cost = 3000,
+		Tower_Radius_Base_Cost = 3000,
+		Bomb_Fuse_Base_Cost = 3000,
+		Bomb_Radius_Base_Cost = 3000,
+		Multi_Tower_Base_Cost = 3000,
+		Tower_Timer_Upgrade_Cost = 1000,
+		Tower_Radius_Upgrade_Cost = 1000,
+		Bomb_Fuse_Upgrade_Cost = 1000,
+		Bomb_Radius_Upgrade_Cost = 1000,
+		Multi_Tower_Upgrade_Cost = 1000,
+		Tower_Timer_Upgrade = -0.5,
+		Tower_Radius_Upgrade = 2.5,
+		Bomb_Fuse_Upgrade = -10,
+		Bomb_Radius_Upgrade = 2.5,
+		Multi_Tower_Upgrade = 1,
+	}
 end
 
 function Tutorial_Level:Draw()
