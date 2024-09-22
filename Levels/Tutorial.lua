@@ -75,7 +75,12 @@ function Tutorial_Level:Draw()
 	end)
 	
 	LevelScreen.Window.mid:put(function()
-		
+		love.graphics.setColor(1,0,0)
+		love.graphics.rectangle("line",
+			50 + ((LevelScreen.vars.sx-1)*TileSize),50 + ((LevelScreen.vars.sy-1)*TileSize),
+			TileSize,TileSize
+		)
+		love.graphics.setColor(1,1,1)
 	end)
 	
 	LevelScreen.Window.fore:put(function()
