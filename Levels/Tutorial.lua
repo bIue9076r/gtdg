@@ -135,6 +135,109 @@ end
 
 function Tutorial_Level:Keypressed(key)
 	
+	if not LevelScreen.vars.selected then
+		if isKeyUp(key) then
+			LevelScreen.vars.sy = math.max(math.floor(LevelScreen.vars.sy - 1),1)
+		elseif isKeyDown(key) then
+			LevelScreen.vars.sy = math.min(math.floor(LevelScreen.vars.sy + 1),Tile_Y)
+		elseif isKeyLeft(key) then
+			LevelScreen.vars.sx = math.max(math.floor(LevelScreen.vars.sx - 1),1)
+		elseif isKeyRight(key) then
+			LevelScreen.vars.sx = math.min(math.floor(LevelScreen.vars.sx + 1),Tile_X)
+		elseif key == "return" then
+			playSFX("tile_selected")
+			LevelScreen.vars.selected = true
+			Game.Paused = true
+		end
+	end
+	
+	if LevelScreen.vars.selected then
+		-- Tile options
+		if key == "a" then
+			if (not LevelScreen.vars.destroying) then
+				LevelScreen.vars.building = true
+			end
+		elseif key == "d" then
+			if (not LevelScreen.vars.building) then
+				LevelScreen.vars.destroying = true
+			end
+		elseif iskeyBack(key) then
+			playSFX("tile_deselected")
+			if (not LevelScreen.vars.building) and (not LevelScreen.vars.destroying) then
+				LevelScreen.vars.selected = false
+				Game.Paused = false
+			else
+				LevelScreen.vars.building = false
+				LevelScreen.vars.destroying = false
+				LevelScreen.vars.poor = false
+				LevelScreen.vars.poort:set(0)
+				LevelScreen.vars.inval = false
+				LevelScreen.vars.invalt:set(0)
+			end
+		end
+	end
+	
+	if LevelScreen.vars.building then
+		local n = tonumber(key)
+		if n and (n >= 1) and (n <= 5) then
+			local t = Tutorial_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
+			
+			if Player.Money >= LevelScreen.vars.costs[n] and not(t.path) then
+				if not t.tower then
+					if not (n == 4) then
+						t.tower = Towers.new(LevelScreen.vars.sx + Towers.Offset, LevelScreen.vars.sy + Towers.Offset, n)
+						t.tower:Act(Tutorial_Level.Path)
+						t.tower:Act(Tutorial_Level.Objects)
+						Player.Money = Player.Money - LevelScreen.vars.costs[n]
+						playSFX("cash_spend")
+					else
+						t.tower = Bombs.new(LevelScreen.vars.sx + Bombs.Offset, LevelScreen.vars.sy + Bombs.Offset)
+						t.tower.parent = t
+						t.tower.index = "tower"
+						t.tower:Act(Tutorial_Level.Path)
+						t.tower:Act(Tutorial_Level.Objects)
+						Player.Money = Player.Money - LevelScreen.vars.costs[n]
+						playSFX("cash_spend")
+					end
+				end
+				LevelScreen.vars.selected = false
+				LevelScreen.vars.building = false
+				LevelScreen.vars.poor = false
+				LevelScreen.vars.poort:set(0)
+				LevelScreen.vars.inval = false
+				LevelScreen.vars.invalt:set(0)
+				Game.Paused = false
+			else
+				if not t.path then
+					LevelScreen.vars.poor = true
+				else
+					LevelScreen.vars.inval = true
+				end
+				playSFX("cash_denied")
+			end
+		end
+	end
+	
+	if LevelScreen.vars.destroying then
+		if key == "return" then
+			local t = Tutorial_Level.Tiles:Get(LevelScreen.vars.sx,LevelScreen.vars.sy)
+			if t.tower then
+				local n = tonumber(t.tower.id:sub(-1)) or 1
+				Player.Money = Player.Money + LevelScreen.vars.costs[n]
+				t.tower = nil
+				LevelScreen.vars.selected = false
+				LevelScreen.vars.destroying = false
+				Game.Paused = false
+				playSFX("cash_get")
+			end
+		end
+	end
+	
+	if Game.Debug and key == "0" then
+		Tutorial_Level.Objects:InsertObj(
+			Enemies.new(100 * (math.random()),"Coconut")
+		)
+	end
 end
 
 Game.Levels[1] = Tutorial_Level
