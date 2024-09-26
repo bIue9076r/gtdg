@@ -241,3 +241,9 @@ function Tutorial_Level:Keypressed(key)
 end
 
 Game.Levels[1] = Tutorial_Level
+
+-- Tutorial:
+-- 1: Intro
+-- 2: Selecting Tiles
+-- 3: Building
+-- 4: ...
