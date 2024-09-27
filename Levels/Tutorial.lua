@@ -246,4 +246,7 @@ Game.Levels[1] = Tutorial_Level
 -- 1: Intro
 -- 2: Selecting Tiles
 -- 3: Building
--- 4: ...
+-- 4: Upgrades
+-- 5: Rewards
+-- 6: Lore
+-- ......
