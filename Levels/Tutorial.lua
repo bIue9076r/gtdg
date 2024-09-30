@@ -84,7 +84,8 @@ function Tutorial_Level:Draw()
 	end)
 	
 	LevelScreen.Window.fore:put(function()
-		
+		love.graphics.rectangle("fill",0,0,500,500)
+		-- Text box
 	end)
 end
 
