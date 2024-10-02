@@ -1,4 +1,4 @@
-"Patching."
+"Patching & Adding."
 
 Update 0.2.0:
 	Main game loop - [~] @ ??/??/2024
