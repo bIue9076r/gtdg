@@ -84,7 +84,8 @@ function Tutorial_Level:Draw()
 	end)
 	
 	LevelScreen.Window.fore:put(function()
-		love.graphics.rectangle("fill",0,0,500,500)
+		love.graphics.rectangle("fill",50,50,500,100)
+		love.graphics.print({{0,0,0},"Welcome to Generic Tower Defense Game!"},55,55)
 		-- Text box
 	end)
 end
