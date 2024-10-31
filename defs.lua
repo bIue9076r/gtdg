@@ -7,7 +7,7 @@ Game.Volume = 0.5
 Game.FirstTime = true
 Game.Tutorial = false
 Game.Debug = true
-Game.Version = "0.1.15"
+Game.Version = "0.1.16"
 
 Game.ShowPath = false
 Game.ShowHitBoxes = false
