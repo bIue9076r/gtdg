@@ -5,7 +5,7 @@ Update 0.2.0:
 		Game Arena - [~] @ ??/??/2024
 			Tutorial Arena - [~] @ ??/10/2024
 			Arena #2 - [X] @ 13/09/2024
-			Arena #3 - [X] @ 1?/09/2024
+			Arena #3 - [X] @ 14/09/2024
 
 	Visual Assets - [~] @ ??/??/2024
 		Level Previews - [~] @ ??/??/2024
