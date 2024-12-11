@@ -46,6 +46,11 @@ function Tutorial_Level:Load()
 		Bomb_Radius_Upgrade = 2.5,
 		Multi_Tower_Upgrade = 1,
 	}
+	
+	LevelScreen.vars.disFuncs = {}
+	LevelScreen.vars.disFuncs[1] = function()
+		
+	end
 end
 
 function Tutorial_Level:Draw()
@@ -87,7 +92,8 @@ function Tutorial_Level:Draw()
 	
 	LevelScreen.Window.fore:put(function()
 		love.graphics.rectangle("fill",50,50,500,100)
-		love.graphics.print({{0,0,0},"Welcome to Generic Tower Defense Game!"},55,55)
+		love.graphics.print({{0,0,0},"Welcome to Generic Tower Defense Game!"},60,60)
+		love.graphics.print({{0,0,0},"press enter"},80,120)
 		-- Text box
 	end)
 end
@@ -120,7 +126,6 @@ function Tutorial_Level:Keypressed(key)
 		elseif key == "return" then
 			playSFX("tile_selected")
 			LevelScreen.vars.selected = true
-			Game.Paused = true
 		end
 	end
 	
