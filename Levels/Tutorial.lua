@@ -49,18 +49,21 @@ function Tutorial_Level:Load()
 	
 	LevelScreen.vars.disFuncs = {}
 	LevelScreen.vars.disFuncs[1] = function()
-		
+		love.graphics.rectangle("fill",50,50,500,100)
+		love.graphics.print({{0,0,0},"Welcome to Generic Tower Defense Game!"},60,60)
+		love.graphics.print({{0,0,0},"press enter"},80,120)
 	end
 end
 
 function Tutorial_Level:Draw()
 	LevelScreen.Window.back:put(function()
+		--[[
 		love.graphics.rectangle("fill",380,10,135,30)
 		love.graphics.print({{0,0.8,0},"Cash: $"..(Player.Money)},390,20)
 		love.graphics.rectangle("fill",515,10,185,30)
 		love.graphics.print({{0,0,0},"Damage: "..math.floor(Tutorial_Level.Damage).."/"..(Tutorial_Level.MaxDamage)},525,20)
 		
-		--[[
+		
 		love.graphics.rectangle("line",50,50,700,500)
 		
 		for y = 1,Tile_Y do
@@ -91,9 +94,7 @@ function Tutorial_Level:Draw()
 	end)
 	
 	LevelScreen.Window.fore:put(function()
-		love.graphics.rectangle("fill",50,50,500,100)
-		love.graphics.print({{0,0,0},"Welcome to Generic Tower Defense Game!"},60,60)
-		love.graphics.print({{0,0,0},"press enter"},80,120)
+		
 		-- Text box
 	end)
 end
