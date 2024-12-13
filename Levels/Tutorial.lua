@@ -47,10 +47,17 @@ function Tutorial_Level:Load()
 		Multi_Tower_Upgrade = 1,
 	}
 	
+	LevelScreen.vars.dF_index = 1
 	LevelScreen.vars.disFuncs = {}
 	LevelScreen.vars.disFuncs[1] = function()
 		love.graphics.rectangle("fill",50,50,500,100)
 		love.graphics.print({{0,0,0},"Welcome to Generic Tower Defense Game!"},60,60)
+		love.graphics.print({{0,0,0},"press enter"},80,120)
+	end
+	
+	LevelScreen.vars.disFuncs[2] = function()
+		love.graphics.rectangle("fill",50,50,500,100)
+		love.graphics.print({{0,0,0},""},60,60)
 		love.graphics.print({{0,0,0},"press enter"},80,120)
 	end
 end
@@ -94,7 +101,8 @@ function Tutorial_Level:Draw()
 	end)
 	
 	LevelScreen.Window.fore:put(function()
-		
+		local f = LevelScreen.vars.disFuncs[LevelScreen.vars.dF_index]
+		if f then f() end
 		-- Text box
 	end)
 end
@@ -126,13 +134,8 @@ function Tutorial_Level:Keypressed(key)
 			LevelScreen.vars.sx = math.min(math.floor(LevelScreen.vars.sx + 1),Tile_X)
 		elseif key == "return" then
 			playSFX("tile_selected")
-			LevelScreen.vars.selected = true
+			LevelScreen.vars.dF_index = LevelScreen.vars.dF_index + 1
 		end
-	end
-	
-	if LevelScreen.vars.selected then
-		-- Tile options
-		
 	end
 end
 
