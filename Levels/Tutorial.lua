@@ -67,6 +67,12 @@ function Tutorial_Level:Load()
 		love.graphics.print({{0,0,0},"press enter"},80,120)
 		love.graphics.draw(files.assets.Textures.getImage("Coconut"),300,50,0,5)
 	end
+	
+	LevelScreen.vars.disFuncs[4] = function()
+		love.graphics.rectangle("fill",50,50,500,100)
+		love.graphics.print({{0,0,0},"Kill as many of them as you can before they over run the beach"},60,60)
+		love.graphics.print({{0,0,0},"press enter"},80,120)
+	end
 end
 
 function Tutorial_Level:Draw()
@@ -144,6 +150,9 @@ function Tutorial_Level:Keypressed(key)
 			
 			if LevelScreen.vars.dF_index >= 1 then
 				LevelScreen.vars.dF_index = LevelScreen.vars.dF_index + 1
+				if LevelScreen.vars.dF_index >= 5 then
+					LevelScreen.vars.dF_index = 1
+				end
 			end
 		end
 	end
