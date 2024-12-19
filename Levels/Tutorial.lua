@@ -1,12 +1,14 @@
 Tutorial_Level = Level.new("Tutorial")
 
 function Tutorial_Level:Load()
-	Tutorial_Level.Tiles = TileTable.new(Tile_X,Tile_Y)
+	LevelScreen.vars.Tutorial_X = 14
+	LevelScreen.vars.Tutorial_Y = 10
+	Tutorial_Level.Tiles = TileTable.new(LevelScreen.vars.Tutorial_X,LevelScreen.vars.Tutorial_Y)
 	Tutorial_Level.Objects = ObjectTable.new()
 	Tutorial_Level.Path = PathTable.new()
 	
-	for i = 1,Tile_Y do
-		for j = 1,Tile_X do
+	for i = 1,LevelScreen.vars.Tutorial_Y do
+		for j = 1,LevelScreen.vars.Tutorial_X do
 			Tutorial_Level.Tiles(false,14)
 		end
 	end
@@ -53,6 +55,33 @@ function Tutorial_Level:Load()
 		love.graphics.rectangle("fill",50,50,500,100)
 		love.graphics.print({{0,0,0},"Welcome to Generic Tower Defense Game!"},60,60)
 		love.graphics.print({{0,0,0},"press enter"},80,120)
+		love.graphics.draw(files.assets.Textures.getImage("title"),300,100)
+		
+		LevelScreen.Window.back:put(function()
+			for y = 1,LevelScreen.vars.Tutorial_Y do
+				for x = 1,LevelScreen.vars.Tutorial_X do
+					local t = Tutorial_Level.Tiles:Get(x,y)
+					love.graphics.draw(
+						files.assets.Textures.getImage(
+							LevelTiles[t.obj] or "tile_20" 
+						)
+					,90 + ((x-1)*TileSize),190 + ((y-1)*TileSize)
+					)
+					
+					if t.tower then
+						t.tower:Draw()
+					end
+				end
+			end
+		end)
+		
+		love.graphics.draw(
+			files.assets.Textures.getImage(
+				LevelTiles[TileName["NULL_"]]
+			),
+			90 + ((2-1)*TileSize),
+			190 + ((2-1)*TileSize)
+		)
 	end
 	
 	LevelScreen.vars.disFuncs[2] = function()
