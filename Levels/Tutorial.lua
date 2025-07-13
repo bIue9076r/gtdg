@@ -68,7 +68,7 @@ function Tutorial_Level:Load()
 		love.graphics.rectangle("fill",50,50,500,100)
 		love.graphics.print({{0,0,0},"This is a Coconut"},60,60)
 		love.graphics.print({{0,0,0},"press enter"},80,120)
-		love.graphics.draw(files.assets.Textures.getImage("Coconut"),300,50,0,5)
+		love.graphics.draw(files.assets.Textures.getImage("Coconut"),300,200,0,5)
 	end
 	
 	LevelScreen.vars.disFuncs[4] = function()
@@ -79,6 +79,18 @@ function Tutorial_Level:Load()
 	end
 	
 	LevelScreen.vars.disFuncs[5] = function()
+		love.graphics.rectangle("fill",50,50,500,100)
+		love.graphics.print({{0,0,0},"You can build towers to kill the Coconuts"},60,60)
+		love.graphics.print({{0,0,0},"press enter"},80,120)
+	end
+	
+	LevelScreen.vars.disFuncs[6] = function()
+		love.graphics.rectangle("fill",50,50,500,100)
+		love.graphics.print({{0,0,0},"Press enter on a tile to select it for building"},60,60)
+		love.graphics.print({{0,0,0},"press enter"},80,120)
+	end
+	
+	LevelScreen.vars.disFuncs[7] = function()
 		LevelScreen.Window.back:put(function()
 			for y = 1,LevelScreen.vars.Tutorial_Y do
 				for x = 1,LevelScreen.vars.Tutorial_X do
@@ -174,7 +186,7 @@ function Tutorial_Level:Keypressed(key)
 			
 			if LevelScreen.vars.dF_index >= 1 then
 				LevelScreen.vars.dF_index = LevelScreen.vars.dF_index + 1
-				if LevelScreen.vars.dF_index >= 5 then
+				if LevelScreen.vars.dF_index >= 7 then
 					LevelScreen.vars.dF_index = 1
 				end
 			end
