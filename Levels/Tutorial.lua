@@ -73,7 +73,8 @@ function Tutorial_Level:Load()
 	
 	LevelScreen.vars.disFuncs[4] = function()
 		love.graphics.rectangle("fill",50,50,500,100)
-		love.graphics.print({{0,0,0},"Kill as many of them as you can before they over run the beach"},60,60)
+		love.graphics.print({{0,0,0},"Kill as many of them as you can before they over run"},60,60)
+		love.graphics.print({{0,0,0},"the beach"},60,80)
 		love.graphics.print({{0,0,0},"press enter"},80,120)
 	end
 	
