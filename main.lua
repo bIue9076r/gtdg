@@ -27,7 +27,7 @@ files.assets.Textures.newImage("yesav","/Assets/yesav.png")
 files.assets.Textures.newImage("nosav","/Assets/nosav.png")
 files.assets.Textures.newImage("ersav","/Assets/ersav.png")
 
---files.assets.Textures.newImage("tutorial","/Assets/tutorial.png")
+files.assets.Textures.newImage("tutorial","/Assets/level_0.png")
 files.assets.Textures.newImage("level_1","/Assets/level_1.png")
 files.assets.Textures.newImage("level_2","/Assets/level_2.png")
 files.assets.Textures.newImage("level_3","/Assets/level_3.png")
